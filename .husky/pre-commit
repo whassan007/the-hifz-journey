@@ -1,0 +1,1 @@
+npm run lint || (echo "❌ Pre-commit failed: ESLint found errors (e.g. hardcoded Arabic text). Please resolve them." && exit 1)

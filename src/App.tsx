@@ -1,3 +1,4 @@
+import UI from './data/ui-text.json';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Map, Trophy, BookOpen, Gamepad2 } from 'lucide-react';
@@ -199,7 +200,7 @@ const App = () => {
           transition={{ duration: 0.3 }}
           className="flex-1 overflow-y-auto pb-24 relative z-10 w-full max-w-4xl mx-auto"
         >
-          {activeTab === 'home' && <HomeView user={user} currentSurahData={currentSurahData} setActiveGame={setActiveGame} />}
+          {activeTab === 'home' && <HomeView user={user} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} />}
           {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
           {activeTab === 'review' && <ReviewView />}
@@ -228,11 +229,11 @@ const App = () => {
         <nav className="fixed bottom-0 left-0 right-0 w-full bg-jungle-dark/90 backdrop-blur-xl border-t border-white/10 pb-safe pt-2 px-6 z-40 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
           <div className="flex justify-between items-center w-full max-w-md mx-auto mb-2">
           {[
-            { id: 'home', icon: <Home size={24} />, label: 'الرئيسية' },
-            { id: 'journey', icon: <Map size={24} />, label: 'الخريطة' },
-            { id: 'games', icon: <Gamepad2 size={24} />, label: 'الألعاب' },
-            { id: 'review', icon: <BookOpen size={24} />, label: 'المراجعة' },
-            { id: 'profile', icon: <Trophy size={24} />, label: 'ملفي' },
+            { id: 'home', icon: <Home size={24} />, label: UI.ui_5 },
+            { id: 'journey', icon: <Map size={24} />, label: UI.ui_4 },
+            { id: 'games', icon: <Gamepad2 size={24} />, label: UI.ui_3 },
+            { id: 'review', icon: <BookOpen size={24} />, label: UI.ui_2 },
+            { id: 'profile', icon: <Trophy size={24} />, label: UI.ui_1 },
           ].map(tab => (
             <button
               key={tab.id}

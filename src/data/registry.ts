@@ -1,3 +1,4 @@
+import UI from '../data/ui-text.json';
 import groundTruth from './surah-ground-truth.json';
 import type { SurahNode } from '../types';
 import { getSafeVerses } from '../services/verseUniquenessValidator';
@@ -36,7 +37,7 @@ export const generateQuestion = (surahId: number, gameType: 'quiz' | 'scramble' 
      type: gameType,
      surahId,
      ayah: targetVerse.verseText,
-     question: "أي سورة تحتوي على هذه الآية؟", // "Which Surah contains this Ayah?"
+     question: UI.ui_83, // "Which Surah contains this Ayah?"
      answer: surah.arabicName,
      options,
      translation: `Verse ${targetVerse.verseNumber}`,

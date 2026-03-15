@@ -1,3 +1,4 @@
+import UI from '../../../data/ui-text.json';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { GameComponentProps } from '../GameWrapper';
@@ -94,7 +95,7 @@ export const LanternTrail = ({ mode, audioEnabled, hapticEnabled, onVictory }: G
           <input
             type="text"
             dir="rtl"
-            placeholder="اكتب الآية هنا..."
+            placeholder={UI.ui_6}
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             className={`w-full bg-black/40 border-2 rounded-2xl py-4 px-6 text-2xl font-arabic text-paper outline-none transition-colors backdrop-blur-md shadow-inner ${isWrong ? 'border-red-500 focus:border-red-500 animate-shake' : 'border-white/10 focus:border-[#FFC107]'}`}

@@ -1,3 +1,4 @@
+import UI from '../../data/ui-text.json';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, RefreshCcw, AlertTriangle, BookX } from 'lucide-react';
@@ -9,7 +10,7 @@ const MOCK_DUE_REVIEWS: ReviewRecord[] = [
 ];
 
 const MOCK_MISTAKES: MistakeEntry[] = [
-  { id: '1', surahId: 112, questionType: 'fillBlank', userAnswer: 'الصمد', correctAnswer: 'أحد', hintShown: 'تذكر أن السورة تبدأ بوحدانية الله المطلقة.', date: "2026-03-13T14:30:00Z" }
+  { id: '1', surahId: 112, questionType: 'fillBlank', userAnswer: UI.ui_59, correctAnswer: UI.ui_58, hintShown: UI.ui_57, date: "2026-03-13T14:30:00Z" }
 ];
 
 export const ReviewView = () => {
@@ -26,7 +27,7 @@ export const ReviewView = () => {
         <div>
           <h2 className="text-3xl font-bold text-paper mb-1 flex items-center gap-2">
             <RefreshCcw size={28} className="text-accent" />
-            المراجعة
+            {UI.ui_2}
           </h2>
           <p className="text-sm text-paper/70 font-arabic">الفهم الأعمق بالمراجعة المتباعدة</p>
         </div>

@@ -1,3 +1,4 @@
+import UI from '../../data/ui-text.json';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Leaf, Check, ArrowRight } from 'lucide-react';
@@ -11,43 +12,43 @@ interface OnboardingProps {
 const AGE_GROUPS = [
   {
     id: 'seedling' as AgeGroup,
-    name: 'برعم',
-    ageRange: '٥–٩ سنوات',
-    desc: 'صوتيات أولاً، ممتع، تدريبات مرنة.',
+    name: UI.ui_56,
+    ageRange: UI.ui_55,
+    desc: UI.ui_54,
     color: 'bg-emerald-500',
     borderColor: 'border-emerald-500',
     lightBg: 'bg-emerald-500/10',
-    defaults: { diff: 'مبتدئ', session: '١٠–١٥ دقيقة', types: '٤ (خيارات، صوت)' }
+    defaults: { diff: UI.ui_53, session: UI.ui_52, types: UI.ui_51 }
   },
   {
     id: 'sapling' as AgeGroup,
-    name: 'نبتة',
-    ageRange: '١٠–١٥ سنة',
-    desc: 'تدريب منظم مع منافسة خفيفة.',
+    name: UI.ui_50,
+    ageRange: UI.ui_49,
+    desc: UI.ui_48,
     color: 'bg-blue-500',
     borderColor: 'border-blue-500',
     lightBg: 'bg-blue-500/10',
-    defaults: { diff: 'متوسط', session: '٢٠–٢٥ دقيقة', types: '٨ أنواع أساسية' }
+    defaults: { diff: UI.ui_47, session: UI.ui_46, types: UI.ui_45 }
   },
   {
     id: 'rising_tree' as AgeGroup,
-    name: 'شجرة صاعدة',
-    ageRange: '١٦–٢٥ سنة',
-    desc: 'وصول كامل، تدريبات مكثفة.',
+    name: UI.ui_44,
+    ageRange: UI.ui_43,
+    desc: UI.ui_42,
     color: 'bg-orange-500',
     borderColor: 'border-orange-500',
     lightBg: 'bg-orange-500/10',
-    defaults: { diff: 'متقدم', session: '٣٠+ دقيقة', types: 'جميع الأنماط ١٥' }
+    defaults: { diff: UI.ui_41, session: UI.ui_40, types: UI.ui_39 }
   },
   {
     id: 'mighty_oak' as AgeGroup,
-    name: 'بلوط شامخ',
-    ageRange: '٢٦+ سنة',
-    desc: 'مراجعة مرنة لأنماط الحياة المزدحمة.',
+    name: UI.ui_38,
+    ageRange: UI.ui_37,
+    desc: UI.ui_36,
     color: 'bg-purple-500',
     borderColor: 'border-purple-500',
     lightBg: 'bg-purple-500/10',
-    defaults: { diff: 'مرحلي', session: 'متغير', types: 'الكل + وضع المعلم' }
+    defaults: { diff: UI.ui_35, session: UI.ui_34, types: UI.ui_33 }
   }
 ];
 
@@ -85,7 +86,7 @@ export const OnboardingView = ({ onComplete, onTeacherClick }: OnboardingProps) 
             <form onSubmit={handleNameSubmit} className="w-full flex flex-col gap-4">
               <input
                 type="text"
-                placeholder="اسمك..."
+                placeholder={UI.ui_32}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-xl font-bold text-paper outline-none focus:border-accent transition-colors text-center"

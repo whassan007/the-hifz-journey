@@ -1,3 +1,4 @@
+import UI from '../data/ui-text.json';
 import { getSafeVerses, ALWAYS_EXCLUDED_PHRASES, isUniqueToSurah } from './verseUniquenessValidator';
 import type { ReviewFormat, SessionHistory } from '../types';
 import { SURAHS, getSurahById } from '../data/registry';
@@ -79,10 +80,10 @@ function generateFormatA(surahId: number, text: string, verseNum: number): Revie
     format: 'A',
     verseId: verseNum,
     ayah: `${firstHalf} ...`,
-    question: "ما الذي يلي هذا؟", // What comes next?
+    question: UI.ui_87, // What comes next?
     answer: secondHalf,
     options,
-    hint: "تذكر السياق الخاص بالآية وما ينتهي به المقطع."
+    hint: UI.ui_86
   };
 }
 
@@ -103,7 +104,7 @@ function generateFormatB(surahId: number, text: string, verseNum: number): Revie
     format: 'B',
     verseId: verseNum,
     ayah: text,
-    question: "من أي سورة هذه الآية؟", // Which surah contains this verse?
+    question: UI.ui_85, // Which surah contains this verse?
     answer: surah.arabicName,
     options,
     hint: `This surah is ${surah.revelationType === 'Meccan' ? 'Meccan' : 'Medinan'}.`
@@ -142,7 +143,7 @@ function generateFormatC(surahId: number, text: string, verseNum: number): Revie
     question: `اذكر الآية رقم ${verseNum}`, // Recite verse n
     answer: text,
     options,
-    hint: "ركز على تسلسل الآيات في السورة."
+    hint: UI.ui_84
   };
 }
 

@@ -1,3 +1,4 @@
+import UI from '../../data/ui-text.json';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, LockIcon, Bookmark, X, BookOpen, Play } from 'lucide-react';
@@ -79,7 +80,7 @@ export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah,
                       <p className="text-sm text-white/80">{surah.transliteration}</p>
                     </div>
                     <p className="text-xs text-white/60 mt-2 font-mono">
-                      {surah.verseCount} آيات • {isCompleted ? 'متقن' : 'مغلق'}
+                      {surah.verseCount} آيات • {isCompleted ? UI.ui_31 : UI.ui_30}
                     </p>
                   </div>
                 )}
@@ -126,7 +127,7 @@ export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah,
                       <p className="text-sm text-white/80">{surah.transliteration}</p>
                     </div>
                     <p className="text-xs text-white/60 mt-2 font-mono">
-                      {surah.verseCount} آيات • {isCompleted ? 'متقن' : 'مغلق'}
+                      {surah.verseCount} آيات • {isCompleted ? UI.ui_31 : UI.ui_30}
                     </p>
                   </div>
                 )}

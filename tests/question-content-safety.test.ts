@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { MOCK_QUESTIONS } from '../src/data/mockQuestions';
 import { SURAHS } from '../src/data/registry';
-import { getSafeVerses, isUniqueToSurah, findSurahsContaining } from '../src/services/verseUniquenessValidator';
+import { getSafeVerses, isUniqueToSurah, findSurahsContaining, ALWAYS_EXCLUDED_PHRASES } from '../src/services/verseUniquenessValidator';
 
 describe('Verse Content Uniqueness & Safety', () => {
 
@@ -11,10 +10,10 @@ describe('Verse Content Uniqueness & Safety', () => {
       const safePool = getSafeVerses(surah.id);
       
       for (const verse of safePool) {
-         // Direct assertion that the "Bismillah" phrase does not slip through
-         expect(verse.verseText.includes("بسم الله الرحمن الرحيم")).toBe(false);
-         expect(verse.verseText.includes("الرحمن الرحيم")).toBe(false);
-         expect(verse.verseText.includes("بسم الله")).toBe(false);
+         // Direct assertion that the excluded phrases do not slip through
+         for (const phrase of ALWAYS_EXCLUDED_PHRASES) {
+           expect(verse.verseText.includes(phrase)).toBe(false);
+         }
       }
     }
   }, 120000); // 120 second timeout for O(N^2) dataset lookup
@@ -32,10 +31,16 @@ describe('Verse Content Uniqueness & Safety', () => {
   it('Verifies Ar-Rahman (Surah 55) refrain uniqueness resolution', () => {
     // "فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ" occurs 31 times in 55. 
     // It is technically unique to Surah 55. So `isUniqueToSurah` should be true.
-    const isUnique = isUniqueToSurah("فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ", 55);
+    const surah55 = SURAHS.find(s => s.id === 55);
+    // verses is an array of strings in the data layer (or objects if mapped)
+    // Looking at SURAHS[].verses, they are typically strings in some setups, but here it's verse.text or just string array.
+    // The previous error was "Property 'text' does not exist on type 'string'". So it's a string!
+    const refrain = surah55?.verses[12] || ""; // fetch dynamically
+    
+    const isUnique = isUniqueToSurah(refrain, 55);
     expect(isUnique).toBe(true);
 
-    const matchSet = findSurahsContaining("فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ");
+    const matchSet = findSurahsContaining(refrain);
     expect(matchSet).toEqual([55]);
   });
 

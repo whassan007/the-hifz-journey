@@ -4,9 +4,22 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import noHardcodedArabic from './eslint-rules/no-hardcoded-arabic.js'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'generate-registry.js', 'eslint.config.js']),
+  {
+    plugins: {
+      local: {
+        rules: {
+          'no-hardcoded-arabic': noHardcodedArabic
+        }
+      }
+    },
+    rules: {
+      'local/no-hardcoded-arabic': 'error'
+    }
+  },
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

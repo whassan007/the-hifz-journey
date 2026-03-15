@@ -1,12 +1,13 @@
 import { Leaf, Flame, Sparkles, Moon, Droplet, Edit3, Home } from 'lucide-react';
+import UI from './data/ui-text.json';
 import type { Biome } from './types';
 
 export const ranks = [
-  { name: 'باحث', minXp: 0, icon: <Leaf size={24} className="text-statRank-start" /> },
-  { name: 'طالب', minXp: 300, icon: <Edit3 size={24} className="text-accent" /> },
-  { name: 'حافظ', minXp: 800, icon: <Sparkles size={24} className="text-yellow-600" /> },
-  { name: 'عالم', minXp: 1500, icon: <Home size={24} className="text-statHikmah-start" /> },
-  { name: 'مفسر', minXp: 3000, icon: <Moon size={24} className="text-purple-300" /> },
+  { name: UI.ui_97, minXp: 0, icon: <Leaf size={24} className="text-statRank-start" /> },
+  { name: UI.ui_96, minXp: 300, icon: <Edit3 size={24} className="text-accent" /> },
+  { name: UI.ui_95, minXp: 800, icon: <Sparkles size={24} className="text-yellow-600" /> },
+  { name: UI.ui_94, minXp: 1500, icon: <Home size={24} className="text-statHikmah-start" /> },
+  { name: UI.ui_93, minXp: 3000, icon: <Moon size={24} className="text-purple-300" /> },
 ];
 
 export const getRank = (xp: number) => {
@@ -42,7 +43,7 @@ export const getBiomeEmojis = (biome: Biome) => {
 };
 
 export const getBiomeName = (biome: Biome) => {
-  const names: Record<Biome, string> = { jungle: 'غابة', ocean: 'محيط', desert: 'صحراء', palace: 'قصر', dream: 'حلم' };
+  const names: Record<Biome, string> = { jungle: UI.ui_92, ocean: UI.ui_91, desert: UI.ui_90, palace: UI.ui_89, dream: UI.ui_88 };
   return names[biome] || biome;
 };
 

@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@zxing/browser": "^0.1.5",
@@ -23,6 +24,9 @@
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
+    "@babel/generator": "^7.29.1",
+    "@babel/parser": "^7.29.0",
+    "@babel/traverse": "^7.29.0",
     "@eslint/js": "^9.39.4",
     "@types/howler": "^2.2.12",
     "@types/node": "^24.12.0",

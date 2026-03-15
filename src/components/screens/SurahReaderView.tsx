@@ -1,3 +1,4 @@
+import UI from '../../data/ui-text.json';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Settings, Bookmark, X, Type, List, Monitor, Palette, Share2, Copy, BookOpen, Check } from 'lucide-react';
@@ -345,15 +346,15 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
               <div className="w-full flex justify-center py-6 mb-4 select-none">
                 <img src="/bismillah.svg" alt="Bismillah" className="h-14 opacity-90 invert-[0.8]" onError={(e) => {
                   e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML = '<h3 class="font-arabic text-3xl font-bold text-center">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ</h3>';
+                  e.currentTarget.parentElement!.innerHTML = `<h3 class="font-arabic text-3xl font-bold text-center">${UI.ui_60}</h3>`;
                 }} />
               </div>
             )}
 
             {verses.map((verse) => {
               let text = verse.text;
-              if (surahId !== 1 && verse.numberInSurah === 1 && text.startsWith('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ')) {
-                text = text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ', '');
+              if (surahId !== 1 && verse.numberInSurah === 1 && text.startsWith(UI.ui_60)) {
+                text = text.replace(UI.ui_60, '');
               }
 
               const isBookmarked = user.bookmarks?.some(b => b.surahId === surahId && b.ayahNumber === verse.numberInSurah);
