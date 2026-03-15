@@ -66,6 +66,7 @@ export interface UserState {
   highlights: Highlight[];
   readSurahs: number[]; // Array of surah IDs that have been opened in the reader
   readerSettings: ReaderSettings;
+  sessionHistory?: Record<number, SessionHistory>; // Keyed by surahId
 }
 
 export interface Teacher {
@@ -134,5 +135,14 @@ export interface MistakeEntry {
   correctAnswer: string;
   hintShown: string;
   date: string;              // ISO8601
+}
+
+export type ReviewFormat = 'A' | 'B' | 'C'; // A: Complete verse, B: Which surah, C: Recite verse N
+
+export interface SessionHistory {
+  surahId: number;
+  lastPromptVerseIds: number[];  // last 3 verse IDs (relative index) used as prompts
+  lastFormat: ReviewFormat;
+  lastSessionAt: string;         // ISO timestamp
 }
 

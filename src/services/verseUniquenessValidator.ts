@@ -17,7 +17,7 @@ const normalizeArabic = (text: string) => {
     .replace(/\u0640/g, '');
 };
 
-const ALWAYS_EXCLUDED_PHRASES = [
+export const ALWAYS_EXCLUDED_PHRASES = [
   "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", // Full Bismillah
   "بسم الله الرحمن الرحيم",         // Bismillah plain
   "الرَّحْمَٰنِ الرَّحِيمِ",         // Ar-Rahman Ar-Raheem

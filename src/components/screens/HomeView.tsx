@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gamepad2, Trophy, Clock, Target, Play, GraduationCap, BookOpen, ChevronRight } from 'lucide-react';
-import type { UserState, SurahNode, Class, ClassAssignment } from '../../types';
+import { Gamepad2, Trophy, Clock, Target, Play, GraduationCap, BookOpen, ChevronRight, Download } from 'lucide-react';
+import type { UserState, SurahNode, Class, ClassAssignment, ReviewRecord } from '../../types';
 import { getRank } from '../../utils';
 import { JoinClassModal } from './student/JoinClassModal';
+import { buildReviewCard } from '../../services/reviewCardGenerator';
+import { getSurahById } from '../../data/registry';
 
 // Temporary Mock Data for prototype Demonstration
+const MOCK_DUE_REVIEWS: ReviewRecord[] = [
+  { surahId: 1, verseNumber: 2, easeFactor: 2.1, intervalDays: 1, repetitionCount: 5, nextReviewDate: "2026-03-14", lastReviewed: "2026-03-13", qualityHistory: [], missCount: 0 },
+  { surahId: 2, verseNumber: 255, easeFactor: 2.5, intervalDays: 4, repetitionCount: 3, nextReviewDate: "2026-03-14", lastReviewed: "2026-03-10", qualityHistory: [], missCount: 0 },
+  { surahId: 112, verseNumber: 4, easeFactor: 2.5, intervalDays: 4, repetitionCount: 3, nextReviewDate: "2026-03-14", lastReviewed: "2026-03-10", qualityHistory: [], missCount: 0 },
+];
+
 const MOCK_ACTIVE_ASSIGNMENTS: ClassAssignment[] = [
   { id: 'a1', classId: 'mock', title: 'مراجعة عطلة نهاية الأسبوع', surahRange: 'الكهف (١-١٠)', dueDate: 'الأحد', createdByTeacherId: 'teacher-x' }
 ];
@@ -121,20 +129,86 @@ export const HomeView = ({ user, currentSurahData, setActiveGame }: HomeViewProp
         
         <div className="relative z-10 text-center">
           <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2 mt-2">هدف اليوم</p>
-          <h2 className="text-2xl font-bold mb-1 text-paper">تمت مراجعة ٠ من ١٥ آية</h2>
-          <p className="text-sm text-paper/80 mb-5">اربح نقاطاً مضاعفة عند إكمال مراجعات اليوم!</p>
           
-          <div className="w-full bg-black/40 h-1.5 rounded-full mb-6 overflow-hidden rtl:-scale-x-100">
-            <div className="bg-accent h-full w-1/3 rounded-full" />
-          </div>
+          {(() => {
+            // Process due reviews
+            const dueSurahs = MOCK_DUE_REVIEWS.map(r => r.surahId);
+            const totalVersesDue = dueSurahs.length; // Simplified for mockup
+            const completedVerses = 0; // Simplified for mockup
 
-          <button 
-            onClick={() => setActiveGame('quiz')}
-            className="mt-6 w-full bg-accent hover:bg-amber-600 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
-          >
-            <Play size={20} className="fill-current" />
-            ابدأ جلسة المراجعة
-          </button>
+            if (totalVersesDue === 0) {
+              return (
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold mb-1 text-paper">تمت مراجعة {completedVerses} من {completedVerses} آية</h2>
+                  <p className="text-sm text-paper/80 mb-5">ما شاء الله! All done for today.</p>
+                </div>
+              );
+            }
+
+            let needsDownload = false;
+            const dueListItems = dueSurahs.map(surahId => {
+              const surah = getSurahById(surahId);
+              const card = buildReviewCard(surahId, user.sessionHistory?.[surahId]);
+              if (!card || !surah) {
+                needsDownload = true;
+                return null;
+              }
+
+              let formatLabel = "";
+              if (card.format === 'A') formatLabel = "Complete the verse · أكمل الآية";
+              if (card.format === 'B') formatLabel = "Which surah? · من أي سورة؟";
+              if (card.format === 'C') formatLabel = `Recite verse ${card.verseId} · اذكر الآية رقم ${card.verseId}`;
+
+              return (
+                 <li key={surahId} className="flex flex-col text-sm text-paper/90 mb-2 items-start" dir="ltr">
+                    <span className="font-bold">{surah.transliteration} <span className="text-white/50 font-normal">· {surah.verseCount} verses due</span></span>
+                    <span className="text-accent text-xs">{formatLabel}</span>
+                 </li>
+              );
+            }).filter(Boolean);
+
+            if (needsDownload) {
+              return (
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold mb-1 text-paper">Download verses to begin · حمّل الآيات للبدء</h2>
+                  <button 
+                    onClick={() => alert("Downloading Uthmani verse texts...")}
+                    className="mt-6 w-full bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
+                  >
+                    <Download size={20} className="stroke-2" />
+                    Download
+                  </button>
+                </div>
+              );
+            }
+
+            return (
+              <>
+                <h2 className="text-2xl font-bold mb-1 text-paper">تمت مراجعة {completedVerses} من {totalVersesDue} آية</h2>
+                <p className="text-sm text-paper/80 mb-5">اربح نقاطاً مضاعفة عند إكمال مراجعات اليوم!</p>
+                
+                <div className="w-full bg-black/40 h-1.5 rounded-full mb-6 overflow-hidden rtl:-scale-x-100">
+                  <div className="bg-accent h-full w-[0%] rounded-full" />
+                </div>
+
+                <div className="bg-black/40 border border-white/5 rounded-2xl p-4 text-left mb-6 font-sans">
+                  <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-3 border-b border-white/10 pb-2">Due today · مستحقة اليوم</p>
+                  <ul className="list-disc pl-4 marker:text-accent">
+                    {dueListItems}
+                  </ul>
+                </div>
+
+                <button 
+                  onClick={() => setActiveGame('quiz')}
+                  className="w-full bg-accent hover:bg-amber-600 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <Play size={20} className="fill-current" />
+                  ابدأ جلسة المراجعة
+                </button>
+              </>
+            );
+          })()}
+
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2 } from 'lucide-react';
 import type { GameComponentProps } from '../GameWrapper';
-import { generateQuestion } from '../../../data/registry';
+import { buildReviewCard } from '../../../services/reviewCardGenerator';
 import { audioEngine, triggerHaptic } from '../../../audio';
 
 export const QuizGame = ({ mode, surah, audioEnabled, hapticEnabled, onVictory }: GameComponentProps) => {
@@ -14,7 +14,7 @@ export const QuizGame = ({ mode, surah, audioEnabled, hapticEnabled, onVictory }
   // Generate question dynamically precisely once on mount
   const [currentData] = useState(() => {
     if (mode === 'quiz' || mode === 'tajweed') {
-      const q = generateQuestion(surah.id, mode);
+      const q = buildReviewCard(surah.id);
       return q || { ayah: '', translation: '', options: [], answer: '', hint: '', question: '' };
     }
     return { ayah: '', translation: '', options: [], answer: '', hint: '', question: '' };

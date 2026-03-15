@@ -43,7 +43,8 @@ const INITIAL_USER: UserState = {
     lineSpacing: 'normal',
     displayMode: 'arabic_translation',
     theme: 'match_app'
-  }
+  },
+  sessionHistory: {}
 };
 
 const App = () => {
