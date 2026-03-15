@@ -52,3 +52,19 @@ export function getQualityScore(isCorrect: boolean, timeElapsedMs: number, missC
     return missCountThisSession > 1 ? 1 : 2;
   }
 }
+
+import type { ReviewRecord } from './types';
+
+export const createReviewCard = (surahId: number, ayahNumber: number): ReviewRecord => {
+  return {
+    surahId,
+    verseNumber: ayahNumber,
+    easeFactor: 2.5,
+    intervalDays: 0,
+    repetitionCount: 0,
+    nextReviewDate: new Date().toISOString(),
+    lastReviewed: new Date().toISOString(),
+    qualityHistory: [],
+    missCount: 0
+  };
+};

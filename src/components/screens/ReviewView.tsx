@@ -26,7 +26,7 @@ export const ReviewView = () => {
         <div>
           <h2 className="text-3xl font-bold text-paper mb-1 flex items-center gap-2">
             <RefreshCcw size={28} className="text-accent" />
-            المراجعة القائمة
+            Review · مراجعة
           </h2>
           <p className="text-sm text-paper/70 font-arabic">الفهم الأعمق بالمراجعة المتباعدة</p>
         </div>
@@ -38,7 +38,7 @@ export const ReviewView = () => {
           className={`flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeTab === 'due' ? 'bg-[#3C5B3E] text-paper shadow-md' : 'text-paper/50 hover:text-paper/80'}`}
         >
           <Clock size={16} />
-          المراجعات المستحقة
+          Review Due · مراجعة
           <span className="bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-full ml-1">2</span>
         </button>
         <button 

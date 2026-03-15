@@ -1,7 +1,14 @@
-import { motion } from 'framer-motion';
-import { Sparkles, Droplet, Flame, Moon, Volume2, Share2, Flower2 } from 'lucide-react';
-import type { UserState, SurahNode } from '../../types';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Gamepad2, Trophy, Clock, Target, Play, GraduationCap, BookOpen, ChevronRight } from 'lucide-react';
+import type { UserState, SurahNode, Class, ClassAssignment } from '../../types';
 import { getRank } from '../../utils';
+import { JoinClassModal } from './student/JoinClassModal';
+
+// Temporary Mock Data for prototype Demonstration
+const MOCK_ACTIVE_ASSIGNMENTS: ClassAssignment[] = [
+  { id: 'a1', classId: 'mock', title: 'Weekend Review', surahRange: 'Al-Kahf (1-10)', dueDate: 'Sunday', createdByTeacherId: 'teacher-x' }
+];
 
 interface HomeViewProps {
   user: UserState;
@@ -10,29 +17,83 @@ interface HomeViewProps {
 }
 
 export const HomeView = ({ user, currentSurahData, setActiveGame }: HomeViewProps) => {
+  const [isJoiningClass, setIsJoiningClass] = useState(false);
   const rank = getRank(user.xp);
 
   return (
     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="p-6">
-      <header className="flex justify-between items-center mb-10 mt-2">
+      <div className="w-full flex justify-between items-end mb-6">
         <div>
-          <p className="text-sm text-paper/70 font-arabic mb-1">سلام،</p>
-          <h1 className="text-3xl font-bold text-paper">{user.name}!</h1>
+          <h1 className="text-3xl font-bold text-paper mb-1">Welcome, {user.name}</h1>
+          <p className="text-accent font-bold text-lg flex items-center gap-2">{rank.icon} {rank.name}</p>
         </div>
-        <div className="relative w-16 h-16 flex items-center justify-center bg-black/20 rounded-[1.25rem] border border-white/10 shadow-inner backdrop-blur-sm">
-          {rank.icon}
+        <div className="text-right">
+          <p className="text-sm text-paper/60 uppercase tracking-wider font-bold">Streak</p>
+          <p className="text-2xl font-black text-paper">{user.streak} <span className="text-accent text-lg">🔥</span></p>
         </div>
-      </header>
+      </div>
+
+      {/* Join a Class Banner */}
+      <button 
+        onClick={() => setIsJoiningClass(true)}
+        className="w-full bg-gradient-to-r from-blue-600/20 to-teal-500/20 hover:from-blue-600/30 hover:to-teal-500/30 border border-blue-500/30 rounded-2xl p-4 mb-6 flex items-center justify-between transition-all group active:scale-[0.98]"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/50">
+             <GraduationCap className="text-blue-400" size={20} />
+          </div>
+          <div className="text-left flex-1" dir="ltr">
+            <h3 className="font-bold text-paper text-sm mb-0.5">Join a class · انضم إلى صف</h3>
+            <p className="text-[11px] text-paper/60">Have a code from your teacher?</p>
+          </div>
+        </div>
+        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white text-white/40 transition-colors shrink-0">
+          <span className="text-lg font-bold leading-none mb-0.5">+</span>
+        </div>
+      </button>
+
+      {/* Active Assignments Banner */}
+      {/* Note: Mock logic simulating that the student joined a class if MOCK_ACTIVE_ASSIGNMENTS is present. */}
+      {MOCK_ACTIVE_ASSIGNMENTS.length > 0 && (
+        <div className="mb-6 flex flex-col gap-3">
+          <div className="flex justify-between items-end mb-1">
+             <h3 className="font-bold text-paper text-lg">Class Tasks · واجبات</h3>
+             <button className="text-xs text-accent font-bold">View All</button>
+          </div>
+          {MOCK_ACTIVE_ASSIGNMENTS.map(assignment => (
+             <button 
+               key={assignment.id}
+               onClick={() => setActiveGame('quiz')}
+               className="w-full bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/20 rounded-2xl p-4 flex items-center justify-between transition-all group text-left"
+             >
+               <div className="flex gap-4 items-center">
+                 <div className="w-12 h-12 bg-black/40 rounded-xl flex items-center justify-center border border-white/5 shadow-inner">
+                   <BookOpen className="text-blue-400" size={24} />
+                 </div>
+                 <div>
+                   <h4 className="font-bold text-paper mb-0.5">{assignment.title}</h4>
+                   <p className="text-xs text-paper/60 flex items-center gap-2">
+                     <span>{assignment.surahRange}</span>
+                     <span className="w-1 h-1 bg-white/20 rounded-full" />
+                     <span className="text-red-400 font-medium">Due {assignment.dueDate}</span>
+                   </p>
+                 </div>
+               </div>
+               <ChevronRight size={20} className="text-white/40 group-hover:text-blue-400 transition-colors" />
+             </button>
+          ))}
+        </div>
+      )}
 
       {/* Stats Row */}
-      <div className="grid grid-cols-4 gap-3 md:gap-6 mb-8">
+      <div className="grid grid-cols-2 gap-4 mb-8">
         {[
-          { label: 'النقاط', value: user.xp, icon: <Droplet size={20} className="text-[#B46A41]" />, color: 'bg-[#B46A41]/20 border-[#B46A41]/30' },
-          { label: 'استمرار', value: `${user.streak}d`, icon: <Flame size={20} className="text-[#D98977]" />, color: 'bg-[#D98977]/20 border-[#D98977]/30' },
-          { label: 'الرتبة', value: rank.name, icon: rank.icon, color: 'bg-statRank-start/20 border-statRank-start/30' },
-          { label: 'الحكمة', value: user.hikmah, icon: <Moon size={20} className="text-statHikmah-start" />, color: 'bg-statHikmah-start/20 border-statHikmah-start/30' },
+          { label: 'Total points', value: user.xp, icon: <Trophy size={20} className="text-statRank-start" />, color: 'bg-statRank-start/20 border-statRank-start/30' },
+          { label: 'Study days', value: `${user.streak}d`, icon: <Clock size={20} className="text-statHikmah-start" />, color: 'bg-statHikmah-start/20 border-statHikmah-start/30' },
+          { label: 'Verses memorized', value: user.completed.length, icon: <Target size={20} className="text-statJungle-start" />, color: 'bg-statJungle-start/20 border-statJungle-start/30' },
+          { label: 'Retention rate', value: '95%', icon: <Gamepad2 size={20} className="text-statDesert-start" />, color: 'bg-statDesert-start/20 border-statDesert-start/30' },
         ].map((stat, i) => (
-          <div key={i} className={`rounded-3xl p-3 flex flex-col items-center justify-center text-center shadow-md backdrop-blur-md border ${stat.color}`}>
+          <div key={i} className={`rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-md backdrop-blur-md border ${stat.color}`}>
             <span className="mb-2">{stat.icon}</span>
             <span className="font-bold text-sm text-paper">{stat.value}</span>
             <span className="text-[10px] text-paper/70 font-semibold">{stat.label}</span>
@@ -40,33 +101,17 @@ export const HomeView = ({ user, currentSurahData, setActiveGame }: HomeViewProp
         ))}
       </div>
 
-      {/* Verse-of-the-Day Card */}
-      <div className="bg-black/20 backdrop-blur-md rounded-[2.5rem] p-6 border border-white/5 shadow-lg relative mb-6">
-        <div className="flex justify-between items-start mb-4">
-          <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full">آية اليوم</span>
-          <div className="flex gap-2">
-            <button className="text-paper/40 hover:text-accent transition-colors bg-white/5 p-2 rounded-full border border-white/5 active:scale-95">
-              <Volume2 size={16} />
-            </button>
-            <button className="text-paper/40 hover:text-accent transition-colors bg-white/5 p-2 rounded-full border border-white/5 active:scale-95">
-              <Share2 size={16} />
-            </button>
-          </div>
+      {/* Next Review Card */}
+      <div className="bg-black/20 backdrop-blur-md rounded-[2.5rem] p-6 border border-white/5 shadow-lg relative mb-6 text-center">
+        <div className="flex justify-center items-start mb-4">
+          <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full">Due next</span>
         </div>
-        
         <div className="mb-4">
-          <p className="font-arabic text-3xl leading-loose text-paper mb-4 text-center" style={{ fontSize: `${user.arabicFontSize}px` }}>وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ</p>
+          <p className="font-arabic text-3xl leading-loose text-paper mb-4 text-center" style={{ fontSize: `${user.arabicFontSize}px` }}>{currentSurahData.transliteration} · Ayah 1</p>
         </div>
-
         <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-4">
-          <p className="text-xs text-paper/40 font-bold uppercase tracking-widest mb-1">تفسير الميزان</p>
           <p className="text-sm text-paper/80 leading-relaxed font-arabic">وهذا من أرجى المواضع في القرآن الكريم، حيث لم يجعل الله بينه وبين دعاء عبيده واسطة.</p>
         </div>
-
-        <button className="w-full bg-[#3C5B3E]/30 hover:bg-[#3C5B3E]/50 text-[#A4C3A2] border border-[#A4C3A2]/30 font-bold py-3 px-6 rounded-2xl transition-colors shadow-sm flex items-center justify-center gap-2">
-          <Flower2 size={18} />
-          <span>حفظ في حديقتي</span>
-        </button>
       </div>
 
       {/* Daily Challenge Hero Card */}
@@ -74,13 +119,10 @@ export const HomeView = ({ user, currentSurahData, setActiveGame }: HomeViewProp
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542273917363-3b1817f69a56?q=80&w=1000')] bg-cover bg-center opacity-20 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-t from-jungle-dark/90 to-transparent" />
         
-        <div className="relative z-10">
-          <div className="absolute top-0 left-0 text-accent opacity-30">
-            <Sparkles size={48} />
-          </div>
-          <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2 mt-2">التحدي اليومي</p>
-          <h2 className="text-2xl font-bold mb-1 text-paper">سورة {currentSurahData.arabic}</h2>
-          <p className="text-sm text-paper/80 mb-5">احصل على ضعف النقاط اليوم!</p>
+        <div className="relative z-10 text-center">
+          <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2 mt-2">Today's goal</p>
+          <h2 className="text-2xl font-bold mb-1 text-paper">0 of 15 verses reviewed</h2>
+          <p className="text-sm text-paper/80 mb-5">Earn double points completing today's reviews!</p>
           
           <div className="w-full bg-black/40 h-1.5 rounded-full mb-6 overflow-hidden">
             <div className="bg-accent h-full w-1/3 rounded-full" />
@@ -88,13 +130,27 @@ export const HomeView = ({ user, currentSurahData, setActiveGame }: HomeViewProp
 
           <button 
             onClick={() => setActiveGame('quiz')}
-            className="w-full bg-[#5E3A1A] hover:bg-[#8B5A2B] text-paper font-bold py-3.5 px-6 rounded-2xl transition-colors shadow-md flex items-center justify-center gap-2"
+            className="mt-6 w-full bg-accent hover:bg-amber-600 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
           >
-            <span>ابدأ التحدي</span>
-            <span>←</span>
+            <Play size={20} className="fill-current" />
+            Begin Review Session
           </button>
         </div>
       </div>
+
+      {/* Join Class Modal */}
+      <AnimatePresence>
+        {isJoiningClass && (
+          <JoinClassModal 
+            onClose={() => setIsJoiningClass(false)}
+            onJoin={(c: Class) => {
+              alert(`مرحباً بك! You've joined ${c.name}.`);
+              setIsJoiningClass(false);
+            }}
+            alreadyJoinedClasses={[]}
+          />
+        )}
+      </AnimatePresence>
 
     </motion.div>
   );

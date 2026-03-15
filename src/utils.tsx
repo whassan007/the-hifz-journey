@@ -45,3 +45,7 @@ export const getBiomeName = (biome: Biome) => {
   const names: Record<Biome, string> = { jungle: 'غابة', ocean: 'محيط', desert: 'صحراء', palace: 'قصر', dream: 'حلم' };
   return names[biome] || biome;
 };
+
+const biomesOrder: Biome[] = ['ocean', 'palace', 'desert', 'jungle', 'dream'];
+export const getSurahBiome = (surahId: number): Biome => biomesOrder[surahId % 5];
+export const getSurahDifficulty = (verseCount: number): number => Math.ceil(verseCount / 50);

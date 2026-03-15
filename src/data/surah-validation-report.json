@@ -1,0 +1,4382 @@
+{
+  "meta": {
+    "primaryUrl": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+    "secondaryUrl": "https://api.quran.com/api/v4/chapters",
+    "primaryStatus": "live",
+    "secondaryStatus": "live",
+    "narration": "Hafs",
+    "fetchedAt": "2026-03-15T21:17:35.798Z",
+    "totalSurahs": 114,
+    "totalVerses": 6236,
+    "passCount": 114,
+    "mismatchCount": 0,
+    "missingCount": 0,
+    "integrityChecks": [
+      {
+        "label": "Total surahs === 114",
+        "pass": true,
+        "detail": "got 114"
+      },
+      {
+        "label": "Total verse count === 6236",
+        "pass": true,
+        "detail": "got 6236"
+      },
+      {
+        "label": "Exactly 86 Meccan surahs",
+        "pass": true,
+        "detail": "got 86"
+      },
+      {
+        "label": "Exactly 28 Medinan surahs",
+        "pass": true,
+        "detail": "got 28"
+      },
+      {
+        "label": "Exactly 1 surah without bismillah",
+        "pass": true,
+        "detail": "9"
+      },
+      {
+        "label": "All surah IDs unique (1–114)",
+        "pass": true,
+        "detail": "114 unique"
+      }
+    ],
+    "integrity": "passed"
+  },
+  "validationResults": [
+    {
+      "surahId": 1,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ ٱلْفَاتِحَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Faatiha",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Opening",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 7,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 1,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.794Z"
+    },
+    {
+      "surahId": 2,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ البَقَرَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Baqara",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Cow",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 286,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 1,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 3,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ آلِ عِمۡرَانَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Aal-i-Imraan",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Family of Imraan",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 200,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 3,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 4,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النِّسَاءِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Nisaa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Women",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 176,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 4,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 5,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المَائـِدَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Maaida",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Table",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 120,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 6,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 6,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَنۡعَامِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-An'aam",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Cattle",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 165,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 7,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 7,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَعۡرَافِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-A'raaf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Heights",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 206,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 8,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 8,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَنفَالِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Anfaal",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Spoils of War",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 75,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 9,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 9,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التَّوۡبَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Tawba",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Repentance",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 129,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 10,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": false,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 10,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ يُونُسَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Yunus",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Jonas",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 109,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 11,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 11,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ هُودٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Hud",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Hud",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 123,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 11,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 12,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ يُوسُفَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Yusuf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Joseph",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 111,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 12,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 13,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الرَّعۡدِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ar-Ra'd",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Thunder",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 43,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 13,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 14,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ إِبۡرَاهِيمَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ibrahim",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Abraham",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 52,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 13,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 15,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحِجۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Hijr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Rock",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 99,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 14,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 16,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّحۡلِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Nahl",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Bee",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 128,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 14,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 17,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الإِسۡرَاءِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Israa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Night Journey",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 111,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 15,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 18,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الكَهۡفِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Kahf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Cave",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 110,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 15,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 19,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ مَرۡيَمَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Maryam",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Mary",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 98,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 16,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 20,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ طه",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Taa-Haa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Taa-Haa",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 135,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 16,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 21,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَنبِيَاءِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Anbiyaa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Prophets",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 112,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 17,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 22,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحَجِّ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Hajj",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Pilgrimage",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 78,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 17,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 23,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُؤۡمِنُونَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Muminoon",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Believers",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 118,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 18,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 24,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النُّورِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Noor",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Light",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 64,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 18,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 25,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الفُرۡقَانِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Furqaan",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Criterion",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 77,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 18,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 26,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الشُّعَرَاءِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ash-Shu'araa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Poets",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 227,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 19,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 27,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّمۡلِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Naml",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Ant",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 93,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 19,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 28,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القَصَصِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qasas",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Stories",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 88,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 20,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 29,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ العَنكَبُوتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ankaboot",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Spider",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 69,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 20,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 30,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الرُّومِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ar-Room",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Romans",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 60,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 21,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 31,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ لُقۡمَانَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Luqman",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Luqman",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 34,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 21,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 32,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ السَّجۡدَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "As-Sajda",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Prostration",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 30,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 21,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 33,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَحۡزَابِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ahzaab",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Clans",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 73,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 21,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 34,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ سَبَإٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Saba",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Sheba",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 54,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 22,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 35,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ فَاطِرٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Faatir",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Originator",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 45,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 22,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 36,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ يسٓ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Yaseen",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Yaseen",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 83,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 22,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 37,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الصَّافَّاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "As-Saaffaat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Those drawn up in Ranks",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 182,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 23,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 38,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ صٓ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Saad",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The letter Saad",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 88,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 23,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 39,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الزُّمَرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Az-Zumar",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Groups",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 75,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 23,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 40,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ غَافِرٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ghafir",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Forgiver",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 85,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 24,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 41,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ فُصِّلَتۡ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Fussilat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Explained in detail",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 54,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 24,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 42,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الشُّورَىٰ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ash-Shura",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Consultation",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 53,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 25,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 43,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الزُّخۡرُفِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Az-Zukhruf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Ornaments of gold",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 89,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 25,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 44,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الدُّخَانِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ad-Dukhaan",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Smoke",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 59,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 25,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 45,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الجَاثِيَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Jaathiya",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Crouching",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 37,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 25,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 46,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَحۡقَافِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ahqaf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Dunes",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 35,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 47,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ مُحَمَّدٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Muhammad",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Muhammad",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 38,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 48,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الفَتۡحِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Fath",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Victory",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 29,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 49,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحُجُرَاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Hujuraat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Inner Apartments",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 18,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 50,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ قٓ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Qaaf",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The letter Qaaf",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 45,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 51,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الذَّارِيَاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Adh-Dhaariyat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Winnowing Winds",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 60,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 26,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 52,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الطُّورِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Tur",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Mount",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 49,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 53,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّجۡمِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Najm",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Star",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 62,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 54,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القَمَرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qamar",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Moon",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 55,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 55,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الرَّحۡمَٰن",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ar-Rahmaan",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Beneficent",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 78,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 56,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الوَاقِعَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Waaqia",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Inevitable",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 96,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 57,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحَدِيدِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Hadid",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Iron",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 29,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 27,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 58,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُجَادلَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Mujaadila",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Pleading Woman",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 22,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 59,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحَشۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Hashr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Exile",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 24,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 60,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُمۡتَحنَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Mumtahana",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "She that is to be examined",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 13,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 61,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الصَّفِّ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "As-Saff",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Ranks",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 14,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 62,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الجُمُعَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Jumu'a",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Friday",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 11,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 63,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُنَافِقُونَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Munaafiqoon",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Hypocrites",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 11,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 64,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التَّغَابُنِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Taghaabun",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Mutual Disillusion",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 18,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 65,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الطَّلَاقِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Talaaq",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Divorce",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 12,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 66,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التَّحۡرِيمِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Tahrim",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Prohibition",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 12,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 28,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 67,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُلۡكِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Mulk",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Sovereignty",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 30,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 68,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القَلَمِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qalam",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Pen",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 52,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 69,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الحَاقَّةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Haaqqa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Reality",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 52,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 70,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المَعَارِجِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ma'aarij",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Ascending Stairways",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 44,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 71,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ نُوحٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Nooh",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Noah",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 28,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 72,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الجِنِّ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Jinn",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Jinn",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 28,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 73,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُزَّمِّلِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Muzzammil",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Enshrouded One",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 20,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 74,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُدَّثِّرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Muddaththir",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Cloaked One",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 56,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 75,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القِيَامَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qiyaama",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Resurrection",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 40,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 76,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الإِنسَانِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Insaan",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Man",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 31,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 77,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُرۡسَلَاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Mursalaat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Emissaries",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 50,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 29,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 78,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّبَإِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Naba",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Announcement",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 40,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 79,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّازِعَاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Naazi'aat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Those who drag forth",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 46,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 80,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ عَبَسَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Abasa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "He frowned",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 42,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 81,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التَّكۡوِيرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Takwir",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Overthrowing",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 29,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 82,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الانفِطَارِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Infitaar",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Cleaving",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 19,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 83,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المُطَفِّفِينَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Mutaffifin",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Defrauding",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 36,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 84,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الانشِقَاقِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Inshiqaaq",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Splitting Open",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 25,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 85,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ البُرُوجِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Burooj",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Constellations",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 22,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 86,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الطَّارِقِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Taariq",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Morning Star",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 17,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 87,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الأَعۡلَىٰ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-A'laa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Most High",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 19,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 88,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الغَاشِيَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ghaashiya",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Overwhelming",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 26,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 89,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الفَجۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Fajr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Dawn",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 30,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 90,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ البَلَدِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Balad",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The City",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 20,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 91,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الشَّمۡسِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ash-Shams",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Sun",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 15,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 92,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ اللَّيۡلِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Lail",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Night",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 21,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 93,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الضُّحَىٰ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ad-Dhuhaa",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Morning Hours",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 11,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 94,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الشَّرۡحِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Ash-Sharh",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Consolation",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 8,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 95,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التِّينِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Tin",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Fig",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 8,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 96,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ العَلَقِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Alaq",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Clot",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 19,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 97,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القَدۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qadr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Power, Fate",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 5,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 98,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ البَيِّنَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Bayyina",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Evidence",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 8,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 99,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الزَّلۡزَلَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Az-Zalzala",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Earthquake",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 8,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 100,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ العَادِيَاتِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Aadiyaat",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Chargers",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 11,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 101,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ القَارِعَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Qaari'a",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Calamity",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 11,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 102,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ التَّكَاثُرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "At-Takaathur",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Competition",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 8,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 103,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ العَصۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Asr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Declining Day, Epoch",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 3,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 104,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الهُمَزَةِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Humaza",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Traducer",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 9,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 105,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الفِيلِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Fil",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Elephant",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 5,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 106,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ قُرَيۡشٍ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Quraish",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Quraysh",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 4,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 107,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المَاعُونِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Maa'un",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Almsgiving",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 7,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 108,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الكَوۡثَرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Kawthar",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Abundance",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 3,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 109,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الكَافِرُونَ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Kaafiroon",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Disbelievers",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 6,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 110,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّصۡرِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Nasr",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Divine Support",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 3,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Medinan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 111,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ المَسَدِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Masad",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Palm Fibre",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 5,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 112,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الإِخۡلَاصِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Ikhlaas",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Sincerity",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 4,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 113,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ الفَلَقِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "Al-Falaq",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "The Dawn",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 5,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    },
+    {
+      "surahId": 114,
+      "status": "pass",
+      "primarySource": "alquran.cloud",
+      "secondarySource": "quran.com",
+      "fields": {
+        "arabicName": {
+          "value": "سُورَةُ النَّاسِ",
+          "verified": true
+        },
+        "transliteration": {
+          "value": "An-Naas",
+          "verified": true
+        },
+        "englishMeaning": {
+          "value": "Mankind",
+          "verified": true
+        },
+        "verseCount": {
+          "value": 6,
+          "verified": true
+        },
+        "juzNumber": {
+          "value": 30,
+          "verified": true
+        },
+        "revelationType": {
+          "value": "Meccan",
+          "verified": true
+        },
+        "bismillah": {
+          "value": true,
+          "verified": true
+        }
+      },
+      "mismatchDetails": null,
+      "fetchedAt": "2026-03-15T21:17:35.798Z"
+    }
+  ]
+}

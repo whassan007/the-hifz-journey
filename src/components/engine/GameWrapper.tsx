@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import type { SurahNode } from '../../types';
-import { getBiomeEmojis, getBiomeName } from '../../utils';
+import { getBiomeEmojis, getBiomeName, getSurahBiome } from '../../utils';
 import { Confetti } from '../shared/Confetti';
 import { getQualityScore } from '../../sm2';
 
@@ -82,18 +82,18 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
           <Confetti />
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1, rotate: [0, -10, 10, 0] }} transition={{ type: 'spring', bounce: 0.6 }} className="text-7xl mb-6 flex items-center justify-center">🏆</motion.div>
           <motion.h1 initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="text-4xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-300">ما شاء الله!</motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-white/70 mb-10">لقد أكملت سورة {surah.arabic}</motion.p>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-white/70 mb-10">Session complete</motion.p>
           
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex gap-4 w-full mb-12">
             <div className="flex-1 bg-white/5 rounded-3xl p-5 flex flex-col items-center border border-white/10">
               <span className="text-3xl mb-2 flex items-center justify-center">📝</span>
               <span className="font-bold text-lg">ممتاز</span>
-              <span className="text-xs text-white/50 uppercase tracking-widest mt-1">النتيجة</span>
+              <span className="text-xs text-white/50 uppercase tracking-widest mt-1">Accuracy</span>
             </div>
             <div className="flex-1 bg-gradient-to-b from-accent/20 to-orange-500/20 rounded-3xl p-5 flex flex-col items-center border border-accent/40 shadow-[0_0_20px_rgba(217,119,6,0.3)]">
               <span className="text-3xl mb-2 flex items-center justify-center">⚡</span>
               <span className="font-black text-2xl text-accent">+{xpToAward}</span>
-              <span className="text-xs text-white/50 uppercase tracking-widest mt-1">النقاط المكتسبة</span>
+              <span className="text-xs text-white/50 uppercase tracking-widest mt-1">Points earned</span>
             </div>
           </motion.div>
 
@@ -105,7 +105,7 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
             }}
             className="w-full bg-gradient-to-r from-accent to-orange-600 hover:from-orange-500 hover:to-red-500 text-white font-bold py-4 rounded-2xl shadow-lg text-lg active:scale-95 transition-transform"
           >
-            متابعة الرحلة ←
+            Back to Home ←
           </motion.button>
         </div>
       </motion.div>
@@ -129,8 +129,8 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
 
         <div className="flex justify-center mt-6">
           <div className="bg-black/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10 flex items-center gap-2 text-paper shadow-sm">
-            <span>{getBiomeEmojis(surah.biome)[0]}</span>
-            <span>{getBiomeName(surah.biome)} • سورة {surah.arabic}</span>
+            <span>{getBiomeEmojis(getSurahBiome(surah.id))[0]}</span>
+            <span>{getBiomeName(getSurahBiome(surah.id))} • سورة {surah.arabicName}</span>
           </div>
         </div>
 

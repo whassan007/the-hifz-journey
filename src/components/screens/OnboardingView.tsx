@@ -5,6 +5,7 @@ import type { AgeGroup } from '../../types';
 
 interface OnboardingProps {
   onComplete: (name: string, ageGroup: AgeGroup) => void;
+  onTeacherClick: () => void;
 }
 
 const AGE_GROUPS = [
@@ -50,7 +51,7 @@ const AGE_GROUPS = [
   }
 ];
 
-export const OnboardingView = ({ onComplete }: OnboardingProps) => {
+export const OnboardingView = ({ onComplete, onTeacherClick }: OnboardingProps) => {
   const [step, setStep] = useState(1);
   const [name, setName] = useState('');
   const [selectedAge, setSelectedAge] = useState<AgeGroup | null>(null);
@@ -78,8 +79,9 @@ export const OnboardingView = ({ onComplete }: OnboardingProps) => {
               <Leaf className="text-accent" size={40} />
             </div>
             
-            <h1 className="text-3xl font-black mb-2 text-paper text-center">The Hifz Journey</h1>
-            <p className="text-paper/60 text-center mb-8 text-sm">Enter your name to begin your path of memorization and review.</p>
+            <h1 className="text-2xl font-arabic font-black mb-2 text-paper text-center">بسم الله الرحمن الرحيم</h1>
+            <p className="text-paper/80 font-bold text-center mb-2 text-sm italic">In the name of Allah, the Most Gracious, the Most Merciful</p>
+            <p className="text-paper/60 text-center mb-8 text-sm">Your Hifz journey starts with a single ayah. We'll guide you, step by step, through every verse of the Quran.</p>
 
             <form onSubmit={handleNameSubmit} className="w-full flex flex-col gap-4">
               <input
@@ -98,6 +100,12 @@ export const OnboardingView = ({ onComplete }: OnboardingProps) => {
                 Next Step &rarr;
               </button>
             </form>
+            <button 
+              onClick={onTeacherClick}
+              className="mt-6 text-sm font-bold text-accent/80 hover:text-accent transition-colors"
+            >
+              I'm a teacher
+            </button>
           </motion.div>
         )}
 

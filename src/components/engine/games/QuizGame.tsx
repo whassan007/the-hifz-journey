@@ -43,7 +43,7 @@ export const QuizGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: GameC
             <Volume2 size={20} />
           </button>
         </div>
-        {mode === 'tajweed' && <p className="text-xs font-bold text-accent uppercase tracking-widest mb-4">تحدي التجويد</p>}
+        {mode === 'tajweed' && <p className="text-xs font-bold text-accent uppercase tracking-widest mb-4">Tajweed Rule</p>}
         <p className="font-arabic text-4xl leading-loose mb-4 z-10 text-paper">{currentData.ayah}</p>
         {mode === 'tajweed' ? (
           <p className="text-lg font-bold text-paper/90 z-10">{currentData.question}</p>
@@ -97,7 +97,7 @@ export const QuizGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: GameC
             <h4 className="font-bold text-accent mb-2 flex items-center gap-2 text-lg"><span>💡</span> تلميح التفسير</h4>
             <p className="text-sm text-paper/80 leading-relaxed mb-4">{currentData.hint}</p>
             <button className="w-full py-3 bg-accent hover:bg-[#A48259] text-paper font-bold rounded-xl text-sm transition-colors active:scale-95 pointer-events-none shadow-sm">
-              فهمت، تابع
+              Got it — took effort
             </button>
           </motion.div>
         )}

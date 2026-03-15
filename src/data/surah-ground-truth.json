@@ -1,0 +1,1190 @@
+{
+  "meta": {
+    "primaryUrl": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+    "secondaryUrl": "https://api.quran.com/api/v4/chapters",
+    "primaryStatus": "live",
+    "secondaryStatus": "live",
+    "narration": "Hafs",
+    "fetchedAt": "2026-03-15T21:17:35.798Z",
+    "totalSurahs": 114,
+    "totalVerses": 6236,
+    "passCount": 114,
+    "mismatchCount": 0,
+    "missingCount": 0,
+    "integrityChecks": [
+      {
+        "label": "Total surahs === 114",
+        "pass": true,
+        "detail": "got 114"
+      },
+      {
+        "label": "Total verse count === 6236",
+        "pass": true,
+        "detail": "got 6236"
+      },
+      {
+        "label": "Exactly 86 Meccan surahs",
+        "pass": true,
+        "detail": "got 86"
+      },
+      {
+        "label": "Exactly 28 Medinan surahs",
+        "pass": true,
+        "detail": "got 28"
+      },
+      {
+        "label": "Exactly 1 surah without bismillah",
+        "pass": true,
+        "detail": "9"
+      },
+      {
+        "label": "All surah IDs unique (1–114)",
+        "pass": true,
+        "detail": "114 unique"
+      }
+    ],
+    "integrity": "passed"
+  },
+  "surahs": [
+    {
+      "id": 1,
+      "arabicName": "سُورَةُ ٱلْفَاتِحَةِ",
+      "transliteration": "Al-Faatiha",
+      "englishMeaning": "The Opening",
+      "verseCount": 7,
+      "juzNumber": 1,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 2,
+      "arabicName": "سُورَةُ البَقَرَةِ",
+      "transliteration": "Al-Baqara",
+      "englishMeaning": "The Cow",
+      "verseCount": 286,
+      "juzNumber": 1,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 3,
+      "arabicName": "سُورَةُ آلِ عِمۡرَانَ",
+      "transliteration": "Aal-i-Imraan",
+      "englishMeaning": "The Family of Imraan",
+      "verseCount": 200,
+      "juzNumber": 3,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 4,
+      "arabicName": "سُورَةُ النِّسَاءِ",
+      "transliteration": "An-Nisaa",
+      "englishMeaning": "The Women",
+      "verseCount": 176,
+      "juzNumber": 4,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 5,
+      "arabicName": "سُورَةُ المَائـِدَةِ",
+      "transliteration": "Al-Maaida",
+      "englishMeaning": "The Table",
+      "verseCount": 120,
+      "juzNumber": 6,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 6,
+      "arabicName": "سُورَةُ الأَنۡعَامِ",
+      "transliteration": "Al-An'aam",
+      "englishMeaning": "The Cattle",
+      "verseCount": 165,
+      "juzNumber": 7,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 7,
+      "arabicName": "سُورَةُ الأَعۡرَافِ",
+      "transliteration": "Al-A'raaf",
+      "englishMeaning": "The Heights",
+      "verseCount": 206,
+      "juzNumber": 8,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 8,
+      "arabicName": "سُورَةُ الأَنفَالِ",
+      "transliteration": "Al-Anfaal",
+      "englishMeaning": "The Spoils of War",
+      "verseCount": 75,
+      "juzNumber": 9,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 9,
+      "arabicName": "سُورَةُ التَّوۡبَةِ",
+      "transliteration": "At-Tawba",
+      "englishMeaning": "The Repentance",
+      "verseCount": 129,
+      "juzNumber": 10,
+      "revelationType": "Medinan",
+      "bismillah": false
+    },
+    {
+      "id": 10,
+      "arabicName": "سُورَةُ يُونُسَ",
+      "transliteration": "Yunus",
+      "englishMeaning": "Jonas",
+      "verseCount": 109,
+      "juzNumber": 11,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 11,
+      "arabicName": "سُورَةُ هُودٍ",
+      "transliteration": "Hud",
+      "englishMeaning": "Hud",
+      "verseCount": 123,
+      "juzNumber": 11,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 12,
+      "arabicName": "سُورَةُ يُوسُفَ",
+      "transliteration": "Yusuf",
+      "englishMeaning": "Joseph",
+      "verseCount": 111,
+      "juzNumber": 12,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 13,
+      "arabicName": "سُورَةُ الرَّعۡدِ",
+      "transliteration": "Ar-Ra'd",
+      "englishMeaning": "The Thunder",
+      "verseCount": 43,
+      "juzNumber": 13,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 14,
+      "arabicName": "سُورَةُ إِبۡرَاهِيمَ",
+      "transliteration": "Ibrahim",
+      "englishMeaning": "Abraham",
+      "verseCount": 52,
+      "juzNumber": 13,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 15,
+      "arabicName": "سُورَةُ الحِجۡرِ",
+      "transliteration": "Al-Hijr",
+      "englishMeaning": "The Rock",
+      "verseCount": 99,
+      "juzNumber": 14,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 16,
+      "arabicName": "سُورَةُ النَّحۡلِ",
+      "transliteration": "An-Nahl",
+      "englishMeaning": "The Bee",
+      "verseCount": 128,
+      "juzNumber": 14,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 17,
+      "arabicName": "سُورَةُ الإِسۡرَاءِ",
+      "transliteration": "Al-Israa",
+      "englishMeaning": "The Night Journey",
+      "verseCount": 111,
+      "juzNumber": 15,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 18,
+      "arabicName": "سُورَةُ الكَهۡفِ",
+      "transliteration": "Al-Kahf",
+      "englishMeaning": "The Cave",
+      "verseCount": 110,
+      "juzNumber": 15,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 19,
+      "arabicName": "سُورَةُ مَرۡيَمَ",
+      "transliteration": "Maryam",
+      "englishMeaning": "Mary",
+      "verseCount": 98,
+      "juzNumber": 16,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 20,
+      "arabicName": "سُورَةُ طه",
+      "transliteration": "Taa-Haa",
+      "englishMeaning": "Taa-Haa",
+      "verseCount": 135,
+      "juzNumber": 16,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 21,
+      "arabicName": "سُورَةُ الأَنبِيَاءِ",
+      "transliteration": "Al-Anbiyaa",
+      "englishMeaning": "The Prophets",
+      "verseCount": 112,
+      "juzNumber": 17,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 22,
+      "arabicName": "سُورَةُ الحَجِّ",
+      "transliteration": "Al-Hajj",
+      "englishMeaning": "The Pilgrimage",
+      "verseCount": 78,
+      "juzNumber": 17,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 23,
+      "arabicName": "سُورَةُ المُؤۡمِنُونَ",
+      "transliteration": "Al-Muminoon",
+      "englishMeaning": "The Believers",
+      "verseCount": 118,
+      "juzNumber": 18,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 24,
+      "arabicName": "سُورَةُ النُّورِ",
+      "transliteration": "An-Noor",
+      "englishMeaning": "The Light",
+      "verseCount": 64,
+      "juzNumber": 18,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 25,
+      "arabicName": "سُورَةُ الفُرۡقَانِ",
+      "transliteration": "Al-Furqaan",
+      "englishMeaning": "The Criterion",
+      "verseCount": 77,
+      "juzNumber": 18,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 26,
+      "arabicName": "سُورَةُ الشُّعَرَاءِ",
+      "transliteration": "Ash-Shu'araa",
+      "englishMeaning": "The Poets",
+      "verseCount": 227,
+      "juzNumber": 19,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 27,
+      "arabicName": "سُورَةُ النَّمۡلِ",
+      "transliteration": "An-Naml",
+      "englishMeaning": "The Ant",
+      "verseCount": 93,
+      "juzNumber": 19,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 28,
+      "arabicName": "سُورَةُ القَصَصِ",
+      "transliteration": "Al-Qasas",
+      "englishMeaning": "The Stories",
+      "verseCount": 88,
+      "juzNumber": 20,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 29,
+      "arabicName": "سُورَةُ العَنكَبُوتِ",
+      "transliteration": "Al-Ankaboot",
+      "englishMeaning": "The Spider",
+      "verseCount": 69,
+      "juzNumber": 20,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 30,
+      "arabicName": "سُورَةُ الرُّومِ",
+      "transliteration": "Ar-Room",
+      "englishMeaning": "The Romans",
+      "verseCount": 60,
+      "juzNumber": 21,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 31,
+      "arabicName": "سُورَةُ لُقۡمَانَ",
+      "transliteration": "Luqman",
+      "englishMeaning": "Luqman",
+      "verseCount": 34,
+      "juzNumber": 21,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 32,
+      "arabicName": "سُورَةُ السَّجۡدَةِ",
+      "transliteration": "As-Sajda",
+      "englishMeaning": "The Prostration",
+      "verseCount": 30,
+      "juzNumber": 21,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 33,
+      "arabicName": "سُورَةُ الأَحۡزَابِ",
+      "transliteration": "Al-Ahzaab",
+      "englishMeaning": "The Clans",
+      "verseCount": 73,
+      "juzNumber": 21,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 34,
+      "arabicName": "سُورَةُ سَبَإٍ",
+      "transliteration": "Saba",
+      "englishMeaning": "Sheba",
+      "verseCount": 54,
+      "juzNumber": 22,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 35,
+      "arabicName": "سُورَةُ فَاطِرٍ",
+      "transliteration": "Faatir",
+      "englishMeaning": "The Originator",
+      "verseCount": 45,
+      "juzNumber": 22,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 36,
+      "arabicName": "سُورَةُ يسٓ",
+      "transliteration": "Yaseen",
+      "englishMeaning": "Yaseen",
+      "verseCount": 83,
+      "juzNumber": 22,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 37,
+      "arabicName": "سُورَةُ الصَّافَّاتِ",
+      "transliteration": "As-Saaffaat",
+      "englishMeaning": "Those drawn up in Ranks",
+      "verseCount": 182,
+      "juzNumber": 23,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 38,
+      "arabicName": "سُورَةُ صٓ",
+      "transliteration": "Saad",
+      "englishMeaning": "The letter Saad",
+      "verseCount": 88,
+      "juzNumber": 23,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 39,
+      "arabicName": "سُورَةُ الزُّمَرِ",
+      "transliteration": "Az-Zumar",
+      "englishMeaning": "The Groups",
+      "verseCount": 75,
+      "juzNumber": 23,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 40,
+      "arabicName": "سُورَةُ غَافِرٍ",
+      "transliteration": "Ghafir",
+      "englishMeaning": "The Forgiver",
+      "verseCount": 85,
+      "juzNumber": 24,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 41,
+      "arabicName": "سُورَةُ فُصِّلَتۡ",
+      "transliteration": "Fussilat",
+      "englishMeaning": "Explained in detail",
+      "verseCount": 54,
+      "juzNumber": 24,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 42,
+      "arabicName": "سُورَةُ الشُّورَىٰ",
+      "transliteration": "Ash-Shura",
+      "englishMeaning": "Consultation",
+      "verseCount": 53,
+      "juzNumber": 25,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 43,
+      "arabicName": "سُورَةُ الزُّخۡرُفِ",
+      "transliteration": "Az-Zukhruf",
+      "englishMeaning": "Ornaments of gold",
+      "verseCount": 89,
+      "juzNumber": 25,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 44,
+      "arabicName": "سُورَةُ الدُّخَانِ",
+      "transliteration": "Ad-Dukhaan",
+      "englishMeaning": "The Smoke",
+      "verseCount": 59,
+      "juzNumber": 25,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 45,
+      "arabicName": "سُورَةُ الجَاثِيَةِ",
+      "transliteration": "Al-Jaathiya",
+      "englishMeaning": "Crouching",
+      "verseCount": 37,
+      "juzNumber": 25,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 46,
+      "arabicName": "سُورَةُ الأَحۡقَافِ",
+      "transliteration": "Al-Ahqaf",
+      "englishMeaning": "The Dunes",
+      "verseCount": 35,
+      "juzNumber": 26,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 47,
+      "arabicName": "سُورَةُ مُحَمَّدٍ",
+      "transliteration": "Muhammad",
+      "englishMeaning": "Muhammad",
+      "verseCount": 38,
+      "juzNumber": 26,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 48,
+      "arabicName": "سُورَةُ الفَتۡحِ",
+      "transliteration": "Al-Fath",
+      "englishMeaning": "The Victory",
+      "verseCount": 29,
+      "juzNumber": 26,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 49,
+      "arabicName": "سُورَةُ الحُجُرَاتِ",
+      "transliteration": "Al-Hujuraat",
+      "englishMeaning": "The Inner Apartments",
+      "verseCount": 18,
+      "juzNumber": 26,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 50,
+      "arabicName": "سُورَةُ قٓ",
+      "transliteration": "Qaaf",
+      "englishMeaning": "The letter Qaaf",
+      "verseCount": 45,
+      "juzNumber": 26,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 51,
+      "arabicName": "سُورَةُ الذَّارِيَاتِ",
+      "transliteration": "Adh-Dhaariyat",
+      "englishMeaning": "The Winnowing Winds",
+      "verseCount": 60,
+      "juzNumber": 26,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 52,
+      "arabicName": "سُورَةُ الطُّورِ",
+      "transliteration": "At-Tur",
+      "englishMeaning": "The Mount",
+      "verseCount": 49,
+      "juzNumber": 27,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 53,
+      "arabicName": "سُورَةُ النَّجۡمِ",
+      "transliteration": "An-Najm",
+      "englishMeaning": "The Star",
+      "verseCount": 62,
+      "juzNumber": 27,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 54,
+      "arabicName": "سُورَةُ القَمَرِ",
+      "transliteration": "Al-Qamar",
+      "englishMeaning": "The Moon",
+      "verseCount": 55,
+      "juzNumber": 27,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 55,
+      "arabicName": "سُورَةُ الرَّحۡمَٰن",
+      "transliteration": "Ar-Rahmaan",
+      "englishMeaning": "The Beneficent",
+      "verseCount": 78,
+      "juzNumber": 27,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 56,
+      "arabicName": "سُورَةُ الوَاقِعَةِ",
+      "transliteration": "Al-Waaqia",
+      "englishMeaning": "The Inevitable",
+      "verseCount": 96,
+      "juzNumber": 27,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 57,
+      "arabicName": "سُورَةُ الحَدِيدِ",
+      "transliteration": "Al-Hadid",
+      "englishMeaning": "The Iron",
+      "verseCount": 29,
+      "juzNumber": 27,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 58,
+      "arabicName": "سُورَةُ المُجَادلَةِ",
+      "transliteration": "Al-Mujaadila",
+      "englishMeaning": "The Pleading Woman",
+      "verseCount": 22,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 59,
+      "arabicName": "سُورَةُ الحَشۡرِ",
+      "transliteration": "Al-Hashr",
+      "englishMeaning": "The Exile",
+      "verseCount": 24,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 60,
+      "arabicName": "سُورَةُ المُمۡتَحنَةِ",
+      "transliteration": "Al-Mumtahana",
+      "englishMeaning": "She that is to be examined",
+      "verseCount": 13,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 61,
+      "arabicName": "سُورَةُ الصَّفِّ",
+      "transliteration": "As-Saff",
+      "englishMeaning": "The Ranks",
+      "verseCount": 14,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 62,
+      "arabicName": "سُورَةُ الجُمُعَةِ",
+      "transliteration": "Al-Jumu'a",
+      "englishMeaning": "Friday",
+      "verseCount": 11,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 63,
+      "arabicName": "سُورَةُ المُنَافِقُونَ",
+      "transliteration": "Al-Munaafiqoon",
+      "englishMeaning": "The Hypocrites",
+      "verseCount": 11,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 64,
+      "arabicName": "سُورَةُ التَّغَابُنِ",
+      "transliteration": "At-Taghaabun",
+      "englishMeaning": "Mutual Disillusion",
+      "verseCount": 18,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 65,
+      "arabicName": "سُورَةُ الطَّلَاقِ",
+      "transliteration": "At-Talaaq",
+      "englishMeaning": "Divorce",
+      "verseCount": 12,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 66,
+      "arabicName": "سُورَةُ التَّحۡرِيمِ",
+      "transliteration": "At-Tahrim",
+      "englishMeaning": "The Prohibition",
+      "verseCount": 12,
+      "juzNumber": 28,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 67,
+      "arabicName": "سُورَةُ المُلۡكِ",
+      "transliteration": "Al-Mulk",
+      "englishMeaning": "The Sovereignty",
+      "verseCount": 30,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 68,
+      "arabicName": "سُورَةُ القَلَمِ",
+      "transliteration": "Al-Qalam",
+      "englishMeaning": "The Pen",
+      "verseCount": 52,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 69,
+      "arabicName": "سُورَةُ الحَاقَّةِ",
+      "transliteration": "Al-Haaqqa",
+      "englishMeaning": "The Reality",
+      "verseCount": 52,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 70,
+      "arabicName": "سُورَةُ المَعَارِجِ",
+      "transliteration": "Al-Ma'aarij",
+      "englishMeaning": "The Ascending Stairways",
+      "verseCount": 44,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 71,
+      "arabicName": "سُورَةُ نُوحٍ",
+      "transliteration": "Nooh",
+      "englishMeaning": "Noah",
+      "verseCount": 28,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 72,
+      "arabicName": "سُورَةُ الجِنِّ",
+      "transliteration": "Al-Jinn",
+      "englishMeaning": "The Jinn",
+      "verseCount": 28,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 73,
+      "arabicName": "سُورَةُ المُزَّمِّلِ",
+      "transliteration": "Al-Muzzammil",
+      "englishMeaning": "The Enshrouded One",
+      "verseCount": 20,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 74,
+      "arabicName": "سُورَةُ المُدَّثِّرِ",
+      "transliteration": "Al-Muddaththir",
+      "englishMeaning": "The Cloaked One",
+      "verseCount": 56,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 75,
+      "arabicName": "سُورَةُ القِيَامَةِ",
+      "transliteration": "Al-Qiyaama",
+      "englishMeaning": "The Resurrection",
+      "verseCount": 40,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 76,
+      "arabicName": "سُورَةُ الإِنسَانِ",
+      "transliteration": "Al-Insaan",
+      "englishMeaning": "Man",
+      "verseCount": 31,
+      "juzNumber": 29,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 77,
+      "arabicName": "سُورَةُ المُرۡسَلَاتِ",
+      "transliteration": "Al-Mursalaat",
+      "englishMeaning": "The Emissaries",
+      "verseCount": 50,
+      "juzNumber": 29,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 78,
+      "arabicName": "سُورَةُ النَّبَإِ",
+      "transliteration": "An-Naba",
+      "englishMeaning": "The Announcement",
+      "verseCount": 40,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 79,
+      "arabicName": "سُورَةُ النَّازِعَاتِ",
+      "transliteration": "An-Naazi'aat",
+      "englishMeaning": "Those who drag forth",
+      "verseCount": 46,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 80,
+      "arabicName": "سُورَةُ عَبَسَ",
+      "transliteration": "Abasa",
+      "englishMeaning": "He frowned",
+      "verseCount": 42,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 81,
+      "arabicName": "سُورَةُ التَّكۡوِيرِ",
+      "transliteration": "At-Takwir",
+      "englishMeaning": "The Overthrowing",
+      "verseCount": 29,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 82,
+      "arabicName": "سُورَةُ الانفِطَارِ",
+      "transliteration": "Al-Infitaar",
+      "englishMeaning": "The Cleaving",
+      "verseCount": 19,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 83,
+      "arabicName": "سُورَةُ المُطَفِّفِينَ",
+      "transliteration": "Al-Mutaffifin",
+      "englishMeaning": "Defrauding",
+      "verseCount": 36,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 84,
+      "arabicName": "سُورَةُ الانشِقَاقِ",
+      "transliteration": "Al-Inshiqaaq",
+      "englishMeaning": "The Splitting Open",
+      "verseCount": 25,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 85,
+      "arabicName": "سُورَةُ البُرُوجِ",
+      "transliteration": "Al-Burooj",
+      "englishMeaning": "The Constellations",
+      "verseCount": 22,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 86,
+      "arabicName": "سُورَةُ الطَّارِقِ",
+      "transliteration": "At-Taariq",
+      "englishMeaning": "The Morning Star",
+      "verseCount": 17,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 87,
+      "arabicName": "سُورَةُ الأَعۡلَىٰ",
+      "transliteration": "Al-A'laa",
+      "englishMeaning": "The Most High",
+      "verseCount": 19,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 88,
+      "arabicName": "سُورَةُ الغَاشِيَةِ",
+      "transliteration": "Al-Ghaashiya",
+      "englishMeaning": "The Overwhelming",
+      "verseCount": 26,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 89,
+      "arabicName": "سُورَةُ الفَجۡرِ",
+      "transliteration": "Al-Fajr",
+      "englishMeaning": "The Dawn",
+      "verseCount": 30,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 90,
+      "arabicName": "سُورَةُ البَلَدِ",
+      "transliteration": "Al-Balad",
+      "englishMeaning": "The City",
+      "verseCount": 20,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 91,
+      "arabicName": "سُورَةُ الشَّمۡسِ",
+      "transliteration": "Ash-Shams",
+      "englishMeaning": "The Sun",
+      "verseCount": 15,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 92,
+      "arabicName": "سُورَةُ اللَّيۡلِ",
+      "transliteration": "Al-Lail",
+      "englishMeaning": "The Night",
+      "verseCount": 21,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 93,
+      "arabicName": "سُورَةُ الضُّحَىٰ",
+      "transliteration": "Ad-Dhuhaa",
+      "englishMeaning": "The Morning Hours",
+      "verseCount": 11,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 94,
+      "arabicName": "سُورَةُ الشَّرۡحِ",
+      "transliteration": "Ash-Sharh",
+      "englishMeaning": "The Consolation",
+      "verseCount": 8,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 95,
+      "arabicName": "سُورَةُ التِّينِ",
+      "transliteration": "At-Tin",
+      "englishMeaning": "The Fig",
+      "verseCount": 8,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 96,
+      "arabicName": "سُورَةُ العَلَقِ",
+      "transliteration": "Al-Alaq",
+      "englishMeaning": "The Clot",
+      "verseCount": 19,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 97,
+      "arabicName": "سُورَةُ القَدۡرِ",
+      "transliteration": "Al-Qadr",
+      "englishMeaning": "The Power, Fate",
+      "verseCount": 5,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 98,
+      "arabicName": "سُورَةُ البَيِّنَةِ",
+      "transliteration": "Al-Bayyina",
+      "englishMeaning": "The Evidence",
+      "verseCount": 8,
+      "juzNumber": 30,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 99,
+      "arabicName": "سُورَةُ الزَّلۡزَلَةِ",
+      "transliteration": "Az-Zalzala",
+      "englishMeaning": "The Earthquake",
+      "verseCount": 8,
+      "juzNumber": 30,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 100,
+      "arabicName": "سُورَةُ العَادِيَاتِ",
+      "transliteration": "Al-Aadiyaat",
+      "englishMeaning": "The Chargers",
+      "verseCount": 11,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 101,
+      "arabicName": "سُورَةُ القَارِعَةِ",
+      "transliteration": "Al-Qaari'a",
+      "englishMeaning": "The Calamity",
+      "verseCount": 11,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 102,
+      "arabicName": "سُورَةُ التَّكَاثُرِ",
+      "transliteration": "At-Takaathur",
+      "englishMeaning": "Competition",
+      "verseCount": 8,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 103,
+      "arabicName": "سُورَةُ العَصۡرِ",
+      "transliteration": "Al-Asr",
+      "englishMeaning": "The Declining Day, Epoch",
+      "verseCount": 3,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 104,
+      "arabicName": "سُورَةُ الهُمَزَةِ",
+      "transliteration": "Al-Humaza",
+      "englishMeaning": "The Traducer",
+      "verseCount": 9,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 105,
+      "arabicName": "سُورَةُ الفِيلِ",
+      "transliteration": "Al-Fil",
+      "englishMeaning": "The Elephant",
+      "verseCount": 5,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 106,
+      "arabicName": "سُورَةُ قُرَيۡشٍ",
+      "transliteration": "Quraish",
+      "englishMeaning": "Quraysh",
+      "verseCount": 4,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 107,
+      "arabicName": "سُورَةُ المَاعُونِ",
+      "transliteration": "Al-Maa'un",
+      "englishMeaning": "Almsgiving",
+      "verseCount": 7,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 108,
+      "arabicName": "سُورَةُ الكَوۡثَرِ",
+      "transliteration": "Al-Kawthar",
+      "englishMeaning": "Abundance",
+      "verseCount": 3,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 109,
+      "arabicName": "سُورَةُ الكَافِرُونَ",
+      "transliteration": "Al-Kaafiroon",
+      "englishMeaning": "The Disbelievers",
+      "verseCount": 6,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 110,
+      "arabicName": "سُورَةُ النَّصۡرِ",
+      "transliteration": "An-Nasr",
+      "englishMeaning": "Divine Support",
+      "verseCount": 3,
+      "juzNumber": 30,
+      "revelationType": "Medinan",
+      "bismillah": true
+    },
+    {
+      "id": 111,
+      "arabicName": "سُورَةُ المَسَدِ",
+      "transliteration": "Al-Masad",
+      "englishMeaning": "The Palm Fibre",
+      "verseCount": 5,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 112,
+      "arabicName": "سُورَةُ الإِخۡلَاصِ",
+      "transliteration": "Al-Ikhlaas",
+      "englishMeaning": "Sincerity",
+      "verseCount": 4,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 113,
+      "arabicName": "سُورَةُ الفَلَقِ",
+      "transliteration": "Al-Falaq",
+      "englishMeaning": "The Dawn",
+      "verseCount": 5,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    },
+    {
+      "id": 114,
+      "arabicName": "سُورَةُ النَّاسِ",
+      "transliteration": "An-Naas",
+      "englishMeaning": "Mankind",
+      "verseCount": 6,
+      "juzNumber": 30,
+      "revelationType": "Meccan",
+      "bismillah": true
+    }
+  ]
+}

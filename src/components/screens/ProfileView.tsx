@@ -2,13 +2,15 @@ import type { UserState, AgeGroup } from '../../types';
 import { getRank, getNextRank } from '../../utils';
 import { BADGES } from '../../data/badges';
 import { XPRing } from '../shared/XPRing';
+import { Database, ChevronLeft } from 'lucide-react';
 
 interface ProfileViewProps {
   user: UserState;
   onUpdate: (updates: Partial<UserState>) => void;
+  onOpenDataSources?: () => void;
 }
 
-export const ProfileView = ({ user, onUpdate }: ProfileViewProps) => {
+export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewProps) => {
   const rank = getRank(user.xp);
   const nextRank = getNextRank(user.xp);
   
@@ -51,7 +53,7 @@ export const ProfileView = ({ user, onUpdate }: ProfileViewProps) => {
 
       <div className="w-full mt-10">
         <h3 className="text-xl font-bold mb-5 flex items-center gap-2">
-          <span>⚙️</span> الإعدادات
+          <span>⚙️</span> Settings · الإعدادات
         </h3>
         <div className="bg-black/20 rounded-3xl p-5 border border-white/5 backdrop-blur-sm shadow-inner space-y-4">
           <div className="flex justify-between items-center pb-4 border-b border-white/5">
@@ -92,7 +94,7 @@ export const ProfileView = ({ user, onUpdate }: ProfileViewProps) => {
           </div>
           <div className="pt-4 border-t border-white/5 space-y-3">
             <div className="flex justify-between items-center text-sm">
-              <span className="font-bold text-paper">حجم الخط القرآني</span>
+              <span className="font-bold text-paper">Font size · حجم الخط</span>
               <span className="text-paper/70 font-mono">{user.arabicFontSize}px</span>
             </div>
             <input 
@@ -115,6 +117,18 @@ export const ProfileView = ({ user, onUpdate }: ProfileViewProps) => {
               onChange={(e) => onUpdate({ bgOpacity: Number(e.target.value) })}
               className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-accent"
             />
+          </div>
+          <div className="pt-3 border-t border-white/5">
+            <button 
+              onClick={onOpenDataSources}
+              className="w-full flex justify-between items-center text-left hover:bg-white/5 p-2 rounded-lg transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <Database size={18} className="text-paper/70 group-hover:text-accent transition-colors" />
+                <span className="font-bold text-paper group-hover:text-accent transition-colors">مصادر البيانات (Data Sources)</span>
+              </div>
+              <ChevronLeft size={18} className="text-paper/40 rtl:rotate-180" />
+            </button>
           </div>
         </div>
       </div>
