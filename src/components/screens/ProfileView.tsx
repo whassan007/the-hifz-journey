@@ -1,4 +1,4 @@
-import type { UserState } from '../../types';
+import type { UserState, AgeGroup } from '../../types';
 import { getRank, getNextRank } from '../../utils';
 import { BADGES } from '../../data/badges';
 import { XPRing } from '../shared/XPRing';
@@ -54,6 +54,24 @@ export const ProfileView = ({ user, onUpdate }: ProfileViewProps) => {
           <span>⚙️</span> الإعدادات
         </h3>
         <div className="bg-black/20 rounded-3xl p-5 border border-white/5 backdrop-blur-sm shadow-inner space-y-4">
+          <div className="flex justify-between items-center pb-4 border-b border-white/5">
+            <div>
+              <span className="font-bold text-paper block">الفئة العمرية (Age Group)</span>
+              <span className="text-xs text-white/50">يغير صعوبة الأسئلة وطول الجلسة</span>
+            </div>
+            <select
+              value={user.ageGroup}
+              onChange={(e) => onUpdate({ ageGroup: e.target.value as AgeGroup })}
+              className="bg-black/40 border border-white/20 rounded-xl px-3 py-2 text-sm text-paper font-medium outline-none"
+              dir="ltr"
+            >
+              <option value="seedling">Seedling (5–9)</option>
+              <option value="sapling">Sapling (10–15)</option>
+              <option value="rising_tree">Rising Tree (16–25)</option>
+              <option value="mighty_oak">Mighty Oak (26+)</option>
+            </select>
+          </div>
+
           <div className="flex justify-between items-center">
             <span className="font-bold text-paper">المؤثرات الصوتية</span>
             <button 

@@ -1,4 +1,5 @@
 export type Biome = 'jungle' | 'ocean' | 'desert' | 'palace' | 'dream';
+export type AgeGroup = 'seedling' | 'sapling' | 'rising_tree' | 'mighty_oak';
 
 export interface SurahNode {
   id: number;
@@ -24,6 +25,7 @@ export interface UserState {
   audioEnabled: boolean;
   hapticEnabled: boolean;
   bgOpacity: number;
+  ageGroup: AgeGroup;
 }
 
 export interface ReviewRecord {

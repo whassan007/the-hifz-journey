@@ -30,6 +30,7 @@ const INITIAL_USER: UserState = {
   audioEnabled: true,
   hapticEnabled: true,
   bgOpacity: 80,
+  ageGroup: 'sapling',
 };
 
 const App = () => {
