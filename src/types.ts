@@ -13,6 +13,27 @@ export interface SurahNode {
   bismillah: boolean;
 }
 
+export interface Bookmark {
+  id: string;
+  surahId: number;
+  ayahNumber: number;
+  arabicText: string;
+  note: string | null;
+  createdAt: string;
+  color: 'green' | 'amber' | 'blue' | 'pink';
+}
+
+export type ReaderSpacing = 'compact' | 'normal' | 'wide';
+export type ReaderDisplayMode = 'arabic_only' | 'arabic_transliteration' | 'arabic_translation';
+export type ReaderTheme = 'match_app' | 'light' | 'dark' | 'sepia';
+
+export interface ReaderSettings {
+  fontSize: number; // 1-5 scale
+  lineSpacing: ReaderSpacing;
+  displayMode: ReaderDisplayMode;
+  theme: ReaderTheme;
+}
+
 export interface UserState {
   name: string | null;
   role: UserRole;
@@ -27,6 +48,9 @@ export interface UserState {
   arabicFontSize: number;
   bgOpacity: number;
   classes?: ClassMembership[];
+  bookmarks: Bookmark[];
+  readSurahs: number[];
+  readerSettings: ReaderSettings;
 }
 
 export interface Teacher {

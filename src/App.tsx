@@ -13,6 +13,8 @@ import { GamesView } from './components/screens/GamesView';
 import { ProfileView } from './components/screens/ProfileView';
 import { ReviewView } from './components/screens/ReviewView';
 import { DataSourcesView } from './components/screens/DataSourcesView';
+import { BookmarksView } from './components/screens/BookmarksView';
+import { SurahReaderView } from './components/screens/SurahReaderView';
 import { GameWrapper } from './components/engine/GameWrapper';
 import { OnboardingView } from './components/screens/OnboardingView';
 import { TeacherOnboardingView } from './components/screens/teacher/TeacherOnboardingView';
@@ -26,12 +28,20 @@ const INITIAL_USER: UserState = {
   streak: 5,
   completed: [SURAHS[0], SURAHS[1]],
   badges: ['first_step', 'consistent'],
-  arabicFontSize: 30,
+  arabicFontSize: 32,
   audioEnabled: true,
   hapticEnabled: true,
-  bgOpacity: 80,
+  bgOpacity: 0.5,
   ageGroup: 'sapling',
-  classes: []
+  classes: [],
+  bookmarks: [],
+  readSurahs: [],
+  readerSettings: {
+    fontSize: 3,
+    lineSpacing: 'normal',
+    displayMode: 'arabic_translation',
+    theme: 'match_app'
+  }
 };
 
 const App = () => {
@@ -42,6 +52,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [currentSurahId, setCurrentSurahId] = useState(109);
+  const [readerSurahId, setReaderSurahId] = useState<number | null>(null);
   const [reviews, setReviews] = useState<ReviewRecord[]>([]);
   const [isTeacherOnboarding, setIsTeacherOnboarding] = useState(false);
 
@@ -157,7 +168,8 @@ const App = () => {
     setActiveGame(null);
   };
 
-  const currentBiome = activeGame ? getSurahBiome(currentSurahData.id) : 'jungle';
+  const currentBiome = activeGame ? getSurahBiome(currentSurahData.id) : (readerSurahId ? getSurahBiome(readerSurahId) : 'jungle');
+  const hideBottomNav = activeTab === 'reader' || activeTab === 'data_sources' || activeTab === 'bookmarks';
 
   return (
     <div className={`min-h-screen font-sans text-white overflow-hidden flex flex-col relative transition-colors duration-1000 ${getBiomeGradients(currentBiome)}`} dir="rtl">
@@ -185,11 +197,13 @@ const App = () => {
           className="flex-1 overflow-y-auto pb-24 relative z-10 w-full max-w-4xl mx-auto"
         >
           {activeTab === 'home' && <HomeView user={user} currentSurahData={currentSurahData} setActiveGame={setActiveGame} />}
-          {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} />}
+          {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
           {activeTab === 'review' && <ReviewView />}
           {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} /></div>}
           {activeTab === 'data_sources' && <DataSourcesView onBack={() => setActiveTab('profile')} />}
+          {activeTab === 'bookmarks' && <BookmarksView user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onReadSurah={(id: number) => { setReaderSurahId(id); setActiveTab('reader'); }} />}
+          {activeTab === 'reader' && readerSurahId && <SurahReaderView surahId={readerSurahId} user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={setReaderSurahId} />}
         </motion.div>
       </AnimatePresence>
 
@@ -207,8 +221,9 @@ const App = () => {
       </AnimatePresence>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 w-full bg-jungle-dark/90 backdrop-blur-xl border-t border-white/10 pb-safe pt-2 px-6 z-40 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
-        <div className="flex justify-between items-center w-full max-w-md mx-auto mb-2">
+      {!hideBottomNav && (
+        <nav className="fixed bottom-0 left-0 right-0 w-full bg-jungle-dark/90 backdrop-blur-xl border-t border-white/10 pb-safe pt-2 px-6 z-40 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+          <div className="flex justify-between items-center w-full max-w-md mx-auto mb-2">
           {[
             { id: 'home', icon: <Home size={24} />, label: 'الرئيسية' },
             { id: 'journey', icon: <Map size={24} />, label: 'الخريطة' },
@@ -227,6 +242,7 @@ const App = () => {
           ))}
         </div>
       </nav>
+      )}
     </div>
   );
 };
