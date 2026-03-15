@@ -2,16 +2,27 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2 } from 'lucide-react';
 import type { GameComponentProps } from '../GameWrapper';
-import { MOCK_QUESTIONS } from '../../../data/mockQuestions';
+import { generateQuestion } from '../../../data/registry';
 import { audioEngine, triggerHaptic } from '../../../audio';
 
-export const QuizGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: GameComponentProps) => {
+export const QuizGame = ({ mode, surah, audioEnabled, hapticEnabled, onVictory }: GameComponentProps) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isWrong, setIsWrong] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { ayah: string, translation: string, options: string[], answer: string, hint: string, question?: string };
+  // Generate question dynamically precisely once on mount
+  const [currentData] = useState(() => {
+    if (mode === 'quiz' || mode === 'tajweed') {
+      const q = generateQuestion(surah.id, mode);
+      return q || { ayah: '', translation: '', options: [], answer: '', hint: '', question: '' };
+    }
+    return { ayah: '', translation: '', options: [], answer: '', hint: '', question: '' };
+  });
+
+  if (!currentData || !currentData.ayah) {
+    return <div className="text-white">Generating question...</div>;
+  }
 
   const handleQuizAnswer = (opt: string) => {
     if (selectedOption) return;

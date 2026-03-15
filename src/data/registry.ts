@@ -1,5 +1,6 @@
 import groundTruth from './surah-ground-truth.json';
 import type { SurahNode } from '../types';
+import { getSafeVerses } from '../services/verseUniquenessValidator';
 
 export const SURAHS: SurahNode[] = groundTruth.surahs;
 export const DATA_META = groundTruth.meta;
@@ -13,12 +14,32 @@ export const getProgressMapNodes = (): SurahNode[] => {
   return [...SURAHS].sort((a, b) => b.id - a.id);
 };
 
-export const generateQuestion = (surahId: number) => {
+export const generateQuestion = (surahId: number, gameType: 'quiz' | 'scramble' | 'match' | 'tajweed' = 'quiz') => {
   const surah = getSurahById(surahId);
   if (!surah) return null;
+
+  // Pull from the uniqueness validated pool
+  const safePool = getSafeVerses(surahId);
+  if (safePool.length === 0) return null;
+
+  // Randomly select a safe verse
+  const targetVerse = safePool[Math.floor(Math.random() * safePool.length)];
+
+  // Generate 3 random wrong options
+  const allOtherSurahs = SURAHS.filter(s => s.id !== surahId);
+  const distractors = [...allOtherSurahs].sort(() => 0.5 - Math.random()).slice(0, 3);
+  
+  const options = [surah.arabicName, ...distractors.map(d => d.arabicName)]
+    .sort(() => 0.5 - Math.random());
+
   return {
+     type: gameType,
      surahId,
-     question: "Which Juz is " + surah.transliteration + " in?",
-     answer: surah.juzNumber.toString()
-  }
+     ayah: targetVerse.verseText,
+     question: "أي سورة تحتوي على هذه الآية؟", // "Which Surah contains this Ayah?"
+     answer: surah.arabicName,
+     options,
+     translation: `Verse ${targetVerse.verseNumber}`,
+     hint: `This surah has ${surah.verseCount} verses and is ${surah.revelationType === 'Meccan' ? 'Meccan' : 'Medinan'}.`
+  };
 };

@@ -11,6 +11,7 @@ export interface SurahNode {
   juzNumber: number;
   revelationType: string;
   bismillah: boolean;
+  verses: string[];
 }
 
 export interface Bookmark {
