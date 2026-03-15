@@ -29,12 +29,12 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
         if (result) {
           const text = result.getText().toLowerCase().trim();
           if (!text.startsWith('class-')) {
-            setError("That QR code didn't work. Ask your teacher for the current code.");
+            setError("رمز الاستجابة السريعة (QR) غير صالح. اطلب من معلمك الرمز الحالي.");
             setIsScanning(false);
             return;
           }
           if (alreadyJoinedClasses.includes(text)) {
-            setError("You're already a member of this class.");
+            setError("أنت بالفعل عضو في هذا الصف.");
             setIsScanning(false);
             return;
           }
@@ -44,7 +44,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
           setIsScanning(false);
           setFoundClass({
             id: `mock-${Date.now()}`,
-            name: 'Weekend Hifz Program',
+            name: 'برنامج تحفيظ عطلة نهاية الأسبوع',
             joinCode: text,
             teacherId: 'teacher-x', // Mock teacher association
             createdAt: new Date().toISOString()
@@ -53,7 +53,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
         }
       }).catch(e => {
         console.error("Camera error:", e);
-        setError("Camera access needed to scan. Enter the code manually instead.");
+        setError("يلزم الوصول إلى الكاميرا للمسح. أدخل الرمز يدوياً بدلاً من ذلك.");
         setIsScanning(false);
       });
 
@@ -75,19 +75,19 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
 
     // Simulate search
     if (!formattedCode.startsWith('class-')) {
-      setError("That code doesn't match any class. Check with your teacher.");
+      setError("هذا الرمز لا يطابق أي صف. تحقق مع معلمك.");
       return;
     }
 
     if (alreadyJoinedClasses.includes(formattedCode)) {
-      setError("You're already a member of this class.");
+      setError("أنت بالفعل عضو في هذا الصف.");
       return;
     }
 
     // Mock found class
     setFoundClass({
       id: `mock-${Date.now()}`,
-      name: 'Weekend Hifz Program',
+      name: 'برنامج تحفيظ عطلة نهاية الأسبوع',
       joinCode: formattedCode,
       teacherId: 'teacher-x', // Mock teacher association
       createdAt: new Date().toISOString()
@@ -137,8 +137,8 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
               <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center border border-accent/40 shadow-inner mb-6 mx-auto">
                 <Hash className="text-accent" size={32} />
               </div>
-              <h2 className="text-2xl font-bold text-center text-paper mb-2">Join a class · انضم إلى صف</h2>
-              <p className="text-center text-paper/60 text-sm mb-8">Enter the join code provided by your teacher.</p>
+              <h2 className="text-2xl font-bold text-center text-paper mb-2">انضم إلى صف</h2>
+              <p className="text-center text-paper/60 text-sm mb-8">أدخل الرمز المقدم من معلمك.</p>
 
               <form onSubmit={handleSearch} className="flex flex-col gap-4">
                 <div className="flex gap-2">
@@ -173,7 +173,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
                   disabled={!code.trim()}
                   className="w-full bg-accent hover:bg-amber-600 disabled:opacity-50 disabled:bg-white/10 text-white font-bold py-4 rounded-xl shadow-lg mt-2 transition-all active:scale-95 text-lg"
                 >
-                  Search Code
+                  البحث عن الرمز
                 </button>
               </form>
             </motion.div>
@@ -187,8 +187,8 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
               exit={{ opacity: 0, scale: 0.95 }}
               className="flex flex-col items-center"
             >
-              <h2 className="text-2xl font-bold text-center text-paper mb-2">Scan QR Code</h2>
-              <p className="text-center text-paper/60 text-sm mb-6">Position the QR code within the frame</p>
+              <h2 className="text-2xl font-bold text-center text-paper mb-2">مسح رمز الاستجابة السريعة (QR)</h2>
+              <p className="text-center text-paper/60 text-sm mb-6">ضع رمز الاستجابة السريعة (QR) داخل الإطار</p>
               
               <div className="relative w-64 h-64 bg-black rounded-3xl overflow-hidden mb-6 border-2 border-accent">
                 <video ref={videoRef} className="w-full h-full object-cover" />
@@ -199,7 +199,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
                 onClick={() => setIsScanning(false)}
                 className="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-4 rounded-xl transition-all"
               >
-                Cancel Scan
+                إلغاء المسح
               </button>
             </motion.div>
           )}
@@ -216,20 +216,20 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
                 <School className="text-blue-400" size={40} />
               </div>
               
-              <h2 className="text-lg text-paper/60 font-medium mb-1">You're joining</h2>
+              <h2 className="text-lg text-paper/60 font-medium mb-1">أنت تنضم إلى</h2>
               <h3 className="text-3xl font-black text-paper mb-6">{foundClass.name}</h3>
 
               <div className="w-full bg-black/30 border border-white/5 rounded-xl p-4 mb-8 flex justify-center gap-6">
                  <div className="flex flex-col items-center gap-1">
                    <div className="flex items-center gap-1.5 text-paper/80 font-medium">
-                     <Users size={16} /> <span>Teacher</span>
+                     <Users size={16} /> <span>المعلم</span>
                    </div>
-                   <span className="text-white text-sm">Ustadh Ahmed</span> {/* Mocked since Teacher ID only available */}
+                   <span className="text-white text-sm">الأستاذ أحمد</span> {/* Mocked since Teacher ID only available */}
                  </div>
                  <div className="w-px h-10 bg-white/10" />
                  <div className="flex flex-col items-center gap-1">
                    <div className="flex items-center gap-1.5 text-paper/80 font-medium">
-                     <Hash size={16} /> <span>Code</span>
+                     <Hash size={16} /> <span>الرمز</span>
                    </div>
                    <span className="text-white text-sm font-mono">{foundClass.joinCode}</span>
                  </div>
@@ -241,7 +241,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
                   disabled={isJoining}
                   className="flex-1 bg-white/5 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-all"
                 >
-                  Cancel
+                  إلغاء
                 </button>
                 <button 
                   onClick={confirmJoin}
@@ -249,10 +249,10 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
                   className="flex-[2] bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   {isJoining ? (
-                    <span className="animate-pulse">Joining...</span>
+                    <span className="animate-pulse">جاري الانضمام...</span>
                   ) : (
                     <>
-                      <CheckCircle2 size={20} /> Join {foundClass.name}
+                      <CheckCircle2 size={20} /> انضم إلى {foundClass.name}
                     </>
                   )}
                 </button>

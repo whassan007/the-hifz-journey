@@ -10,7 +10,7 @@ interface ClassCodeCardProps {
   onResetCode?: () => void;
 }
 
-export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }: ClassCodeCardProps) => {
+export const ClassCodeCard = ({ classData, teacherName = 'الأستاذ', onResetCode }: ClassCodeCardProps) => {
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [copiedText, setCopiedText] = useState(false);
   const qrRef = useRef<SVGSVGElement>(null);
@@ -75,31 +75,31 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
         <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 blur-3xl rounded-full" />
         
         <h3 className="text-sm font-bold text-paper/80 mb-4 uppercase tracking-wider flex justify-between items-center">
-          <span>Class Access</span>
+          <span>الوصول إلى الصف</span>
           {onResetCode && (
             <button onClick={onResetCode} className="text-[10px] text-white/40 hover:text-white flex items-center gap-1 transition-colors bg-white/5 px-2 py-1 rounded-full">
-              <RefreshCw size={10} /> Reset Code
+              <RefreshCw size={10} /> إعادة تعيين الرمز
             </button>
           )}
         </h3>
         
         <div className="flex items-center gap-4 mb-5">
           {/* Left: Text Code */}
-          <div className="flex-1 bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col justify-center gap-2 relative group">
-            <span className="text-xs text-white/50 font-medium tracking-wide">Join Code</span>
-            <div className="flex items-center justify-between">
+          <div className="flex-1 bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col justify-center gap-2 relative group text-right">
+            <span className="text-xs text-white/50 font-medium tracking-wide">رمز الانضمام</span>
+            <div className="flex items-center justify-between" dir="ltr">
               <span className="font-mono text-xl font-bold text-accent tracking-wider select-all">{classData.joinCode}</span>
               <button 
                 onClick={handleCopyText}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent"
-                title="Copy Code"
+                title="نسخ الرمز"
               >
                 <Copy size={14} />
               </button>
             </div>
             {copiedText && (
               <span className="absolute -top-3 right-4 bg-accent text-white text-[10px] font-bold px-2 py-0.5 rounded animate-bounce">
-                Copied!
+                تم النسخ!
               </span>
             )}
           </div>
@@ -108,7 +108,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
           <button 
             onClick={() => setIsQrModalOpen(true)}
             className="w-24 h-24 shrink-0 bg-white rounded-2xl p-2 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all cursor-zoom-in relative group flex items-center justify-center"
-            title="Expand QR Code"
+            title="تكبير رمز الاستجابة السريعة (QR)"
           >
             <QRCodeSVG 
               value={classData.joinCode} 
@@ -128,7 +128,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
             onClick={handleShareText}
             className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 active:scale-95 transition-all text-white/90 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-sm"
           >
-            <Share2 size={16} /> Share code as text
+            <Share2 size={16} /> مشاركة الرمز كنص
           </button>
           <button 
             onClick={() => {
@@ -136,7 +136,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
             }}
             className="flex-1 bg-accent/20 hover:bg-accent/30 border border-accent/20 active:scale-95 transition-all text-accent font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-sm"
           >
-            <Download size={16} /> Save QR image
+            <Download size={16} /> حفظ صورة QR
           </button>
         </div>
       </div>
@@ -177,7 +177,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
               </div>
 
               <h2 className="text-3xl font-black text-paper mb-1">{classData.name}</h2>
-              <p className="text-paper/60 font-medium mb-6">Instructor: {teacherName}</p>
+              <p className="text-paper/60 font-medium mb-6">المعلم: {teacherName}</p>
 
               <div className="px-4 py-2 bg-black/40 rounded-full border border-white/10 mb-8 inline-flex items-center gap-2">
                 <Hash size={14} className="text-accent" />
@@ -185,7 +185,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
               </div>
 
               <p className="text-sm font-bold text-accent uppercase tracking-widest mb-6 px-8 leading-relaxed">
-                Scan with the Hifz Journey app to join
+                امسح باستخدام تطبيق رحلة الحفظ للانضمام
               </p>
 
               <div className="w-full flex gap-3">
@@ -193,7 +193,7 @@ export const ClassCodeCard = ({ classData, teacherName = 'Ustadh', onResetCode }
                     onClick={downloadQR}
                     className="flex-1 bg-white hover:bg-paper text-black font-black py-4 rounded-xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
                  >
-                    <Download size={18} /> Download
+                    <Download size={18} /> تحميل
                  </button>
               </div>
 

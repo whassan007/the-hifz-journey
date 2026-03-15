@@ -13,18 +13,18 @@ interface TeacherDashboardProps {
 const MOCK_CLASSES: Class[] = [
   {
     id: '1',
-    name: 'Juz Amma Group',
+    name: 'مجموعة جزء عم',
     joinCode: 'class-fajr-east',
     teacherId: 'teacher-1',
     createdAt: new Date().toISOString()
   },
   {
     id: '2',
-    name: 'Advanced Hifz',
+    name: 'تحفيظ متقدم',
     joinCode: 'class-noor-seven',
     teacherId: 'teacher-1',
     createdAt: new Date().toISOString(),
-    description: 'Surah Al-Baqarah'
+    description: 'سورة البقرة'
   }
 ];
 
@@ -77,15 +77,15 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
         {/* Header */}
         <div className="flex justify-between items-end mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-paper mb-1">My Classes · صفوفي</h1>
-            <p className="text-paper/60 text-sm">Welcome back, {user.name}</p>
+            <h1 className="text-3xl font-bold text-paper mb-1">صفوفي</h1>
+            <p className="text-paper/60 text-sm">مرحباً بعودتك، {user.name}</p>
           </div>
           <div className="flex gap-3">
             <button 
               onClick={() => setIsCreatingClass(true)}
               className="bg-accent hover:bg-amber-600 active:scale-95 transition-all text-white font-bold py-2 px-4 rounded-xl flex items-center gap-2 text-sm shadow-lg"
             >
-              <Plus size={18} /> New Class
+              <Plus size={18} /> صف جديد
             </button>
             <button 
               onClick={onLogout}
@@ -106,11 +106,11 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
               className="overflow-hidden mb-8"
             >
               <div className="bg-black/30 border border-white/10 p-6 rounded-3xl backdrop-blur-md">
-                <h3 className="text-lg font-bold text-paper mb-4">New class · صف جديد</h3>
+                <h3 className="text-lg font-bold text-paper mb-4">صف جديد</h3>
                 <form onSubmit={handleCreateClass} className="flex flex-col gap-4">
                   <input
                     type="text"
-                    placeholder="Class Name (e.g. Juz Amma Group)"
+                    placeholder="اسم الصف (مثال: مجموعة جزء عم)"
                     value={newClassName}
                     onChange={(e) => setNewClassName(e.target.value)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
@@ -118,7 +118,7 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
                   />
                   <input
                     type="text"
-                    placeholder="Description or Target Surah (optional)"
+                    placeholder="الوصف أو السورة المستهدفة (اختياري)"
                     value={newClassDesc}
                     onChange={(e) => setNewClassDesc(e.target.value)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
@@ -129,14 +129,14 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
                       onClick={() => setIsCreatingClass(false)}
                       className="px-5 py-2.5 rounded-xl font-bold text-sm text-white/60 hover:text-white transition-colors"
                     >
-                      Cancel
+                      إلغاء
                     </button>
                     <button 
                       type="submit"
                       disabled={!newClassName.trim()}
                       className="bg-accent disabled:opacity-50 disabled:bg-white/10 text-white font-bold py-2.5 px-6 rounded-xl transition-all"
                     >
-                      Generate Join Code
+                      إنشاء رمز الانضمام
                     </button>
                   </div>
                 </form>
@@ -150,8 +150,8 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
           {classes.length === 0 && !isCreatingClass && (
             <div className="text-center py-16 bg-black/20 rounded-3xl border border-white/5 border-dashed">
               <Users size={48} className="mx-auto text-white/20 mb-4" />
-              <h3 className="text-lg font-bold text-paper/80 mb-2">No active classes</h3>
-              <p className="text-paper/50 text-sm">Create a class to generate a join code.</p>
+              <h3 className="text-lg font-bold text-paper/80 mb-2">لا توجد صفوف نشطة</h3>
+              <p className="text-paper/50 text-sm">أنشئ صفاً لإنشاء رمز الانضمام.</p>
             </div>
           )}
 
@@ -180,11 +180,11 @@ export const TeacherDashboardView = ({ user, onLogout }: TeacherDashboardProps) 
                   </div>
                   <div className="flex items-center gap-2 text-sm text-paper/60">
                     <Users size={16} />
-                    <span>12 Students</span> {/* Mock value */}
+                    <span>١٢ طالباً</span> {/* Mock value */}
                   </div>
                   <div className="flex items-center gap-2 text-sm text-paper/60">
                     <ClipboardList size={16} />
-                    <span>84% Avg Retention</span> {/* Mock value */}
+                    <span dir="ltr">٨٤٪ متوسط الاحتفاظ</span> {/* Mock value */}
                   </div>
                 </div>
              </motion.button>

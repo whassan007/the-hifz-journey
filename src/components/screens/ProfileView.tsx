@@ -53,12 +53,12 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
 
       <div className="w-full mt-10">
         <h3 className="text-xl font-bold mb-5 flex items-center gap-2">
-          <span>⚙️</span> Settings · الإعدادات
+          <span>⚙️</span> الإعدادات
         </h3>
         <div className="bg-black/20 rounded-3xl p-5 border border-white/5 backdrop-blur-sm shadow-inner space-y-4">
           <div className="flex justify-between items-center pb-4 border-b border-white/5">
             <div>
-              <span className="font-bold text-paper block">الفئة العمرية (Age Group)</span>
+              <span className="font-bold text-paper block">الفئة العمرية</span>
               <span className="text-xs text-white/50">يغير صعوبة الأسئلة وطول الجلسة</span>
             </div>
             <select
@@ -67,10 +67,10 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
               className="bg-black/40 border border-white/20 rounded-xl px-3 py-2 text-sm text-paper font-medium outline-none"
               dir="ltr"
             >
-              <option value="seedling">Seedling (5–9)</option>
-              <option value="sapling">Sapling (10–15)</option>
-              <option value="rising_tree">Rising Tree (16–25)</option>
-              <option value="mighty_oak">Mighty Oak (26+)</option>
+              <option value="seedling">برعم (٥-٩)</option>
+              <option value="sapling">نبتة (١٠-١٥)</option>
+              <option value="rising_tree">شجرة صاعدة (١٦-٢٥)</option>
+              <option value="mighty_oak">بلوط شامخ (٢٦+)</option>
             </select>
           </div>
 
@@ -84,7 +84,7 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
             </button>
           </div>
           <div className="flex justify-between items-center">
-            <span className="font-bold text-paper">الاهتزاز (Haptics)</span>
+            <span className="font-bold text-paper">الاهتزاز</span>
             <button 
               onClick={() => onUpdate({ hapticEnabled: !user.hapticEnabled })}
               className={`w-14 h-8 rounded-full transition-colors relative ${user.hapticEnabled ? 'bg-accent' : 'bg-white/20'}`}
@@ -94,7 +94,7 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
           </div>
           <div className="pt-4 border-t border-white/5 space-y-3">
             <div className="flex justify-between items-center text-sm">
-              <span className="font-bold text-paper">Font size · حجم الخط</span>
+              <span className="font-bold text-paper">حجم الخط</span>
               <span className="text-paper/70 font-mono">{user.arabicFontSize}px</span>
             </div>
             <input 
@@ -125,7 +125,7 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
             >
               <div className="flex items-center gap-3">
                 <Database size={18} className="text-paper/70 group-hover:text-accent transition-colors" />
-                <span className="font-bold text-paper group-hover:text-accent transition-colors">مصادر البيانات (Data Sources)</span>
+                <span className="font-bold text-paper group-hover:text-accent transition-colors">مصادر البيانات</span>
               </div>
               <ChevronLeft size={18} className="text-paper/40 rtl:rotate-180" />
             </button>

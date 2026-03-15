@@ -73,7 +73,7 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
           <ArrowRight size={20} className="rotate-180" />
         </button>
         <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Database className="text-accent" /> Data Sources Validation
+          <Database className="text-accent" /> التحقق من مصادر البيانات
         </h1>
       </div>
 
@@ -83,25 +83,25 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
         {/* Banner */}
         {meta.integrity === 'passed' ? (
           <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-3 rounded-xl mb-6 font-bold flex items-center gap-2">
-            <CheckCircle2 size={20} /> All 114 surahs validated · بارك الله فيك
+            <CheckCircle2 size={20} /> تم التحقق من كافة الـ ١١٤ سورة · بارك الله فيك
           </div>
         ) : (
           <div className="bg-amber-500/10 border border-amber-500/20 text-amber-400 p-3 rounded-xl mb-6 font-bold flex items-center gap-2">
-            <AlertTriangle size={20} /> Data integrity warning — one or more structural checks failed
+            <AlertTriangle size={20} /> تحذير سلامة البيانات - فشل فحص هيكلي واحد أو أكثر
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="space-y-4">
             <div>
-              <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-1">Primary Source</p>
+              <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-1">المصدر الأساسي</p>
               <div className="flex items-center gap-2 bg-black/30 p-2.5 rounded-lg border border-white/5">
                 <div className={`w-2.5 h-2.5 rounded-full ${getStatusColor(meta.primaryStatus)}`} />
                 <span className="font-mono text-sm">{meta.primaryUrl}</span>
               </div>
             </div>
             <div>
-              <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-1">Secondary Source</p>
+              <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-1">المصدر الثانوي</p>
               <div className="flex items-center gap-2 bg-black/30 p-2.5 rounded-lg border border-white/5">
                 <div className={`w-2.5 h-2.5 rounded-full ${getStatusColor(meta.secondaryStatus)}`} />
                 <span className="font-mono text-sm">{meta.secondaryUrl}</span>
@@ -112,26 +112,26 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-black/30 p-3 rounded-xl border border-white/5">
-                <p className="text-xs text-white/50 mb-1">Narration</p>
+                <p className="text-xs text-white/50 mb-1">الرواية</p>
                 <p className="font-bold">{meta.narration}</p>
               </div>
               <div className="bg-black/30 p-3 rounded-xl border border-white/5">
-                <p className="text-xs text-white/50 mb-1">Validated At</p>
-                <p className="font-bold text-sm">{formatDate(meta.fetchedAt)}</p>
+                <p className="text-xs text-white/50 mb-1">تاريخ التحقق</p>
+                <p className="font-bold text-sm" dir="ltr">{formatDate(meta.fetchedAt)}</p>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-black/30 p-3 rounded-xl border border-white/5 text-center">
                 <p className="text-2xl font-black">{meta.totalSurahs}</p>
-                <p className="text-[10px] text-white/50 uppercase">Total</p>
+                <p className="text-[10px] text-white/50 uppercase">المجموع</p>
               </div>
               <div className="bg-green-500/10 p-3 rounded-xl border border-green-500/20 text-center text-green-400">
                 <p className="text-2xl font-black">{meta.passCount}</p>
-                <p className="text-[10px] uppercase">Passed</p>
+                <p className="text-[10px] uppercase">نجاح</p>
               </div>
               <div className={`p-3 rounded-xl border text-center ${(meta.mismatchCount + meta.missingCount) > 0 ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-black/30 border-white/5'}`}>
                 <p className="text-2xl font-black">{meta.mismatchCount + meta.missingCount}</p>
-                <p className="text-[10px] opacity-50 uppercase">Issues</p>
+                <p className="text-[10px] opacity-50 uppercase">مشاكل</p>
               </div>
             </div>
           </div>
@@ -143,13 +143,13 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
             onClick={exportReport}
             className="flex-1 bg-white/10 hover:bg-white/20 transition-colors border border-white/10 rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2"
           >
-            <Download size={18} /> Export JSON
+            <Download size={18} /> تصدير الملف
           </button>
           <button 
             onClick={() => setShowRefreshModal(true)}
             className="flex-1 bg-accent/20 hover:bg-accent/30 text-accent transition-colors border border-accent/20 rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2"
           >
-            <RefreshCw size={18} /> Refresh Data
+            <RefreshCw size={18} /> تحديث البيانات
           </button>
         </div>
       </div>
@@ -158,9 +158,9 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
       <div className="bg-black/20 rounded-2xl border border-white/10 overflow-hidden mb-6">
         <button 
           onClick={() => setShowIntegrity(!showIntegrity)}
-          className="w-full flex justify-between items-center p-4 hover:bg-white/5 transition-colors text-left"
+          className="w-full flex justify-between items-center p-4 hover:bg-white/5 transition-colors text-left rtl:text-right"
         >
-          <span className="font-bold">Integrity Checks ({meta.integrityChecks.filter((c: any) => c.pass).length}/{meta.integrityChecks.length})</span>
+          <span className="font-bold">فحوصات السلامة ({meta.integrityChecks.filter((c: any) => c.pass).length}/{meta.integrityChecks.length})</span>
           {showIntegrity ? <ChevronUp size={20} className="text-white/50"/> : <ChevronDown size={20} className="text-white/50"/>}
         </button>
         
@@ -184,7 +184,7 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
       </div>
 
       {/* Validation Table Header */}
-      <h2 className="text-xl font-bold mb-4">Detailed Breakdown</h2>
+      <h2 className="text-xl font-bold mb-4 text-right">تفاصيل شاملة</h2>
       
       {/* Virtualized/Mapped List of 114 Surahs */}
       <div className="space-y-3">
@@ -201,13 +201,13 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
               <div className="w-8 h-8 rounded-full bg-black/40 flex items-center justify-center font-bold text-sm shrink-0">
                 {row.surahId}
               </div>
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0" dir="rtl">
                 <p className="font-arabic text-lg font-bold truncate">{row.fields.arabicName.value}</p>
-                <p className="text-xs text-white/50 truncate uppercase tracking-wider">{row.fields.transliteration.value}</p>
+                <p className="text-xs text-white/50 truncate tracking-wider">{row.fields.transliteration.value}</p>
               </div>
-              <div className="hidden sm:block text-right">
-                <p className="text-sm font-mono">{row.fields.verseCount.value} Verses</p>
-                <p className="text-xs text-white/50">Juz {row.fields.juzNumber.value}</p>
+              <div className="hidden sm:block text-right" dir="rtl">
+                <p className="text-sm font-mono">{row.fields.verseCount.value} آية</p>
+                <p className="text-xs text-white/50">جزء {row.fields.juzNumber.value}</p>
               </div>
               <div className="shrink-0 flex items-center gap-3">
                 <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded-full ${row.fields.revelationType.value === 'Meccan' ? 'bg-teal-500/20 text-teal-300' : 'bg-amber-500/20 text-amber-300'}`}>
@@ -235,23 +235,23 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
                   ))}
                 </div>
 
-                <div className="bg-black/30 p-3 rounded-lg border border-white/5 space-y-2">
+                <div className="bg-black/30 p-3 rounded-lg border border-white/5 space-y-2 text-right">
                   <div className="flex items-center gap-2 text-xs text-white/60">
                     <Server size={12} />
-                    <span>Primary: {row.primarySource} ({meta.primaryStatus})</span>
+                    <span dir="ltr">Primary: {row.primarySource} ({meta.primaryStatus})</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-white/60">
                     <Server size={12} />
-                    <span>Secondary: {row.secondarySource} ({meta.secondaryStatus})</span>
+                    <span dir="ltr">Secondary: {row.secondarySource} ({meta.secondaryStatus})</span>
                   </div>
                   
                   {row.mismatchDetails ? (
-                    <div className="mt-2 text-amber-400 text-xs font-mono bg-amber-500/10 p-2 rounded">
+                    <div className="mt-2 text-amber-400 text-xs font-mono bg-amber-500/10 p-2 rounded" dir="ltr">
                       {row.mismatchDetails}
                     </div>
                   ) : row.status === 'pass' ? (
                     <div className="mt-2 text-green-400 text-xs font-bold pt-2 border-t border-white/5">
-                      Both sources agree on all fields.
+                      يتوافق المصدران في جميع الحقول.
                     </div>
                   ) : null}
                 </div>
@@ -269,11 +269,11 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
             <div className="w-12 h-12 rounded-full bg-accent/20 text-accent flex items-center justify-center mb-4">
               <RefreshCw size={24} />
             </div>
-            <h3 className="text-xl font-bold mb-2">Refresh surah data</h3>
+            <h3 className="text-xl font-bold mb-2">تحديث بيانات السور</h3>
             <p className="text-paper/70 text-sm mb-4 leading-relaxed">
-              To refresh, re-run the fetch script on your computer and replace both JSON files in the project, then rebuild the app.
+              للتحديث، أعد تشغيل البرنامج النصي على جهازك واستبدل كِلا ملفي JSON في المشروع، ثم أعد بناء التطبيق.
             </p>
-            <div className="bg-black/30 p-3 rounded-xl border border-white/5 mb-6 font-mono text-xs text-white/60">
+            <div className="bg-black/30 p-3 rounded-xl border border-white/5 mb-6 font-mono text-xs text-white/60" dir="ltr">
               <span className="text-white">fetch-surah-data.mjs → produces:</span><br/>
               • surah-ground-truth.json<br/>
               • surah-validation-report.json
@@ -282,7 +282,7 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
               onClick={() => setShowRefreshModal(false)}
               className="w-full bg-accent text-white font-bold py-3 rounded-xl hover:bg-accent/90 transition-colors"
             >
-              Got it
+              حسناً فهمت
             </button>
           </div>
         </div>

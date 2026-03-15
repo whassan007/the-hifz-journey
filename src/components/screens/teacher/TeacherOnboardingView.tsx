@@ -44,45 +44,45 @@ export const TeacherOnboardingView = ({ onComplete, onBackToStudent }: TeacherOn
                 <User className="text-accent" size={24} />
               </div>
               <button onClick={onBackToStudent} className="text-xs font-bold text-white/40 hover:text-white transition-colors">
-                Back to Student
+                العودة لحساب طالب
               </button>
             </div>
             
-            <h1 className="text-2xl font-black mb-2 text-paper">Create your teacher account</h1>
-            <p className="text-paper/60 text-sm mb-6">Manage classes, set assignments, and track your students' Hifz progress.</p>
+            <h1 className="text-2xl font-black mb-2 text-paper">إنشاء حساب معلم</h1>
+            <p className="text-paper/60 text-sm mb-6">إدارة الصفوف، تحديد الواجبات، ومتابعة تقدم الحفظ لدى طلابك.</p>
 
             <form onSubmit={handleStep1Submit} className="w-full flex flex-col gap-3">
               <input
                 type="text"
-                placeholder="Full Name"
+                placeholder="الاسم الكامل"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
+                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors text-right"
                 autoFocus
                 required
               />
               <input
                 type="email"
-                placeholder="Email Address"
+                placeholder="البريد الإلكتروني"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
+                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors text-right"
                 required
               />
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="كلمة المرور"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
+                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors text-right"
                 required
               />
               <input
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="تأكيد كلمة المرور"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors"
+                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-accent transition-colors text-right"
                 required
               />
               <button 
@@ -90,7 +90,7 @@ export const TeacherOnboardingView = ({ onComplete, onBackToStudent }: TeacherOn
                 disabled={!canProceedStep1}
                 className="w-full bg-accent hover:bg-amber-600 disabled:opacity-50 disabled:bg-white/10 text-white font-bold py-3.5 rounded-xl shadow-lg mt-4 transition-all active:scale-95 text-sm"
               >
-                Create Teacher Account
+                إنشاء حساب المعلم
               </button>
             </form>
           </motion.div>
@@ -113,23 +113,23 @@ export const TeacherOnboardingView = ({ onComplete, onBackToStudent }: TeacherOn
               </div>
             </div>
 
-            <h1 className="text-2xl font-black mb-2 text-paper">Your organisation <span className="text-white/40 font-medium text-lg">(optional)</span></h1>
-            <p className="text-paper/60 text-sm mb-6">Where will you be teaching? This helps students identify your classes.</p>
+            <h1 className="text-2xl font-black mb-2 text-paper">مؤسستك <span className="text-white/40 font-medium text-lg">(اختياري)</span></h1>
+            <p className="text-paper/60 text-sm mb-6">أين ستقوم بالتدريس؟ هذا يساعد الطلاب على التعرف على صفوفك.</p>
 
             <form onSubmit={handleStep2Submit} className="w-full flex flex-col gap-4">
               <input
                 type="text"
-                placeholder="e.g. Al-Huda Madrasa, Toronto"
+                placeholder="مثال: مدرسة الهدى"
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-blue-500 transition-colors"
+                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm font-medium text-paper outline-none focus:border-blue-500 transition-colors text-right"
                 autoFocus
               />
               <button 
                 type="submit"
                 className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl shadow-lg mt-2 transition-all active:scale-95 text-sm"
               >
-                Continue
+                متابعة
               </button>
             </form>
           </motion.div>
@@ -146,16 +146,16 @@ export const TeacherOnboardingView = ({ onComplete, onBackToStudent }: TeacherOn
               <Leaf className="text-emerald-400" size={40} />
             </div>
             
-            <h1 className="text-2xl font-black mb-3 text-paper">You're all set, أستاذ</h1>
+            <h1 className="text-2xl font-black mb-3 text-paper">جاهز يا أستاذ</h1>
             <p className="text-paper/80 text-sm mb-8 leading-relaxed">
-              Your account is ready. Create your first class to share a join code with your students.
+              حسابك جاهز. قم بإنشاء صفك الأول لمشاركة رمز الانضمام مع طلابك.
             </p>
 
             <button 
               onClick={() => onComplete(name, email, organization)}
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-95"
             >
-              Create a Class
+              إنشاء صف
             </button>
           </motion.div>
         )}

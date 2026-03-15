@@ -45,7 +45,7 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-paper mb-1">{classData.name}</h1>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-paper/60">{MOCK_ROSTER.length} Students</span>
+            <span className="text-sm text-paper/60">{MOCK_ROSTER.length} طلاب</span>
           </div>
         </div>
       </div>
@@ -58,13 +58,13 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
           onClick={() => setActiveTab('roster')}
           className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === 'roster' ? 'bg-white/10 text-white shadow-sm' : 'text-white/40 hover:text-white/60'}`}
         >
-          <Users size={18} /> Students
+          <Users size={18} /> الطلاب
         </button>
         <button 
           onClick={() => setActiveTab('assignments')}
           className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === 'assignments' ? 'bg-white/10 text-white shadow-sm' : 'text-white/40 hover:text-white/60'}`}
         >
-          <BookOpen size={18} /> Assignments
+          <BookOpen size={18} /> الواجبات
         </button>
       </div>
 
@@ -73,16 +73,16 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
         <div className="flex flex-col gap-3">
           {MOCK_ROSTER.length === 0 ? (
             <div className="text-center py-16 bg-black/20 rounded-3xl border border-white/5">
-              <p className="text-paper/60">No students yet. Share your code to get started.</p>
+              <p className="text-paper/60">لا يوجد طلاب بعد. شارك الرمز الخاص بك للبدء.</p>
             </div>
           ) : (
             <>
               {/* Roster Header Row */}
               <div className="grid grid-cols-12 px-4 py-2 text-xs font-bold text-paper/40 uppercase tracking-wider">
-                <div className="col-span-5">Name</div>
-                <div className="col-span-3 text-center">Ayat</div>
-                <div className="col-span-2 text-center">Ret %</div>
-                <div className="col-span-2 text-right">Streak</div>
+                <div className="col-span-5">الاسم</div>
+                <div className="col-span-3 text-center">الآيات</div>
+                <div className="col-span-2 text-center">% الحفظ</div>
+                <div className="col-span-2 text-right">المواظبة</div>
               </div>
 
               {MOCK_ROSTER.map((s) => (
@@ -113,7 +113,7 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
               onClick={() => setIsAddingAssignment(true)}
               className="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-4 rounded-xl flex items-center gap-2 text-sm transition-colors"
             >
-              <Plus size={16} /> Add Task
+              <Plus size={16} /> إضافة واجب
             </button>
           </div>
 
@@ -128,25 +128,25 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
                 <div className="bg-black/40 border border-white/10 p-5 rounded-2xl mb-4">
                   <input 
                     type="text" 
-                    placeholder="Assignment Title (e.g. Weekend Review)" 
+                    placeholder="موضوع الواجب (مثال: مراجعة عطلة نهاية الأسبوع)" 
                     value={assignmentTitle}
                     onChange={e => setAssignmentTitle(e.target.value)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 mb-3 text-sm text-paper outline-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 mb-3 text-sm text-paper outline-none text-right"
                   />
                   <select 
                     value={assignmentSurah}
                     onChange={e => setAssignmentSurah(e.target.value)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 mb-4 text-sm text-paper outline-none"
-                    dir="ltr"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 mb-4 text-sm text-paper outline-none text-right"
+                    dir="rtl"
                   >
-                    <option value="">Select Target Surah...</option>
+                    <option value="">اختر السورة المستهدفة...</option>
                     {SURAHS.slice(0, 5).map(s => (
                       <option key={s.id} value={s.transliteration}>{s.transliteration} ({s.arabicName})</option>
                     ))}
                   </select>
                   <div className="flex justify-end gap-2">
-                    <button onClick={() => setIsAddingAssignment(false)} className="px-4 py-2 text-xs font-bold text-white/50 hover:text-white">Cancel</button>
-                    <button onClick={() => setIsAddingAssignment(false)} className="px-4 py-2 bg-accent text-white rounded-lg text-xs font-bold">Deploy to Class</button>
+                    <button onClick={() => setIsAddingAssignment(false)} className="px-4 py-2 text-xs font-bold text-white/50 hover:text-white">إلغاء</button>
+                    <button onClick={() => setIsAddingAssignment(false)} className="px-4 py-2 bg-accent text-white rounded-lg text-xs font-bold">إرسال إلى الصف</button>
                   </div>
                 </div>
               </motion.div>
@@ -155,7 +155,7 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
 
           {MOCK_ASSIGNMENTS.length === 0 ? (
             <div className="text-center py-16 bg-black/20 rounded-3xl border border-white/5">
-              <p className="text-paper/60">No assignments set. Tap "Add Task" to create one.</p>
+              <p className="text-paper/60">لا توجد واجبات. اضغط على "إضافة واجب" لإنشاء واحد.</p>
             </div>
           ) : (
             MOCK_ASSIGNMENTS.map(a => (
@@ -163,8 +163,8 @@ export const ClassDetailView = ({ classData, onBack }: ClassDetailProps) => {
                 <div>
                   <h3 className="font-bold text-paper mb-1">{a.title}</h3>
                   <div className="flex items-center gap-4 text-xs text-white/50">
-                    <span className="flex items-center gap-1"><BookOpen size={12}/> {a.surahRange}</span>
-                    <span className="px-2 py-0.5 bg-red-500/20 text-red-400 rounded-md">Due {a.dueDate}</span>
+                    <span className="flex items-center gap-1" dir="ltr"><BookOpen size={12}/> {a.surahRange}</span>
+                    <span className="px-2 py-0.5 bg-red-500/20 text-red-400 rounded-md">مستحق {a.dueDate}</span>
                   </div>
                 </div>
                 <button className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white/40 transition-colors">
