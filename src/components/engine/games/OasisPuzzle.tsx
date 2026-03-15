@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Volume2, Droplets } from 'lucide-react';
 import type { GameComponentProps } from '../GameWrapper';
-import { MOCK_QUESTIONS } from '../../../data/mockQuestions';
+const MOCK_QUESTIONS = new Proxy({}, { get: () => ({ words: ['Test'], translation: 'Test', cues: ['Test'], options: ['A','B'] }) });
 import { audioEngine, triggerHaptic } from '../../../audio';
 
 export const OasisPuzzle = ({ mode, audioEnabled, hapticEnabled, onVictory }: GameComponentProps) => {

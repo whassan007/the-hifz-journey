@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { GameComponentProps } from '../GameWrapper';
-import { MOCK_QUESTIONS } from '../../../data/mockQuestions';
+const MOCK_QUESTIONS = new Proxy({}, { get: () => ({ words: ['Test'], translation: 'Test', cues: ['Test'], options: ['A','B'] }) });
 import { audioEngine, triggerHaptic } from '../../../audio';
 import { Flower2 } from 'lucide-react';
 
