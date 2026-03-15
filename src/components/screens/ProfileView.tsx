@@ -2,15 +2,16 @@ import type { UserState, AgeGroup } from '../../types';
 import { getRank, getNextRank } from '../../utils';
 import { BADGES } from '../../data/badges';
 import { XPRing } from '../shared/XPRing';
-import { Database, ChevronLeft } from 'lucide-react';
+import { Database, ChevronLeft, LogOut } from 'lucide-react';
 
 interface ProfileViewProps {
   user: UserState;
   onUpdate: (updates: Partial<UserState>) => void;
   onOpenDataSources?: () => void;
+  onLogout?: () => void;
 }
 
-export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewProps) => {
+export const ProfileView = ({ user, onUpdate, onOpenDataSources, onLogout }: ProfileViewProps) => {
   const rank = getRank(user.xp);
   const nextRank = getNextRank(user.xp);
   
@@ -121,13 +122,22 @@ export const ProfileView = ({ user, onUpdate, onOpenDataSources }: ProfileViewPr
           <div className="pt-3 border-t border-white/5">
             <button 
               onClick={onOpenDataSources}
-              className="w-full flex justify-between items-center text-left hover:bg-white/5 p-2 rounded-lg transition-colors group"
+              className="w-full flex justify-between items-center text-left hover:bg-white/5 p-2 rounded-lg transition-colors group mb-2"
             >
               <div className="flex items-center gap-3">
                 <Database size={18} className="text-paper/70 group-hover:text-accent transition-colors" />
                 <span className="font-bold text-paper group-hover:text-accent transition-colors">مصادر البيانات</span>
               </div>
               <ChevronLeft size={18} className="text-paper/40 rtl:rotate-180" />
+            </button>
+            <button 
+              onClick={onLogout}
+              className="w-full flex justify-between items-center text-left hover:bg-red-500/10 p-2 rounded-lg transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <LogOut size={18} className="text-red-400 group-hover:text-red-500 transition-colors" />
+                <span className="font-bold text-red-400 group-hover:text-red-500 transition-colors">تسجيل الخروج (إنهاء الجلسة)</span>
+              </div>
             </button>
           </div>
         </div>

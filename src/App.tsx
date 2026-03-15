@@ -203,7 +203,7 @@ const App = () => {
           {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
           {activeTab === 'review' && <ReviewView />}
-          {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} /></div>}
+          {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} /></div>}
           {activeTab === 'data_sources' && <DataSourcesView onBack={() => setActiveTab('profile')} />}
           {activeTab === 'bookmarks' && <BookmarksView user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={(id: number) => { setReaderSurahId(id); setActiveTab('reader'); }} />}
           {activeTab === 'reader' && readerSurahId && <SurahReaderView surahId={readerSurahId} user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={setReaderSurahId} />}
