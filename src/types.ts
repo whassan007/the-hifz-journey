@@ -23,6 +23,18 @@ export interface Bookmark {
   color: 'green' | 'amber' | 'blue' | 'pink';
 }
 
+export interface Highlight {
+  id: string;
+  surahId: number;
+  ayahNumber: number;
+  startOffset: number;
+  endOffset: number;
+  selectedText: string;
+  color: 'yellow' | 'green' | 'blue' | 'pink';
+  note: string | null;
+  createdAt: string;
+}
+
 export type ReaderSpacing = 'compact' | 'normal' | 'wide';
 export type ReaderDisplayMode = 'arabic_only' | 'arabic_transliteration' | 'arabic_translation';
 export type ReaderTheme = 'match_app' | 'light' | 'dark' | 'sepia';
@@ -41,6 +53,7 @@ export interface UserState {
   xp: number;
   hikmah: number;
   streak: number;
+  lastActive: string;
   completed: SurahNode[];
   badges: string[];
   audioEnabled: boolean;
@@ -49,7 +62,8 @@ export interface UserState {
   bgOpacity: number;
   classes?: ClassMembership[];
   bookmarks: Bookmark[];
-  readSurahs: number[];
+  highlights: Highlight[];
+  readSurahs: number[]; // Array of surah IDs that have been opened in the reader
   readerSettings: ReaderSettings;
 }
 

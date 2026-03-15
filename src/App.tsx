@@ -21,11 +21,12 @@ import { TeacherOnboardingView } from './components/screens/teacher/TeacherOnboa
 import { TeacherDashboardView } from './components/screens/teacher/TeacherDashboardView';
 
 const INITIAL_USER: UserState = {
-  name: 'أسامة',
+  name: 'Student',
   role: 'student',
-  xp: 450,
-  hikmah: 120,
+  xp: 1250,
+  hikmah: 45,
   streak: 5,
+  lastActive: new Date().toISOString(),
   completed: [SURAHS[0], SURAHS[1]],
   badges: ['first_step', 'consistent'],
   arabicFontSize: 32,
@@ -35,6 +36,7 @@ const INITIAL_USER: UserState = {
   ageGroup: 'sapling',
   classes: [],
   bookmarks: [],
+  highlights: [],
   readSurahs: [],
   readerSettings: {
     fontSize: 3,
