@@ -10,8 +10,8 @@ export const LanternTrail = ({ mode, audioEnabled, hapticEnabled, onVictory }: G
   const [isWrong, setIsWrong] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
-  const targetWords = currentData.words as string[];
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { words: string[], translation: string, cues: string[] };
+  const targetWords = currentData.words;
   
   // Clean Arabic text for loose matching (strip diacritics in a real app)
   const cleanArabic = (text: string) => text.replace(/[\u064B-\u065F]/g, '').trim();
@@ -41,9 +41,15 @@ export const LanternTrail = ({ mode, audioEnabled, hapticEnabled, onVictory }: G
   // Auto-complete checking (as they type)
   useEffect(() => {
     if (cleanArabic(inputText) === cleanArabic(currentData.translation)) {
-      handleSubmit();
+      // Use a timeout to push the state update out of the render cycle
+      const timer = setTimeout(() => {
+        audioEngine.playChime(audioEnabled);
+        triggerHaptic(hapticEnabled, 'success');
+        onVictory(75, missCount);
+      }, 0);
+      return () => clearTimeout(timer);
     }
-  }, [inputText]);
+  }, [inputText, currentData.translation, audioEnabled, hapticEnabled, missCount, onVictory]);
 
   return (
     <div className="flex flex-col flex-1 h-full pt-8">

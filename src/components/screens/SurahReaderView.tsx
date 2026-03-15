@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Settings, Bookmark, X, Type, List, Monitor, Palette, Share2, Copy, BookOpen, Check } from 'lucide-react';
-import type { UserState, Bookmark as BookmarkType, ReaderSpacing, ReaderDisplayMode, ReaderTheme } from '../../types';
+import type { UserState, Bookmark as BookmarkType, ReaderSpacing, ReaderDisplayMode, ReaderTheme, Highlight } from '../../types';
 import { SURAHS } from '../../data/registry';
 
 interface SurahReaderViewProps {
@@ -25,7 +25,25 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
   const [showSettings, setShowSettings] = useState(false);
   const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
 
+  // Highlighting states
+  const [activeSelection, setActiveSelection] = useState<{
+    surahId: number;
+    ayahNumber: number;
+    startOffset: number;
+    endOffset: number;
+    text: string;
+    rect: DOMRect;
+  } | null>(null);
+  
+  const [editingHighlight, setEditingHighlight] = useState<{
+    highlight: Highlight;
+    rect: DOMRect;
+  } | null>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const surahData = SURAHS.find(s => s.id === surahId);
+  const surahHighlights = user.highlights?.filter(h => h.surahId === surahId) || [];
 
   const handleBookmark = (verseNumber: number, text: string) => {
     const existing = user.bookmarks?.find(b => b.surahId === surahId && b.ayahNumber === verseNumber);
@@ -96,7 +114,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
         if (!res.ok) throw new Error('Failed to fetch');
         const data = await res.json();
         
-        const fetchedVerses = data.data.ayahs.map((ayah: any) => ({
+        const fetchedVerses = data.data.ayahs.map((ayah: { number: number; text: string; numberInSurah: number }) => ({
           number: ayah.number,
           text: ayah.text,
           numberInSurah: ayah.numberInSurah
@@ -104,7 +122,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
 
         localStorage.setItem(cacheKey, JSON.stringify(fetchedVerses));
         setVerses(fetchedVerses);
-      } catch (err) {
+      } catch {
         setError("Failed to load surah text. Please check your connection.");
       } finally {
         setLoading(false);
@@ -112,11 +130,173 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
     };
 
     loadSurah();
-  }, [surahId]);
+    setActiveSelection(null);
+    setEditingHighlight(null);
+    setSelectedVerse(null);
+  }, [surahId, surahData, user.readSurahs, onUpdateUser]);
+
+  // Handle Text Selection
+  const handleSelectionChange = () => {
+    const sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) {
+      setTimeout(() => {
+        const newSel = window.getSelection();
+        if (!newSel || newSel.isCollapsed) {
+           setActiveSelection(null);
+        }
+      }, 100);
+      return;
+    }
+
+    const range = sel.getRangeAt(0);
+    let verseEl = range.commonAncestorContainer.nodeType === 3 
+      ? range.commonAncestorContainer.parentElement 
+      : range.commonAncestorContainer as HTMLElement;
+      
+    while (verseEl && !verseEl.classList?.contains('verse-text-container')) {
+      verseEl = verseEl.parentElement;
+    }
+    
+    if (!verseEl || verseEl.dataset.surah !== String(surahId)) {
+      setActiveSelection(null);
+      return;
+    }
+
+    const ayahNumber = Number(verseEl.dataset.ayah);
+    
+    const preSelectionRange = range.cloneRange();
+    preSelectionRange.selectNodeContents(verseEl);
+    preSelectionRange.setEnd(range.startContainer, range.startOffset);
+    
+    // Convert to text offsets accurately
+    const leadingText = preSelectionRange.toString();
+    const startOffset = leadingText.length;
+    const selectedText = range.toString();
+    
+    if (selectedText.trim().length === 0) return;
+
+    setActiveSelection({
+      surahId,
+      ayahNumber,
+      startOffset,
+      endOffset: startOffset + selectedText.length,
+      text: selectedText,
+      rect: range.getBoundingClientRect()
+    });
+    setEditingHighlight(null);
+  };
+
+  const applyHighlight = (color: Highlight['color']) => {
+    if (!activeSelection) return;
+    const newHighlight: Highlight = {
+      id: crypto.randomUUID(),
+      surahId: activeSelection.surahId,
+      ayahNumber: activeSelection.ayahNumber,
+      startOffset: activeSelection.startOffset,
+      endOffset: activeSelection.endOffset,
+      selectedText: activeSelection.text,
+      color,
+      note: null,
+      createdAt: new Date().toISOString()
+    };
+    onUpdateUser({ highlights: [...(user.highlights || []), newHighlight] });
+    window.getSelection()?.removeAllRanges();
+    setActiveSelection(null);
+  };
+
+  const updateEditingHighlight = (updates: Partial<Highlight>) => {
+    if (!editingHighlight) return;
+    onUpdateUser({
+      highlights: user.highlights.map(h => h.id === editingHighlight.highlight.id ? { ...h, ...updates } : h)
+    });
+    setEditingHighlight({ ...editingHighlight, highlight: { ...editingHighlight.highlight, ...updates } });
+  };
+
+  const deleteEditingHighlight = () => {
+    if (!editingHighlight) return;
+    onUpdateUser({
+      highlights: user.highlights.filter(h => h.id !== editingHighlight.highlight.id)
+    });
+    setEditingHighlight(null);
+  };
+
+  const renderHighlightedText = (text: string, ayahNumber: number) => {
+    const highlights = surahHighlights.filter(h => h.ayahNumber === ayahNumber);
+    if (highlights.length === 0) return <>{text}</>;
+
+    const chars = text.split('');
+    const charHighlights = chars.map(() => [] as Highlight[]);
+    
+    highlights.forEach(h => {
+      // Guard against out of bounds if text changes invisibly
+      for (let i = h.startOffset; i < h.endOffset; i++) {
+        if (i < chars.length) charHighlights[i].push(h);
+      }
+    });
+
+    const segments = [];
+    let currentSegment = { text: '', highlights: [] as Highlight[] };
+    
+    for (let i = 0; i < chars.length; i++) {
+      const hs = charHighlights[i];
+      const same = hs.length === currentSegment.highlights.length && 
+                   hs.every((h, idx) => h.id === currentSegment.highlights[idx].id);
+      
+      if (same) {
+        currentSegment.text += chars[i];
+      } else {
+        if (currentSegment.text) segments.push(currentSegment);
+        currentSegment = { text: chars[i], highlights: [...hs] };
+      }
+    }
+    if (currentSegment.text) segments.push(currentSegment);
+
+    const colorMap = {
+      yellow: 'rgba(255, 213, 0, 0.45)',
+      green: 'rgba(72, 199, 142, 0.40)',
+      blue: 'rgba(66, 153, 225, 0.40)',
+      pink: 'rgba(237, 100, 166, 0.40)',
+    };
+
+    return segments.map((seg, i) => {
+      if (seg.highlights.length === 0) return <span key={i}>{seg.text}</span>;
+      
+      const sorted = [...seg.highlights].sort((a,b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+      const topHighlight = sorted[sorted.length - 1];
+      
+      let el = <span>{seg.text}</span>;
+      sorted.forEach(h => {
+        el = (
+          <span 
+            className="cursor-pointer relative z-10" 
+            style={{ backgroundColor: colorMap[h.color] }}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              window.getSelection()?.removeAllRanges();
+              setEditingHighlight({ highlight: topHighlight, rect: e.currentTarget.getBoundingClientRect() });
+              setActiveSelection(null);
+            }}
+          >
+            {el}
+          </span>
+        );
+      });
+      
+      return (
+        <span key={i} className="relative inline-block">
+          {el}
+          {topHighlight.note && (
+            <span className={`absolute -bottom-1 -left-1 w-2 h-2 rounded-full cursor-help bg-${topHighlight.color}-500 shadow-sm`} title={topHighlight.note} />
+          )}
+        </span>
+      );
+    });
+  };
 
   if (!surahData) return null;
   return (
-    <div className="absolute inset-0 z-50 flex flex-col bg-jungle-dark overflow-hidden">
+    <div className="absolute inset-0 z-50 flex flex-col bg-jungle-dark overflow-hidden" onClick={() => setEditingHighlight(null)}>
       <header className="flex justify-between items-center p-4 bg-black/40 backdrop-blur-md border-b border-white/10 z-20">
         <button onClick={onBack} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors">
           <ArrowRight className="rotate-180" size={20} />
@@ -135,7 +315,12 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-4 py-8 relative w-full max-w-3xl mx-auto">
+      <div 
+        ref={containerRef}
+        className="flex-1 overflow-y-auto px-4 py-8 relative w-full max-w-3xl mx-auto"
+        onMouseUp={handleSelectionChange}
+        onTouchEnd={handleSelectionChange}
+      >
         {loading ? (
           <div className="space-y-8 animate-pulse">
             <div className="h-20 bg-white/10 rounded-xl w-3/4 mx-auto" />
@@ -157,7 +342,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
           <div className="flex flex-col gap-6" dir="rtl">
             {/* Bismillah Header */}
             {surahData.bismillah && (
-              <div className="w-full flex justify-center py-6 mb-4">
+              <div className="w-full flex justify-center py-6 mb-4 select-none">
                 <img src="/bismillah.svg" alt="Bismillah" className="h-14 opacity-90 invert-[0.8]" onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.parentElement!.innerHTML = '<h3 class="font-arabic text-3xl font-bold text-center">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ</h3>';
@@ -177,13 +362,12 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
               return (
                 <div key={verse.number} className="relative w-full transition-colors">
                   <div 
-                    onClick={() => setSelectedVerse(isSelected ? null : verse.numberInSurah)}
-                    // Simulate long press for quick bookmarking using standard DOM events (desktop/mobile rough approximation)
-                    onContextMenu={(e) => {
-                      e.preventDefault();
-                      if (!isBookmarked) handleBookmark(verse.numberInSurah, text);
+                    onClick={() => {
+                      if (!activeSelection && !editingHighlight) {
+                        setSelectedVerse(isSelected ? null : verse.numberInSurah);
+                      }
                     }}
-                    className={`relative p-4 rounded-xl cursor-pointer transition-colors select-text ${isSelected ? 'bg-white/5' : 'hover:bg-white/5'}`}
+                    className={`relative p-4 rounded-xl transition-colors ${isSelected ? 'bg-white/5' : 'hover:bg-white/5'}`}
                   >
                     {isBookmarked && <div className="absolute right-0 top-0 bottom-0 w-1 bg-accent rounded-r-xl" />}
                     
@@ -194,8 +378,10 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
                         lineHeight: user.readerSettings.lineSpacing === 'compact' ? 1.8 : user.readerSettings.lineSpacing === 'wide' ? 3.0 : 2.5
                       }}
                     >
-                      {text}
-                      <span className="inline-flex items-center justify-center relative mx-2 text-accent/80 opacity-80" style={{ fontSize: `${user.readerSettings.fontSize * 6 + 10}px` }}>
+                      <span className="verse-text-container cursor-text" data-surah={surahId} data-ayah={verse.numberInSurah}>
+                        {renderHighlightedText(text, verse.numberInSurah)}
+                      </span>
+                      <span className="inline-flex items-center justify-center relative mx-2 text-accent/80 opacity-80 select-none" style={{ fontSize: `${user.readerSettings.fontSize * 6 + 10}px` }}>
                         <span className="absolute font-sans font-bold text-[0.4em]" style={{ top: '50%', transform: 'translateY(-50%)' }}>{verse.numberInSurah.toLocaleString('ar-EG')}</span>
                         ۝
                       </span>
@@ -204,7 +390,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
                   
                   {/* Verse Action Menu */}
                   <AnimatePresence>
-                    {isSelected && (
+                    {isSelected && !activeSelection && !editingHighlight && (
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
@@ -219,7 +405,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
                                 {['green', 'amber', 'blue', 'pink'].map(c => (
                                   <button 
                                     key={c}
-                                    onClick={() => handleChangeBookmarkColor(verse.numberInSurah, c as any)}
+                                    onClick={() => handleChangeBookmarkColor(verse.numberInSurah, c as BookmarkType['color'])}
                                     className={`w-6 h-6 rounded-full bg-${c}-500 ${user.bookmarks?.find(b => b.surahId === surahId && b.ayahNumber === verse.numberInSurah)?.color === c ? 'ring-2 ring-white ring-offset-2 ring-offset-black' : 'opacity-70 hover:opacity-100'}`}
                                   />
                                 ))}
@@ -301,6 +487,67 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
           </button>
         </div>
       </footer>
+
+      {/* Floating Action Bars */}
+      <AnimatePresence>
+        {(activeSelection || editingHighlight) && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'absolute',
+              top: Math.max(80, (activeSelection?.rect.top || editingHighlight!.rect.top) - 60),
+              left: '50%',
+              transform: 'translateX(-50%)'
+            }}
+            className="z-50 bg-[#2d3748] border border-white/20 p-2 rounded-xl shadow-2xl flex flex-col gap-2 min-w-[280px]"
+          >
+            <div className="flex justify-between gap-4 font-bold text-xs items-center px-1">
+              <div className="flex gap-4">
+                {['yellow', 'green', 'blue', 'pink'].map((c) => (
+                  <button 
+                    key={c}
+                    onClick={() => activeSelection ? applyHighlight(c as Highlight['color']) : updateEditingHighlight({ color: c as Highlight['color'] })}
+                    className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                  >
+                    <div className={`w-3.5 h-3.5 rounded-full bg-${c}-500 ${editingHighlight?.highlight.color === c ? 'ring-2 ring-white ring-offset-2 ring-offset-[#2d3748]' : ''}`} />
+                    <span className="capitalize text-white">{c}</span>
+                  </button>
+                ))}
+              </div>
+              <button 
+                onClick={() => {
+                  if (activeSelection) {
+                    window.getSelection()?.removeAllRanges();
+                    setActiveSelection(null);
+                  } else {
+                    if (editingHighlight?.highlight.note && !confirm('Remove this highlight and its note?')) return;
+                    deleteEditingHighlight();
+                  }
+                }}
+                className="text-white/50 hover:text-red-400"
+              >
+                Erase
+              </button>
+            </div>
+            
+            {editingHighlight && (
+              <div className="mt-1 pt-2 border-t border-white/10">
+                <input 
+                  type="text"
+                  maxLength={280}
+                  placeholder="Add a note about this passage…"
+                  defaultValue={editingHighlight.highlight.note || ''}
+                  onBlur={(e) => updateEditingHighlight({ note: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-accent"
+                />
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Reader Settings Modal */}
       <AnimatePresence>

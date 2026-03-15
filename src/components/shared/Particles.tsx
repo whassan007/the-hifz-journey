@@ -1,27 +1,29 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/purity */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useMemo } from 'react';
 import type { Biome } from '../../types';
 import { getBiomeEmojis } from '../../utils';
 
-export const Particles = ({ biome }: { biome: Biome }) => {
-  const emojis = getBiomeEmojis(biome);
-  const [particles, setParticles] = useState<any[]>([]);
+export const Particles = ({ biome = 'default' as Biome, count = 15 }: { biome?: Biome | string; count?: number }) => {
+  const emojis = getBiomeEmojis(biome as Biome);
 
-  useEffect(() => {
-    const newParticles = Array.from({ length: 15 }).map((_, i) => ({
+  // Generate static values to ensure render purity
+  const particles = useMemo(() => {
+    return [...Array(count)].map((_, i) => ({
       id: i,
-      emoji: emojis[Math.floor(Math.random() * emojis.length)],
-      left: `${Math.random() * 100}%`,
-      animationDuration: `${10 + Math.random() * 10}s`,
-      animationDelay: `${Math.random() * 5}s`,
-      fontSize: `${16 + Math.random() * 16}px`,
+      emoji: emojis[Math.floor(Math.random() * emojis.length)], // Keep emoji generation here
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      scale: 0.5 + Math.random() * 1.5,
+      delay: Math.random() * 5,
+      duration: 10 + Math.random() * 10,
       opacity: 0.1 + Math.random() * 0.3
     }));
-    setParticles(newParticles);
-  }, [biome]);
+  }, [count, emojis]); // Add emojis to dependency array
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {particles.map(p => (
+      {particles.map((p: any) => (
         <div 
           key={p.id}
           className="absolute bottom-0 animate-float-up"

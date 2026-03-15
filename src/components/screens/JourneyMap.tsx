@@ -14,9 +14,18 @@ interface JourneyMapProps {
 }
 
 export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah, onOpenBookmarks }: JourneyMapProps) => {
-  let currentGroupBiome: string | null = null;
   const [selectedNode, setSelectedNode] = useState<{ surah: SurahNode, isUnlocked: boolean, isCompleted: boolean } | null>(null);
-  
+
+  // Helper to determine highlight status and color
+  const getHighlightInfo = (surahId: number) => {
+    if (!user.highlights) return null;
+    const surahHighlights = user.highlights.filter(h => h.surahId === surahId);
+    if (surahHighlights.length === 0) return null;
+    
+    // Sort by newest first and get color
+    const latest = surahHighlights.sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0];
+    return latest.color;
+  };
   
   return (
     <div className="flex flex-col items-center py-4 relative pb-12 w-full max-w-2xl mx-auto">
@@ -40,8 +49,8 @@ export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah,
         const isCurrent = currentSurahId === surah.id;
         const isUnlocked = isCompleted || (index === 0) || user.completed.some((s) => s.id === SURAHS[index - 1].id);
         const biome = getSurahBiome(surah.id);
-        const showBiomeBanner = currentGroupBiome !== biome;
-        currentGroupBiome = biome;
+        const previousBiome = index > 0 ? getSurahBiome(SURAHS[index - 1].id) : null;
+        const showBiomeBanner = previousBiome !== biome;
 
         const isLeft = index % 2 === 0;
 
@@ -90,15 +99,22 @@ export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah,
                 >
                   {isCompleted ? <Check size={28} /> : isUnlocked ? <span className="scale-150">{getBiomeEmojis(biome)[0]}</span> : <LockIcon size={24} />}
                   
-                  {/* Surah Node Indicators */}
-                  {(user.readSurahs || []).includes(surah.id) && (
-                    <div className="absolute -bottom-1 -right-1 bg-black rounded-full p-1 border-2 border-black/50 shadow-sm z-20 text-white/80">
-                      <BookOpen size={10} />
-                    </div>
-                  )}
-                  {user.bookmarks?.some(b => b.surahId === surah.id) && (
-                    <div className="absolute -top-1 -right-1 bg-accent border-2 border-black rounded-full w-3.5 h-3.5 z-20 shadow-sm" />
-                  )}
+                  {/* Surah Number Bubble - Left aligned */}
+                  <div className={`absolute -ml-3 left-0 w-8 h-8 rounded-full flex items-center justify-center border-2 border-jungle-dark shadow-lg bg-black text-white font-bold z-10 transition-all duration-300 group-hover:scale-110`}>
+                    {surah.id}
+                  </div>
+                  
+                  {/* Indicators (Has Bookmarks / Highlights) */}
+                  <div className="absolute -left-1 -top-1 flex gap-1 z-20">
+                    {user.bookmarks?.some(b => b.surahId === surah.id) && (
+                      <div className="w-3.5 h-3.5 rounded-full bg-accent border-2 border-jungle-dark shadow-sm" />
+                    )}
+                    {getHighlightInfo(surah.id) && (
+                      <div className={`w-3.5 h-3.5 rounded-full bg-${getHighlightInfo(surah.id)}-500 border-2 border-jungle-dark shadow-sm flex items-center justify-center`}>
+                        <div className="w-1.5 h-1.5 rounded-sm bg-white/50" />
+                      </div>
+                    )}
+                  </div>
                 </button>
               </div>
 

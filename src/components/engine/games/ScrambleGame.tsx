@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Volume2 } from 'lucide-react';
 import type { GameComponentProps } from '../GameWrapper';
+
+interface ScrambleData {
+  words: string[];
+  translation: string;
+}
 import { MOCK_QUESTIONS } from '../../../data/mockQuestions';
 import { audioEngine, triggerHaptic } from '../../../audio';
 
@@ -10,7 +15,7 @@ export const ScrambleGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: G
   const [isWrong, setIsWrong] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as ScrambleData;
 
   const handleScrambleWord = (word: string) => {
     if (placedWords.includes(word)) return;

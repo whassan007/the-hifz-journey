@@ -25,7 +25,7 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
       const codeReader = new BrowserQRCodeReader();
       codeReaderRef.current = codeReader;
       
-      codeReader.decodeFromVideoDevice(undefined, videoRef.current, (result, _err) => {
+      codeReader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
         if (result) {
           const text = result.getText().toLowerCase().trim();
           if (!text.startsWith('class-')) {
@@ -57,8 +57,9 @@ export const JoinClassModal = ({ onClose, onJoin, alreadyJoinedClasses }: JoinCl
         setIsScanning(false);
       });
 
+      const currentVideo = videoRef.current;
       return () => {
-        const stream = videoRef.current?.srcObject as MediaStream | null;
+        const stream = currentVideo?.srcObject as MediaStream | null;
         if (stream) {
           stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
         }

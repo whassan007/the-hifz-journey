@@ -11,7 +11,7 @@ export const QuizGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: GameC
   const [showHint, setShowHint] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { ayah: string, translation: string, options: string[], answer: string, hint: string, question?: string };
 
   const handleQuizAnswer = (opt: string) => {
     if (selectedOption) return;

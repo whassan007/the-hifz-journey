@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { SURAH_GROUND_TRUTH } from './surah-ground-truth';
 import { SURAHS } from '../src/data/registry';
 import { getSurahById, getProgressMapNodes } from '../src/data/registry';
@@ -123,7 +123,7 @@ describe('HIFZ JOURNEY — Surah Content Audit', () => {
         return;
       }
 
-      const checks: any[] = [
+      const checks: Array<{ field: string, expected: number | string | boolean | undefined, received: number | string | boolean | undefined }> = [
         { field: 'verseCount', expected: truth.verseCount, received: reg.verseCount },
         { field: 'revelationType', expected: truth.revelationType, received: reg.revelationType },
         { field: 'juzNumber', expected: truth.juzNumber, received: reg.juzNumber },

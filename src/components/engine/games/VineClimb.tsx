@@ -10,7 +10,7 @@ export const VineClimb = ({ mode, audioEnabled, hapticEnabled, onVictory }: Game
   const [isWrong, setIsWrong] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { words: string[] };
 
   const handleTapWord = (word: string) => {
     if (placedWords.includes(word)) return;

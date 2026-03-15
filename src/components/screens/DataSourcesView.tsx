@@ -6,13 +6,50 @@ interface DataSourcesViewProps {
   onBack: () => void;
 }
 
+interface ValidationMeta {
+  integrity: string;
+  primaryStatus: string;
+  secondaryStatus: string;
+  primaryUrl: string;
+  secondaryUrl: string;
+  narration: string;
+  fetchedAt: string;
+  totalSurahs: number;
+  passCount: number;
+  mismatchCount: number;
+  missingCount: number;
+  integrityChecks: Array<{ pass: boolean; label: string; detail?: string }>;
+}
+
+interface ValidationField {
+  value: string | number | boolean;
+  verified: boolean;
+}
+
+interface ValidationRow {
+  surahId: number;
+  status: string;
+  primarySource: string;
+  secondarySource: string;
+  mismatchDetails: string | null;
+  fields: {
+    juzNumber: ValidationField;
+    verseCount: ValidationField;
+    arabicName: ValidationField;
+    transliteration: ValidationField;
+    revelationType: ValidationField;
+    englishMeaning?: ValidationField;
+    bismillah?: ValidationField;
+  };
+}
+
 export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
   const [showIntegrity, setShowIntegrity] = useState(false);
   const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
   const [showRefreshModal, setShowRefreshModal] = useState(false);
 
-  const meta = validationReport.meta as any;
-  const results = validationReport.validationResults as any[];
+  const meta = validationReport.meta as ValidationMeta;
+  const results = validationReport.validationResults as ValidationRow[];
 
   const formatDate = (isoString: string) => {
     const d = new Date(isoString);
@@ -160,13 +197,13 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
           onClick={() => setShowIntegrity(!showIntegrity)}
           className="w-full flex justify-between items-center p-4 hover:bg-white/5 transition-colors text-left rtl:text-right"
         >
-          <span className="font-bold">فحوصات السلامة ({meta.integrityChecks.filter((c: any) => c.pass).length}/{meta.integrityChecks.length})</span>
+          <span className="font-bold">فحوصات السلامة ({meta.integrityChecks.filter((c) => c.pass).length}/{meta.integrityChecks.length})</span>
           {showIntegrity ? <ChevronUp size={20} className="text-white/50"/> : <ChevronDown size={20} className="text-white/50"/>}
         </button>
         
         {showIntegrity && (
           <div className="p-4 pt-0 border-t border-white/5 space-y-3 mt-2">
-            {meta.integrityChecks.map((check: any, idx: number) => (
+            {meta.integrityChecks.map((check: { pass: boolean, label: string, detail?: string }, idx) => (
               <div key={idx} className="flex gap-3 items-start">
                 <div className="mt-0.5">
                   {check.pass ? <CheckCircle2 size={16} className="text-green-500" /> : <XCircle size={16} className="text-red-500" />}
@@ -214,7 +251,7 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
                   {row.fields.revelationType.value}
                 </span>
                 <span className={`text-xs font-bold font-mono ${getStatusText(row.status)}`}>
-                  {Object.values(row.fields).filter((f: any) => f.verified).length} / 7
+                  {(Object.values(row.fields) as ValidationField[]).filter((f) => f.verified).length} / 7
                 </span>
                 {expandedRows[row.surahId] ? <ChevronUp size={16} className="text-white/40"/> : <ChevronDown size={16} className="text-white/40"/>}
               </div>
@@ -224,7 +261,7 @@ export const DataSourcesView = ({ onBack }: DataSourcesViewProps) => {
             {expandedRows[row.surahId] && (
               <div className="p-4 bg-black/40 border-t border-white/5 text-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 mb-4">
-                  {Object.entries(row.fields).map(([key, f]: [string, any]) => (
+                  {Object.entries(row.fields).map(([key, f]) => (
                     <div key={key} className="flex justify-between items-center py-1 border-b border-white/5">
                       <span className="text-white/50 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
                       <div className="flex items-center gap-2">

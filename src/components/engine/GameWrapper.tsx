@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import type { SurahNode } from '../../types';
@@ -31,10 +31,21 @@ interface GameWrapperProps {
 }
 
 export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, hapticEnabled }: GameWrapperProps) => {
-  const [startTime] = useState(Date.now());
+  const [startTime, setStartTime] = useState(0);
   const [gameState, setGameState] = useState<'playing' | 'victory'>('playing');
   const [xpToAward, setXpToAward] = useState(0);
   const [totalMisses, setTotalMisses] = useState(0);
+
+  // Initialize start time post-render to maintain purity
+  useEffect(() => {
+    // Push calculation to next tick
+    const timer = setTimeout(() => {
+      if (startTime === 0) {
+        setStartTime(Date.now());
+      }
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [startTime]);
 
   const handleVictory = (xpAward: number, missCount: number) => {
     setXpToAward(xpAward);

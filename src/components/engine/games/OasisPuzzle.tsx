@@ -10,7 +10,7 @@ export const OasisPuzzle = ({ mode, audioEnabled, hapticEnabled, onVictory }: Ga
   const [isWrong, setIsWrong] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { correctOrder: string[], fragments: string[] };
 
   const handleFragmentTap = (fragment: string) => {
     if (placedFragments.includes(fragment)) return;

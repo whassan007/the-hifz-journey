@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
 import type { GameComponentProps } from '../GameWrapper';
+
+// Define the shape of our pair data
+interface Pair {
+  id: string;
+  arabic: string;
+  english: string;
+}
 import { MOCK_QUESTIONS } from '../../../data/mockQuestions';
 import { audioEngine, triggerHaptic } from '../../../audio';
 
@@ -10,7 +17,7 @@ export const MatchGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: Game
   const [isWrong, setIsWrong] = useState(false);
   const [missCount, setMissCount] = useState(0);
 
-  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as any;
+  const currentData = MOCK_QUESTIONS[mode as keyof typeof MOCK_QUESTIONS] as { pairs: Pair[] };
 
   const handleMatchSelect = (type: 'arabic' | 'english', id: string) => {
     triggerHaptic(hapticEnabled, 'light');
@@ -20,26 +27,39 @@ export const MatchGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: Game
 
   useEffect(() => {
     if (selectedArabic && selectedEnglish) {
-      const pair = currentData.pairs.find((p: any) => p.id === selectedArabic);
+      const pair = currentData.pairs.find((p) => p.id === selectedArabic);
       if (pair && pair.id === selectedEnglish) {
-        audioEngine.playChime(audioEnabled);
-        setMatchedPairs(prev => [...prev, selectedArabic]);
-        setSelectedArabic(null);
-        setSelectedEnglish(null);
-        if (matchedPairs.length + 1 === currentData.pairs.length) {
-          triggerHaptic(hapticEnabled, 'success');
-          onVictory(40, missCount);
-        }
+        // Defer state update to next tick to avoid cascading render cycle
+        const timer = setTimeout(() => {
+          audioEngine.playChime(audioEnabled);
+          setMatchedPairs(prev => [...prev, selectedArabic]);
+          setSelectedArabic(null);
+          setSelectedEnglish(null);
+          if (matchedPairs.length + 1 === currentData.pairs.length) {
+            triggerHaptic(hapticEnabled, 'success');
+            onVictory(40, missCount);
+          }
+        }, 0);
+        return () => clearTimeout(timer);
       } else {
-        audioEngine.playThud(audioEnabled);
-        triggerHaptic(hapticEnabled, 'error');
-        setMissCount(p => p + 1);
-        setIsWrong(true);
-        setTimeout(() => {
+        // Defer missed state update to next tick
+        const errTimer = setTimeout(() => {
+          audioEngine.playThud(audioEnabled);
+          triggerHaptic(hapticEnabled, 'error');
+          setMissCount(p => p + 1);
+          setIsWrong(true);
+        }, 0);
+        
+        const resetTimer = setTimeout(() => {
           setIsWrong(false);
           setSelectedArabic(null);
           setSelectedEnglish(null);
         }, 600);
+        
+        return () => {
+          clearTimeout(errTimer);
+          clearTimeout(resetTimer);
+        };
       }
     }
   }, [selectedArabic, selectedEnglish, currentData.pairs, matchedPairs.length, audioEnabled, hapticEnabled, missCount, onVictory]);
@@ -50,7 +70,7 @@ export const MatchGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: Game
       
       <div className="grid grid-cols-2 gap-6 flex-1 items-center">
         <div className="flex flex-col gap-4">
-          {currentData.pairs.map((p: any) => {
+          {currentData.pairs.map((p) => {
             const isMatched = matchedPairs.includes(p.id);
             const isSelected = selectedArabic === p.id;
             
@@ -70,7 +90,7 @@ export const MatchGame = ({ mode, audioEnabled, hapticEnabled, onVictory }: Game
         </div>
         <div className="flex flex-col gap-4">
           {/* Note: In a real app we'd shuffle these, but for now we rely on the original logic */}
-          {[...currentData.pairs].sort((a,b)=>a.english.localeCompare(b.english)).map((p: any) => {
+          {[...currentData.pairs].sort((a,b)=>a.english.localeCompare(b.english)).map((p) => {
             const isMatched = matchedPairs.includes(p.id);
             const isSelected = selectedEnglish === p.id;
             
