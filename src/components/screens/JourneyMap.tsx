@@ -2,19 +2,19 @@ import UI from '../../data/ui-text.json';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, LockIcon, Bookmark, X, BookOpen, Play } from 'lucide-react';
-import type { UserState, SurahNode } from '../../types';
+import type { UserState, SurahNode, SessionConfig } from '../../types';
 import { getBiomeEmojis, getBiomeName, getSurahBiome } from '../../utils';
 import { SURAHS } from '../../data/registry';
 
 interface JourneyMapProps {
   user: UserState;
   currentSurahId: number;
-  setCurrentSurah: (id: number) => void;
   onReadSurah: (id: number) => void;
   onOpenBookmarks: () => void;
+  onOpenSessionConfig: (config?: Partial<SessionConfig>) => void;
 }
 
-export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah, onOpenBookmarks }: JourneyMapProps) => {
+export const JourneyMap = ({ user, currentSurahId, onReadSurah, onOpenBookmarks, onOpenSessionConfig }: JourneyMapProps) => {
   const [selectedNode, setSelectedNode] = useState<{ surah: SurahNode, isUnlocked: boolean, isCompleted: boolean } | null>(null);
 
   // Helper to determine highlight status and color
@@ -186,7 +186,7 @@ export const JourneyMap = ({ user, currentSurahId, setCurrentSurah, onReadSurah,
                 {selectedNode.isUnlocked ? (
                   <button 
                     onClick={() => {
-                      setCurrentSurah(selectedNode.surah.id);
+                      onOpenSessionConfig({ surahIds: [selectedNode.surah.id] });
                       setSelectedNode(null);
                     }}
                     className="w-full bg-accent/20 border border-accent/40 text-accent hover:bg-accent/30 font-bold py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2"

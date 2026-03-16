@@ -1,4 +1,4 @@
-import type { ReviewRecord } from '../../types';
+import type { ReviewRecord, SessionConfig } from '../../types';
 import { getSurahById } from '../../data/registry';
 
 export interface SurahBreakdown {
@@ -55,5 +55,17 @@ export async function fetchTodaySession(reviews: ReviewRecord[]): Promise<TodayS
     total_verses,
     surah_breakdown,
     question_type_mix: ["Flow", "Scramble", "Fill-in-the-blank"]
+  };
+}
+
+/**
+ * Simulates POST /api/v1/session/create
+ */
+export async function createSession(config: SessionConfig): Promise<{ session_id: string; message: string }> {
+  await new Promise(resolve => setTimeout(resolve, 600)); // Simulate latency
+  console.log("Creating session with config:", config);
+  return {
+    session_id: `custom_${Date.now()}`,
+    message: "Session generated successfully"
   };
 }

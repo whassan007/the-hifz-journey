@@ -1,4 +1,3 @@
-/* eslint-disable local/no-hardcoded-arabic */
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { GameComponentProps } from '../GameWrapper';

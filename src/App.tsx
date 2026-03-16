@@ -1,11 +1,12 @@
 import UI from './data/ui-text.json';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Map, Trophy, BookOpen, Gamepad2 } from 'lucide-react';
+import { Home, Map, Trophy, BookOpen, Gamepad2, Brain } from 'lucide-react';
 import { SURAHS } from './data/registry';
-import type { UserState, ReviewRecord, AgeGroup } from './types';
+import type { UserState, ReviewRecord, AgeGroup, SessionConfig } from './types';
 import { getBiomeGradients, getSurahBiome } from './utils';
 import { calculateSM2 } from './sm2';
+import { createSession } from './services/apiMock/sessionApi';
 
 import { Particles } from './components/shared/Particles';
 import { HomeView } from './components/screens/HomeView';
@@ -20,6 +21,8 @@ import { GameWrapper } from './components/engine/GameWrapper';
 import { OnboardingView } from './components/screens/OnboardingView';
 import { TeacherOnboardingView } from './components/screens/teacher/TeacherOnboardingView';
 import { TeacherDashboardView } from './components/screens/teacher/TeacherDashboardView';
+import { SessionConfigView } from './components/screens/SessionConfigView';
+import { TrainView } from './components/screens/TrainView';
 
 const INITIAL_USER: UserState = {
   name: 'Student',
@@ -59,6 +62,7 @@ const App = () => {
   const [readerSurahId, setReaderSurahId] = useState<number | null>(null);
   const [reviews, setReviews] = useState<ReviewRecord[]>([]);
   const [isTeacherOnboarding, setIsTeacherOnboarding] = useState(false);
+  const [initialSessionConfig, setInitialSessionConfig] = useState<SessionConfig | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -172,8 +176,25 @@ const App = () => {
     setActiveGame(null);
   };
 
+  const handleLaunchSession = async (config: SessionConfig) => {
+    try {
+      const response = await createSession(config);
+      console.log('Session created:', response.session_id);
+      
+      // Update current surah focus to the first one in the list so the game has a context
+      if (config.surahIds.length > 0) {
+        setCurrentSurahId(config.surahIds[0]);
+      }
+      
+      setActiveTab('home'); // Go back to home routing
+      setActiveGame('quiz'); // Launch blended quiz with config
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const currentBiome = activeGame ? getSurahBiome(currentSurahData.id) : (readerSurahId ? getSurahBiome(readerSurahId) : 'jungle');
-  const hideBottomNav = activeTab === 'reader' || activeTab === 'data_sources' || activeTab === 'bookmarks';
+  const hideBottomNav = activeTab === 'reader' || activeTab === 'data_sources' || activeTab === 'bookmarks' || activeTab === 'session_config';
 
   return (
     <div className={`min-h-screen font-sans text-white overflow-hidden flex flex-col relative transition-colors duration-1000 ${getBiomeGradients(currentBiome)}`} dir="rtl">
@@ -200,14 +221,16 @@ const App = () => {
           transition={{ duration: 0.3 }}
           className="flex-1 overflow-y-auto pb-24 relative z-10 w-full max-w-4xl mx-auto"
         >
-          {activeTab === 'home' && <HomeView user={user} reviews={reviews} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} />}
-          {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} />}
+          {activeTab === 'home' && <HomeView user={user} reviews={reviews} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} onOpenSessionConfig={(config) => { setInitialSessionConfig((config as SessionConfig) || null); setActiveTab('session_config'); }} />}
+          {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} onOpenSessionConfig={(config) => { setInitialSessionConfig((config as SessionConfig) || null); setActiveTab('session_config'); }} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
+          {activeTab === 'train' && <TrainView setActiveTab={setActiveTab} setActiveGame={setActiveGame} setCurrentSurahId={setCurrentSurahId} />}
           {activeTab === 'review' && <ReviewView />}
           {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} /></div>}
           {activeTab === 'data_sources' && <DataSourcesView onBack={() => setActiveTab('profile')} />}
           {activeTab === 'bookmarks' && <BookmarksView user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={(id: number) => { setReaderSurahId(id); setActiveTab('reader'); }} />}
           {activeTab === 'reader' && readerSurahId && <SurahReaderView surahId={readerSurahId} user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={setReaderSurahId} />}
+          {activeTab === 'session_config' && <SessionConfigView user={user} reviews={reviews} initialConfig={initialSessionConfig} onLaunch={handleLaunchSession} onClose={() => setActiveTab('home')} />}
         </motion.div>
       </AnimatePresence>
 
@@ -231,6 +254,8 @@ const App = () => {
           {[
             { id: 'home', icon: <Home size={24} />, label: UI.ui_5 },
             { id: 'journey', icon: <Map size={24} />, label: UI.ui_4 },
+            /* eslint-disable-next-line local/no-hardcoded-arabic */
+            { id: 'train', icon: <Brain size={24} />, label: (UI as Record<string, string>).ui_98 || 'التدريب' },
             { id: 'games', icon: <Gamepad2 size={24} />, label: UI.ui_3 },
             { id: 'review', icon: <BookOpen size={24} />, label: UI.ui_2 },
             { id: 'profile', icon: <Trophy size={24} />, label: UI.ui_1 },

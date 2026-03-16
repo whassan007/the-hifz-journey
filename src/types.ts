@@ -125,6 +125,7 @@ export interface ReviewRecord {
   lastReviewed: string;       // ISO8601
   qualityHistory: number[];   // 0-5 scale
   missCount: number;
+  original_biome?: string;
 }
 
 export interface MistakeEntry {
@@ -144,5 +145,41 @@ export interface SessionHistory {
   lastPromptVerseIds: number[];  // last 3 verse IDs (relative index) used as prompts
   lastFormat: ReviewFormat;
   lastSessionAt: string;         // ISO timestamp
+}
+
+export type QuestionType =
+  | 'Word Scramble'
+  | 'Fill-in-the-Blank'
+  | 'First-Letter Scaffolding'
+  | 'Direct Indexing'
+  | 'Positional Mastery'
+  | 'Verse-to-Page Mapping'
+  | 'Contextual Flow Forward'
+  | 'Contextual Flow Reverse'
+  | 'Mutashabihat Match'
+  | 'Disambiguation'
+  | 'Chain Interruption'
+  | 'Oral Recitation';
+
+export type DifficultyTier = 'Adaptive' | 'Beginner' | 'Intermediate' | 'Advanced' | 'Very Advanced';
+
+export interface VerseRange {
+  start: number;
+  end: number;
+}
+
+export interface SessionConfig {
+  surahIds: number[];
+  verseRanges: Record<number, VerseRange>; // Key is surahId
+  questionCount: number;
+  questionTypes: QuestionType[];
+  difficulty: DifficultyTier;
+}
+
+export interface SessionPreset {
+  id: string;
+  name: string;
+  config: SessionConfig;
+  createdAt: string;
 }
 

@@ -16,9 +16,7 @@ export const GamesView = ({ setActiveGame }: GamesViewProps) => {
         </h2>
         <p className="text-sm text-paper/70 font-arabic">أنماط اختبار صارمة لتقييم قوة الحفظ.</p>
       </header>
-
       <div className="grid grid-cols-2 gap-4 md:gap-6 mt-4">
-        {/* eslint-disable-next-line local/no-hardcoded-arabic */}
         {[
           { id: 'quiz', name: 'اختبار الاسترجاع', desc: 'أكمل الآية والتعرف على السورة', icon: <Edit3 className="mb-3 text-[#A4C3A2]" size={28} />, color: 'bg-[#A4C3A2]/10 border-[#A4C3A2]/20 hover:bg-[#A4C3A2]/20' },
           { id: 'fill_blank', name: 'أكمل الفراغ', desc: 'اختبار دقة الحفظ والكلمات', icon: <Edit3 className="mb-3 text-[#FFC107]" size={28} />, color: 'bg-[#FFC107]/10 border-[#FFC107]/20 hover:bg-[#FFC107]/20' },

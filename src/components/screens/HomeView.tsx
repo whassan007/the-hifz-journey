@@ -2,7 +2,7 @@ import UI from "../../data/ui-text.json";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gamepad2, Trophy, Clock, Target, GraduationCap, BookOpen, ChevronRight } from 'lucide-react';
-import type { UserState, Class, ClassAssignment, ReviewRecord } from '../../types';
+import type { UserState, Class, ClassAssignment, ReviewRecord, SessionConfig } from '../../types';
 import { getRank } from '../../utils';
 import { JoinClassModal } from './student/JoinClassModal';
 import { MemorizationPulseCard } from '../dashboard/MemorizationPulseCard';
@@ -22,13 +22,15 @@ interface HomeViewProps {
   reviews: ReviewRecord[];
   setActiveGame: (game: string) => void;
   setCurrentSurah: (id: number) => void;
+  onOpenSessionConfig: (config?: Partial<SessionConfig>) => void;
 }
 
 export const HomeView = ({
   user,
   reviews,
   setActiveGame,
-  setCurrentSurah
+  setCurrentSurah,
+  onOpenSessionConfig
 }: HomeViewProps) => {
   const [isJoiningClass, setIsJoiningClass] = useState(false);
   const rank = getRank(user.xp);
@@ -118,13 +120,13 @@ export const HomeView = ({
       <TodaySessionCard 
         reviews={reviews}
         onStartSession={() => {
-           // Launches the blended API quiz format
-           setActiveGame('quiz');
+           // Launches the blended API quiz format via config screen with "Due" filter applied
+           const dueReviewSurahs = reviews.filter(r => new Date(r.nextReviewDate).getTime() <= new Date().getTime()).map(r => r.surahId);
+           onOpenSessionConfig({ surahIds: Array.from(new Set(dueReviewSurahs)), difficulty: 'Adaptive' });
         }}
         onCustomizeSession={() => {
-           // The "Infinite Realm" placeholder
-           // eslint-disable-next-line local/no-hardcoded-arabic
-           alert("التخصيص غير متاح حالياً (Customize not available yet)");
+           // Opens config with defaults
+           onOpenSessionConfig();
         }}
       />
 

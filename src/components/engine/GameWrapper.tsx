@@ -10,6 +10,10 @@ import { QuizGame } from './games/QuizGame';
 import { ScrambleGame } from './games/ScrambleGame';
 import { MutashabihatGame } from './games/MutashabihatGame';
 import { FillBlankGame } from './games/FillBlankGame';
+import { DeepMemorizationFlow } from './MultiSensoryEngine/DeepMemorizationFlow';
+import { MushafGrid } from './MultiSensoryEngine/MushafGrid';
+import { AudioRecallEngine } from './MultiSensoryEngine/AudioRecallEngine';
+import { KinestheticTracer } from './MultiSensoryEngine/KinestheticTracer';
 
 export interface GameComponentProps {
   mode: string;
@@ -70,6 +74,14 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
         return <MutashabihatGame {...props} />;
       case 'fill_blank':
         return <FillBlankGame {...props} />;
+      case 'deep_memorization':
+        return <DeepMemorizationFlow surah={surah} onComplete={() => handleVictory(500, 0)} />;
+      case 'spatial_memory':
+        return <MushafGrid surah={surah} masteryData={[]} onComplete={() => handleVictory(300, 0)} />;
+      case 'audio_recall':
+        return <AudioRecallEngine surah={surah} onComplete={() => handleVictory(300, 0)} />;
+      case 'kinesthetic_tracking':
+        return <KinestheticTracer surah={surah} onComplete={() => handleVictory(300, 0)} />;
       default:
         // Fallback for not-yet-implemented games
         return (
