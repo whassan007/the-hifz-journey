@@ -14,7 +14,7 @@ interface MockVerseDifficulty {
   trend: 'up' | 'down' | 'flat';
 }
 
-const MOCK_VERSES: MockVerseDifficulty[] = [
+const getMockVerses = (): MockVerseDifficulty[] => [
   { id: '1', surahName: 'Al-Mulk (67)', verseNumber: 14, arabicTextPreview: SURAHS.find(s=>s.id===67)?.verses[13] || '', avgAccuracy: 42, avgAttempts: 8.4, studentsStuck: 112, difficultyScore: 88, trend: 'up' },
   { id: '2', surahName: 'An-Naba (78)', verseNumber: 16, arabicTextPreview: SURAHS.find(s=>s.id===78)?.verses[15] || '', avgAccuracy: 58, avgAttempts: 5.1, studentsStuck: 45, difficultyScore: 72, trend: 'flat' },
   { id: '3', surahName: 'Al-Jinn (72)', verseNumber: 4,  arabicTextPreview: SURAHS.find(s=>s.id===72)?.verses[3] || '', avgAccuracy: 31, avgAttempts: 12.2, studentsStuck: 215, difficultyScore: 94, trend: 'up' },
@@ -24,7 +24,7 @@ const MOCK_VERSES: MockVerseDifficulty[] = [
 export const VerseDifficultyView = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const sortedVerses = [...MOCK_VERSES].sort((a, b) => b.difficultyScore - a.difficultyScore);
+  const sortedVerses = [...getMockVerses()].sort((a, b) => b.difficultyScore - a.difficultyScore);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
