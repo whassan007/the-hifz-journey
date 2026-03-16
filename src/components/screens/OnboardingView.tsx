@@ -143,9 +143,10 @@ export const OnboardingView = ({ onComplete, onTeacherClick }: OnboardingProps) 
                 const isSelected = selectedAge === group.id;
                 return (
                   <button
+                    type="button"
                     key={group.id}
                     onClick={() => setSelectedAge(group.id)}
-                    className={`relative w-full text-left p-3 rounded-2xl border transition-all duration-200 flex items-center gap-4 ${isSelected ? `border-teal-500 bg-teal-500/5` : `border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10`}`}
+                    className={`relative w-full text-left p-3 rounded-2xl border transition-colors duration-200 flex items-center gap-4 cursor-pointer select-none ${isSelected ? `border-teal-500 bg-teal-500/5` : `border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10`}`}
                   >
                     <div className={`w-11 h-11 rounded-xl flex items-center justify-center font-bold text-sm text-white shadow-inner ${group.color}`}>
                       {group.ageRange.split(' ')[1]}
@@ -184,9 +185,15 @@ export const OnboardingView = ({ onComplete, onTeacherClick }: OnboardingProps) 
             </AnimatePresence>
 
             <button 
-              onClick={() => selectedAge && onComplete(name, selectedAge)}
+              type="button"
+              onClick={(e) => { 
+                e.preventDefault(); 
+                if (selectedAge) {
+                  onComplete(name, selectedAge);
+                }
+              }}
               disabled={!selectedAge}
-              className="w-full bg-teal-500 hover:bg-teal-400 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95"
+              className="w-full bg-teal-500 hover:bg-teal-400 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-4 rounded-2xl shadow-lg transition-colors cursor-pointer select-none relative z-50"
             >
               متابعة
             </button>
