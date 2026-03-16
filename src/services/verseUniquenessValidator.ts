@@ -1,9 +1,13 @@
 import { SURAHS } from '../data/registry';
 
 
+const normalizedStringsCache = new Map<string, string>();
+
 // Normalize Uthmani text for comparison by stripping diacritics and normalizing skeletons
 const normalizeArabic = (text: string) => {
-  return text
+  if (normalizedStringsCache.has(text)) return normalizedStringsCache.get(text)!;
+
+  const result = text
     // Strip diacritics
     .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
     // Normalize Alifs (Wasla, Madda, Hamza above/below) -> plain Alif
@@ -17,6 +21,9 @@ const normalizeArabic = (text: string) => {
     // Normalize Ta Marbuta -> Ha (optional, but good for match robustness)
     // eslint-disable-next-line local/no-hardcoded-arabic
     .replace(/\u0629/g, 'ه');
+
+  normalizedStringsCache.set(text, result);
+  return result;
 };
 
 // Bismillah phrase dynamic lookup 
@@ -103,11 +110,17 @@ const isPhaseBlacklisted = (text: string): boolean => {
   return false;
 };
 
+const safeVersesCache = new Map<number, { verseText: string, verseNumber: number }[]>();
+
 /**
  * Returns the safe verses for a surah — all verses that pass
  * the uniqueness check and are not on the blacklist.
  */
 export const getSafeVerses = (surahId: number): { verseText: string, verseNumber: number }[] => {
+  if (safeVersesCache.has(surahId)) {
+    return safeVersesCache.get(surahId)!;
+  }
+
   const surah = SURAHS.find(s => s.id === surahId);
   if (!surah || !surah.verses) return [];
   
@@ -127,5 +140,6 @@ export const getSafeVerses = (surahId: number): { verseText: string, verseNumber
     }
   });
 
+  safeVersesCache.set(surahId, safeVerses);
   return safeVerses;
 };
