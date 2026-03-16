@@ -8,10 +8,8 @@ import { getQualityScore } from '../../sm2';
 
 import { QuizGame } from './games/QuizGame';
 import { ScrambleGame } from './games/ScrambleGame';
-import { MatchGame } from './games/MatchGame';
-import { VineClimb } from './games/VineClimb';
-import { LanternTrail } from './games/LanternTrail';
-import { OasisPuzzle } from './games/OasisPuzzle';
+import { MutashabihatGame } from './games/MutashabihatGame';
+import { FillBlankGame } from './games/FillBlankGame';
 
 export interface GameComponentProps {
   mode: string;
@@ -68,14 +66,10 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
         return <QuizGame {...props} />;
       case 'scramble':
         return <ScrambleGame {...props} />;
-      case 'match':
-        return <MatchGame {...props} />;
-      case 'vine_climb':
-        return <VineClimb {...props} />;
-      case 'lantern_trail':
-        return <LanternTrail {...props} />;
-      case 'oasis_puzzle':
-        return <OasisPuzzle {...props} />;
+      case 'mutashabihat':
+        return <MutashabihatGame {...props} />;
+      case 'fill_blank':
+        return <FillBlankGame {...props} />;
       default:
         // Fallback for not-yet-implemented games
         return (
