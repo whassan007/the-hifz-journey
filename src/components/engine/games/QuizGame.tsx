@@ -46,8 +46,8 @@ export const QuizGame = ({ mode, surah, audioEnabled, hapticEnabled, onVictory }
   };
 
   return (
-    <div className="flex-1 flex flex-col">
-      <div className="flex flex-col items-center justify-center flex-1 bg-gradient-to-b from-black/20 to-transparent rounded-3xl border border-white/5 p-6 mb-8 text-center relative overflow-hidden shadow-inner">
+    <div className="flex-1 flex flex-col justify-center">
+      <div className="flex flex-col items-center justify-center w-full bg-gradient-to-b from-black/20 to-transparent rounded-3xl border border-white/5 p-6 mb-8 text-center relative overflow-hidden shadow-inner">
         <div className={`absolute inset-0 border-2 rounded-3xl transition-opacity ${isWrong ? 'border-red-500 opacity-100' : 'opacity-0'}`} />
         <div className="w-full flex justify-end mb-2 z-10">
           <button className="text-paper/40 hover:text-accent transition-colors active:scale-95 bg-black/20 p-2 rounded-full border border-white/5">
