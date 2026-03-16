@@ -47,7 +47,14 @@ const getFatihaBismillah = () => {
   ];
 };
 
-export const ALWAYS_EXCLUDED_PHRASES = getFatihaBismillah();
+let cachedExcludedPhrases: string[] | null = null;
+
+export const getAlwaysExcludedPhrases = () => {
+  if (!cachedExcludedPhrases) {
+    cachedExcludedPhrases = getFatihaBismillah();
+  }
+  return cachedExcludedPhrases;
+};
 
 /**
  * Returns the list of surah IDs where this exact text fragment appears
@@ -88,7 +95,7 @@ export const isUniqueToSurah = (text: string, surahId: number): boolean => {
 // Check if a phrase contains any of the globally excluded strings
 const isPhaseBlacklisted = (text: string): boolean => {
   const normText = normalizeArabic(text);
-  for (const excluded of ALWAYS_EXCLUDED_PHRASES) {
+  for (const excluded of getAlwaysExcludedPhrases()) {
     if (normText.includes(normalizeArabic(excluded))) {
       return true;
     }

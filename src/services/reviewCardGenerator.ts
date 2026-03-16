@@ -1,5 +1,5 @@
 import UI from '../data/ui-text.json';
-import { getSafeVerses, ALWAYS_EXCLUDED_PHRASES, isUniqueToSurah } from './verseUniquenessValidator';
+import { getSafeVerses, getAlwaysExcludedPhrases, isUniqueToSurah } from './verseUniquenessValidator';
 import type { ReviewFormat, SessionHistory } from '../types';
 import { SURAHS, getSurahById } from '../data/registry';
 
@@ -157,7 +157,7 @@ export function validateSessionCards(cards: ReviewCardPrompt[]): { cards: Review
     // Specifically test the text shown to the user (the prompt/ayah)
     // If format B, it's the full verse. Format A it's the first half. Format C it's the surah name which is fine.
     if (card.format !== 'C') {
-        const isBismillahBlacklisted = ALWAYS_EXCLUDED_PHRASES.some((phrase: string) => card.ayah.includes(phrase));
+        const isBismillahBlacklisted = getAlwaysExcludedPhrases().some((phrase: string) => card.ayah.includes(phrase));
         // We only require full uniqueness for format B (full verse).
         const isNotUnique = card.format === 'B' ? !isUniqueToSurah(card.ayah, card.surahId) : false;
         

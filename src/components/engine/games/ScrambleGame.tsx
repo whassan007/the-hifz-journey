@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle } from 'lucide-react';
 import type { GameComponentProps } from '../GameWrapper';
 import { audioEngine, triggerHaptic } from '../../../audio';
-import { getSafeVerses, ALWAYS_EXCLUDED_PHRASES } from '../../../services/verseUniquenessValidator';
+import { getSafeVerses, getAlwaysExcludedPhrases } from '../../../services/verseUniquenessValidator';
 
 interface ScrambleWord {
   id: string;
@@ -60,7 +60,7 @@ export const ScrambleGame = ({ surah, audioEnabled, hapticEnabled, onVictory }: 
 
   // Assertion to catch forbidden text in Dev
   if (import.meta.env?.DEV) {
-    const FORBIDDEN = ALWAYS_EXCLUDED_PHRASES;
+    const FORBIDDEN = getAlwaysExcludedPhrases();
     const hasForbidden = FORBIDDEN.some(f => gameData.verseText.includes(f));
     console.assert(!hasForbidden, `WordOrderGame received forbidden verse content for surah ${surah.id}: "${gameData.verseText}"`);
   }
