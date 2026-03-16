@@ -1,45 +1,13 @@
 import UI from "../../data/ui-text.json";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gamepad2, Trophy, Clock, Target, Play, GraduationCap, BookOpen, ChevronRight, Download } from 'lucide-react';
+import { Gamepad2, Trophy, Clock, Target, GraduationCap, BookOpen, ChevronRight } from 'lucide-react';
 import type { UserState, Class, ClassAssignment, ReviewRecord } from '../../types';
 import { getRank } from '../../utils';
 import { JoinClassModal } from './student/JoinClassModal';
-import { buildReviewCard } from '../../services/reviewCardGenerator';
-import { getSurahById } from '../../data/registry';
+import { MemorizationPulseCard } from '../dashboard/MemorizationPulseCard';
+import { TodaySessionCard } from '../dashboard/TodaySessionCard';
 
-// Temporary Mock Data for prototype Demonstration
-const MOCK_DUE_REVIEWS: ReviewRecord[] = [{
-  surahId: 1,
-  verseNumber: 2,
-  easeFactor: 2.1,
-  intervalDays: 1,
-  repetitionCount: 5,
-  nextReviewDate: "2026-03-14",
-  lastReviewed: "2026-03-13",
-  qualityHistory: [],
-  missCount: 0
-}, {
-  surahId: 2,
-  verseNumber: 255,
-  easeFactor: 2.5,
-  intervalDays: 4,
-  repetitionCount: 3,
-  nextReviewDate: "2026-03-14",
-  lastReviewed: "2026-03-10",
-  qualityHistory: [],
-  missCount: 0
-}, {
-  surahId: 112,
-  verseNumber: 4,
-  easeFactor: 2.5,
-  intervalDays: 4,
-  repetitionCount: 3,
-  nextReviewDate: "2026-03-14",
-  lastReviewed: "2026-03-10",
-  qualityHistory: [],
-  missCount: 0
-}];
 const MOCK_ACTIVE_ASSIGNMENTS: ClassAssignment[] = [{
   id: 'a1',
   classId: 'mock',
@@ -48,27 +16,25 @@ const MOCK_ACTIVE_ASSIGNMENTS: ClassAssignment[] = [{
   dueDate: UI.ui_27,
   createdByTeacherId: 'teacher-x'
 }];
+
 interface HomeViewProps {
   user: UserState;
+  reviews: ReviewRecord[];
   setActiveGame: (game: string) => void;
   setCurrentSurah: (id: number) => void;
 }
+
 export const HomeView = ({
   user,
+  reviews,
   setActiveGame,
   setCurrentSurah
 }: HomeViewProps) => {
   const [isJoiningClass, setIsJoiningClass] = useState(false);
   const rank = getRank(user.xp);
-  const nextDueRecord = MOCK_DUE_REVIEWS[0];
-  const nextDueSurah = nextDueRecord ? getSurahById(nextDueRecord.surahId) : null;
-  return <motion.div initial={{
-    opacity: 0,
-    y: 30
-  }} animate={{
-    opacity: 1,
-    y: 0
-  }} className="p-6">
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="p-6">
       <div className="w-full flex justify-between items-end mb-6">
         <div>
           <h1 className="text-3xl font-bold text-paper mb-1">مرحباً، {user.name}</h1>
@@ -81,7 +47,7 @@ export const HomeView = ({
       </div>
 
       {/* Join a Class Banner */}
-      <button onClick={() => setIsJoiningClass(true)} className="w-full bg-gradient-to-r from-blue-600/20 to-teal-500/20 hover:from-blue-600/30 hover:to-teal-500/30 border border-blue-500/30 rounded-2xl p-4 mb-6 flex items-center justify-between transition-all group active:scale-[0.98]">
+      <button onClick={() => setIsJoiningClass(true)} className="w-full bg-gradient-to-r from-blue-600/20 to-teal-500/20 hover:from-blue-600/30 hover:to-teal-500/30 border border-blue-500/30 rounded-2xl p-4 mb-6 flex items-center justify-between transition-all group active:scale-[0.98] cursor-pointer">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/50">
              <GraduationCap className="text-blue-400" size={20} />
@@ -97,13 +63,12 @@ export const HomeView = ({
       </button>
 
       {/* Active Assignments Banner */}
-      {/* Note: Mock logic simulating that the student joined a class if MOCK_ACTIVE_ASSIGNMENTS is present. */}
       {MOCK_ACTIVE_ASSIGNMENTS.length > 0 && <div className="mb-6 flex flex-col gap-3">
           <div className="flex justify-between items-end mb-1">
              <h3 className="font-bold text-paper text-lg">واجبات الصف</h3>
-             <button className="text-xs text-accent font-bold">عرض الكل</button>
+             <button className="text-xs text-accent font-bold cursor-pointer">عرض الكل</button>
           </div>
-          {MOCK_ACTIVE_ASSIGNMENTS.map(assignment => <button key={assignment.id} onClick={() => setActiveGame('quiz')} className="w-full bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/20 rounded-2xl p-4 flex items-center justify-between transition-all group text-left">
+          {MOCK_ACTIVE_ASSIGNMENTS.map(assignment => <button key={assignment.id} onClick={() => setActiveGame('quiz')} className="w-full bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/20 rounded-2xl p-4 flex items-center justify-between transition-all group text-left cursor-pointer">
                <div className="flex gap-4 items-center">
                  <div className="w-12 h-12 bg-black/40 rounded-xl flex items-center justify-center border border-white/5 shadow-inner">
                    <BookOpen className="text-blue-400" size={24} />
@@ -121,135 +86,60 @@ export const HomeView = ({
              </button>)}
         </div>}
 
+      {/* NEW: Component 1 - Passive Memorization Pulse */}
+      <MemorizationPulseCard 
+        user={user} 
+        reviews={reviews} 
+        onOpenJourney={() => {
+            // Placeholder: The actual routing logic would go here to open Progress Map
+            // In App.tsx, this is usually handled by setActiveTab('journey')
+            // For now, this is a visual integration as requested.
+            setCurrentSurah(1); // dummy action
+        }} 
+      />
+
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 mb-8">
-        {[{
-        label: UI.ui_26,
-        value: user.xp,
-        icon: <Trophy size={20} className="text-statRank-start" />,
-        color: 'bg-statRank-start/20 border-statRank-start/30'
-      }, {
-        label: UI.ui_25,
-        value: `${user.streak} يوم`,
-        icon: <Clock size={20} className="text-statHikmah-start" />,
-        color: 'bg-statHikmah-start/20 border-statHikmah-start/30'
-      }, {
-        label: UI.ui_24,
-        value: user.completed.length,
-        icon: <Target size={20} className="text-statJungle-start" />,
-        color: 'bg-statJungle-start/20 border-statJungle-start/30'
-      }, {
-        label: UI.ui_23,
-        value: '95%',
-        icon: <Gamepad2 size={20} className="text-statDesert-start" />,
-        color: 'bg-statDesert-start/20 border-statDesert-start/30'
-      }].map((stat, i) => <div key={i} className={`rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-md backdrop-blur-md border ${stat.color}`}>
+        {[
+          { label: UI.ui_26, value: user.xp, icon: <Trophy size={20} className="text-statRank-start" />, color: 'bg-statRank-start/20 border-statRank-start/30' },
+          { label: UI.ui_25, value: `${user.streak} يوم`, icon: <Clock size={20} className="text-statHikmah-start" />, color: 'bg-statHikmah-start/20 border-statHikmah-start/30' },
+          { label: UI.ui_24, value: user.completed.length, icon: <Target size={20} className="text-statJungle-start" />, color: 'bg-statJungle-start/20 border-statJungle-start/30' },
+          { label: UI.ui_23, value: '95%', icon: <Gamepad2 size={20} className="text-statDesert-start" />, color: 'bg-statDesert-start/20 border-statDesert-start/30' }
+        ].map((stat, i) => (
+          <div key={i} className={`rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-md backdrop-blur-md border ${stat.color}`}>
             <span className="mb-2">{stat.icon}</span>
             <span className="font-bold text-sm text-paper">{stat.value}</span>
             <span className="text-[10px] text-paper/70 font-semibold">{stat.label}</span>
-          </div>)}
+          </div>
+        ))}
       </div>
 
-      {/* Next Review Card */}
-      <motion.button whileHover={nextDueRecord ? {
-      scale: 0.98
-    } : {}} whileTap={nextDueRecord ? {
-      scale: 0.95,
-      opacity: 0.75
-    } : {}} onClick={() => {
-      if (nextDueRecord && nextDueSurah) {
-        setCurrentSurah(nextDueSurah.id);
-        setActiveGame('quiz');
-      }
-    }} disabled={!nextDueRecord} className={`w-full bg-black/20 backdrop-blur-md rounded-[2.5rem] p-6 border border-white/5 shadow-lg relative mb-6 text-center transition-opacity duration-75 block ${!nextDueRecord ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}>
-        <div className="flex justify-center items-start mb-4">
-          <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full">المستحق التالي</span>
-        </div>
-        
-        {nextDueRecord && nextDueSurah ? <div className="mb-2">
-            <p className="font-arabic text-3xl leading-loose text-paper mb-2 text-center" style={{
-          fontSize: `${user.arabicFontSize}px`
-        }}>{nextDueSurah.arabicName} · آية {nextDueRecord.verseNumber}</p>
-          </div> : <div className="mb-2">
-            <p className="font-arabic text-xl leading-loose text-paper/50 mb-2 text-center">لا توجد مراجعات مستحقة</p>
-          </div>}
-      </motion.button>
+      {/* NEW: Component 2 - Active Today's Session Launcher */}
+      <TodaySessionCard 
+        reviews={reviews}
+        onStartSession={() => {
+           // Launches the blended API quiz format
+           setActiveGame('quiz');
+        }}
+        onCustomizeSession={() => {
+           // The "Infinite Realm" placeholder
+           // eslint-disable-next-line local/no-hardcoded-arabic
+           alert("التخصيص غير متاح حالياً (Customize not available yet)");
+        }}
+      />
 
-      {/* Daily Challenge Hero Card */}
-      <div className="bg-jungle-dark/80 backdrop-blur-md rounded-[2.5rem] p-6 border border-[#2F4F2F] shadow-lg relative overflow-hidden mb-8">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542273917363-3b1817f69a56?q=80&w=1000')] bg-cover bg-center opacity-20 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-t from-jungle-dark/90 to-transparent" />
-        
-        <div className="relative z-10 text-center">
-          <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2 mt-2">هدف اليوم</p>
-          
-          {(() => {
-          // Process due reviews
-          const dueSurahs = MOCK_DUE_REVIEWS.map(r => r.surahId);
-          const totalVersesDue = dueSurahs.length; // Simplified for mockup
-          const completedVerses = 0; // Simplified for mockup
-
-          if (totalVersesDue === 0) {
-            return <div className="mb-6">
-                  <h2 className="text-2xl font-bold mb-1 text-paper">تمت مراجعة {completedVerses} من {completedVerses} آية</h2>
-                  <p className="text-sm text-paper/80 mb-5">ما شاء الله! All done for today.</p>
-                </div>;
-          }
-          const needsDownload = dueSurahs.some(surahId => !buildReviewCard(surahId, user.sessionHistory?.[surahId]) || !getSurahById(surahId));
-          const dueListItems = dueSurahs.map(surahId => {
-            const surah = getSurahById(surahId);
-            const card = buildReviewCard(surahId, user.sessionHistory?.[surahId]);
-            if (!card || !surah) return null;
-            let formatLabel = "";
-            if (card.format === 'A') formatLabel = UI.ui_22;
-            if (card.format === 'B') formatLabel = UI.ui_21;
-            if (card.format === 'C') formatLabel = `Recite verse ${card.verseId} · اذكر الآية رقم ${card.verseId}`;
-            return <li key={surahId} className="flex flex-col text-sm text-paper/90 mb-2 items-start" dir="ltr">
-                    <span className="font-bold">{surah.transliteration} <span className="text-white/50 font-normal">· {surah.verseCount} verses due</span></span>
-                    <span className="text-accent text-xs">{formatLabel}</span>
-                 </li>;
-          }).filter(Boolean);
-          if (needsDownload) {
-            return <div className="mb-6">
-                  <h2 className="text-2xl font-bold mb-1 text-paper">Download verses to begin · حمّل الآيات للبدء</h2>
-                  <button onClick={() => alert("Downloading Uthmani verse texts...")} className="mt-6 w-full bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg">
-                    <Download size={20} className="stroke-2" />
-                    Download
-                  </button>
-                </div>;
-          }
-          return <>
-                <h2 className="text-2xl font-bold mb-1 text-paper">تمت مراجعة {completedVerses} من {totalVersesDue} آية</h2>
-                <p className="text-sm text-paper/80 mb-5">اربح نقاطاً مضاعفة عند إكمال مراجعات اليوم!</p>
-                
-                <div className="w-full bg-black/40 h-1.5 rounded-full mb-6 overflow-hidden rtl:-scale-x-100">
-                  <div className="bg-accent h-full w-[0%] rounded-full" />
-                </div>
-
-                <div className="bg-black/40 border border-white/5 rounded-2xl p-4 text-left mb-6 font-sans">
-                  <p className="text-xs text-white/50 uppercase tracking-widest font-bold mb-3 border-b border-white/10 pb-2">Due today · مستحقة اليوم</p>
-                  <ul className="list-disc pl-4 marker:text-accent">
-                    {dueListItems}
-                  </ul>
-                </div>
-
-                <button onClick={() => setActiveGame('quiz')} className="w-full bg-accent hover:bg-amber-600 active:scale-95 transition-all text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg">
-                  <Play size={20} className="fill-current" />
-                  ابدأ جلسة المراجعة
-                </button>
-              </>;
-        })()}
-
-        </div>
-      </div>
-
-      {/* Join Class Modal */}
       <AnimatePresence>
-        {isJoiningClass && <JoinClassModal onClose={() => setIsJoiningClass(false)} onJoin={(c: Class) => {
-        alert(`مرحباً بك! You've joined ${c.name}.`);
-        setIsJoiningClass(false);
-      }} alreadyJoinedClasses={[]} />}
+        {isJoiningClass && (
+          <JoinClassModal 
+            onClose={() => setIsJoiningClass(false)} 
+            onJoin={(c: Class) => {
+              alert(`مرحباً بك! You've joined ${c.name}.`);
+              setIsJoiningClass(false);
+            }} 
+            alreadyJoinedClasses={[]} 
+          />
+        )}
       </AnimatePresence>
-
-    </motion.div>;
+    </motion.div>
+  );
 };

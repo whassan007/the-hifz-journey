@@ -200,7 +200,7 @@ const App = () => {
           transition={{ duration: 0.3 }}
           className="flex-1 overflow-y-auto pb-24 relative z-10 w-full max-w-4xl mx-auto"
         >
-          {activeTab === 'home' && <HomeView user={user} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} />}
+          {activeTab === 'home' && <HomeView user={user} reviews={reviews} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} />}
           {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} setCurrentSurah={setCurrentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
           {activeTab === 'review' && <ReviewView />}
