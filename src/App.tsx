@@ -1,7 +1,7 @@
 import UI from './data/ui-text.json';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Map, Trophy, BookOpen, Gamepad2, Brain } from 'lucide-react';
+import { Home, Map, Trophy, BookOpen, Gamepad2, Brain, Star } from 'lucide-react';
 import { SURAHS } from './data/registry';
 import type { UserState, ReviewRecord, AgeGroup, SessionConfig } from './types';
 import { getBiomeGradients, getSurahBiome } from './utils';
@@ -23,6 +23,8 @@ import { TeacherOnboardingView } from './components/screens/teacher/TeacherOnboa
 import { TeacherDashboardView } from './components/screens/teacher/TeacherDashboardView';
 import { SessionConfigView } from './components/screens/SessionConfigView';
 import { TrainView } from './components/screens/TrainView';
+import { IslamicKnowledgeView } from './components/screens/IslamicKnowledgeView';
+import { ImamDrillWrapper } from './components/engine/ImamDrillWrapper';
 
 const INITIAL_USER: UserState = {
   name: 'Student',
@@ -176,6 +178,28 @@ const App = () => {
     setActiveGame(null);
   };
 
+  const handleImamDrillComplete = (xpAward: number, imamId: number, qualityScore: number) => {
+    setUser(prev => {
+      if (!prev) return null;
+      
+      const isNewCompletion = !(prev.completedImamIds || []).includes(imamId);
+      const newCompleted = isNewCompletion ? [...(prev.completedImamIds || []), imamId] : (prev.completedImamIds || []);
+      const newUnlocked = (prev.unlockedImamIds || [1]).includes(imamId + 1) ? prev.unlockedImamIds || [1] : [...(prev.unlockedImamIds || [1]), imamId + 1];
+
+      // Note: Implement SM-2 for Imam reviews similarly here if desired, currently tracking basic unlock flow.
+      console.log(`Earned ${xpAward} Islamic Knowledge XP with quality ${qualityScore}`);
+
+      return {
+        ...prev,
+        islamicKnowledgeXp: (prev.islamicKnowledgeXp || 0) + xpAward,
+        xp: prev.xp + xpAward,
+        completedImamIds: newCompleted,
+        unlockedImamIds: newUnlocked
+      };
+    });
+    setActiveGame(null);
+  };
+
   const handleLaunchSession = async (config: SessionConfig) => {
     try {
       const response = await createSession(config);
@@ -227,6 +251,7 @@ const App = () => {
           {activeTab === 'train' && <TrainView setActiveTab={setActiveTab} setActiveGame={setActiveGame} setCurrentSurahId={setCurrentSurahId} />}
           {activeTab === 'review' && <ReviewView />}
           {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} /></div>}
+          {activeTab === 'islamic_knowledge' && <IslamicKnowledgeView user={user} setActiveGame={setActiveGame} />}
           {activeTab === 'data_sources' && <DataSourcesView onBack={() => setActiveTab('profile')} />}
           {activeTab === 'bookmarks' && <BookmarksView user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={(id: number) => { setReaderSurahId(id); setActiveTab('reader'); }} />}
           {activeTab === 'reader' && readerSurahId && <SurahReaderView surahId={readerSurahId} user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={setReaderSurahId} />}
@@ -235,7 +260,14 @@ const App = () => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {activeGame && (
+        {activeGame && activeGame.startsWith('imam_drill_') ? (
+          <ImamDrillWrapper 
+             imamId={parseInt(activeGame.split('_')[2])}
+             user={user}
+             onClose={() => setActiveGame(null)}
+             onComplete={handleImamDrillComplete}
+          />
+        ) : activeGame && (
           <GameWrapper 
             mode={activeGame}
             surah={currentSurahData}
@@ -254,6 +286,8 @@ const App = () => {
           {[
             { id: 'home', icon: <Home size={24} />, label: UI.ui_5 },
             { id: 'journey', icon: <Map size={24} />, label: UI.ui_4 },
+            /* eslint-disable-next-line local/no-hardcoded-arabic */
+            { id: 'islamic_knowledge', icon: <Star size={24} />, label: 'المعارف' },
             /* eslint-disable-next-line local/no-hardcoded-arabic */
             { id: 'train', icon: <Brain size={24} />, label: (UI as Record<string, string>).ui_98 || 'التدريب' },
             { id: 'games', icon: <Gamepad2 size={24} />, label: UI.ui_3 },

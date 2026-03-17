@@ -7,6 +7,7 @@ import { getRank } from '../../utils';
 import { JoinClassModal } from './student/JoinClassModal';
 import { MemorizationPulseCard } from '../dashboard/MemorizationPulseCard';
 import { TodaySessionCard } from '../dashboard/TodaySessionCard';
+import { DailyImamCard } from '../dashboard/DailyImamCard';
 
 const MOCK_ACTIVE_ASSIGNMENTS: ClassAssignment[] = [{
   id: 'a1',
@@ -99,6 +100,9 @@ export const HomeView = ({
             setCurrentSurah(1); // dummy action
         }} 
       />
+
+      {/* Daily Imam Feature */}
+      <DailyImamCard />
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 mb-8">

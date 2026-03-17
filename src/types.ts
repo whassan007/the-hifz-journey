@@ -52,10 +52,13 @@ export interface UserState {
   role: UserRole;
   ageGroup: AgeGroup;
   xp: number;
+  islamicKnowledgeXp?: number;
   hikmah: number;
   streak: number;
   lastActive: string;
   completed: SurahNode[];
+  unlockedImamIds?: number[];
+  completedImamIds?: number[];
   badges: string[];
   audioEnabled: boolean;
   hapticEnabled: boolean;
@@ -67,6 +70,34 @@ export interface UserState {
   readSurahs: number[]; // Array of surah IDs that have been opened in the reader
   readerSettings: ReaderSettings;
   sessionHistory?: Record<number, SessionHistory>; // Keyed by surahId
+}
+
+export interface ImamNode {
+  id: number;
+  name: string;
+  kunya: string;
+  title: string;
+  birthCity: string;
+  birthYear: number;
+  martyrdomYear: number | string; // Could be 'Living' for the 12th Imam
+  burialCity: string;
+  father: string;
+  mother: string;
+  hadith: string;
+  bio: string;
+  shrineUrl?: string;
+  companions?: string[];
+}
+
+export interface ImamReviewRecord {
+  imamId: number;
+  easeFactor: number;
+  intervalDays: number;
+  repetitionCount: number;
+  nextReviewDate: string;     // ISO8601
+  lastReviewed: string;       // ISO8601
+  qualityHistory: number[];   // 0-5 scale
+  missCount: number;
 }
 
 export interface Teacher {
