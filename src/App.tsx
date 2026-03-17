@@ -249,7 +249,7 @@ const App = () => {
           {activeTab === 'home' && <HomeView user={user} reviews={reviews} setActiveGame={setActiveGame} setCurrentSurah={setCurrentSurahId} onOpenSessionConfig={(config) => { setInitialSessionConfig((config as SessionConfig) || null); setActiveTab('session_config'); }} />}
           {activeTab === 'journey' && <JourneyMap user={user} currentSurahId={currentSurahId} onReadSurah={(id) => { setReaderSurahId(id); setActiveTab('reader'); }} onOpenBookmarks={() => setActiveTab('bookmarks')} onOpenSessionConfig={(config) => { setInitialSessionConfig((config as SessionConfig) || null); setActiveTab('session_config'); }} />}
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
-          {activeTab === 'train' && <TrainView setActiveTab={setActiveTab} setActiveGame={setActiveGame} setCurrentSurahId={setCurrentSurahId} />}
+          {activeTab === 'train' && <TrainView setActiveTab={setActiveTab} setActiveGame={setActiveGame} currentSurahId={currentSurahId} setCurrentSurahId={setCurrentSurahId} />}
           {activeTab === 'review' && <ReviewView />}
           {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} /></div>}
           {activeTab === 'settings' && <SettingsView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} />}
