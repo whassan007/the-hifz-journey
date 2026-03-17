@@ -14,6 +14,7 @@ import { DeepMemorizationFlow } from './MultiSensoryEngine/DeepMemorizationFlow'
 import { MushafGrid } from './MultiSensoryEngine/MushafGrid';
 import { AudioRecallEngine } from './MultiSensoryEngine/AudioRecallEngine';
 import { KinestheticTracer } from './MultiSensoryEngine/KinestheticTracer';
+import { getRandomVerses } from '../../engine/verseSelection';
 
 export interface GameComponentProps {
   mode: string;
@@ -37,6 +38,7 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
   const [gameState, setGameState] = useState<'playing' | 'victory'>('playing');
   const [xpToAward, setXpToAward] = useState(0);
   const [totalMisses, setTotalMisses] = useState(0);
+  const [randomizedSurah, setRandomizedSurah] = useState<SurahNode>(surah);
 
   // Initialize start time post-render to maintain purity
   useEffect(() => {
@@ -49,6 +51,22 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
     return () => clearTimeout(timer);
   }, [startTime]);
 
+  useEffect(() => {
+    // Determine random sub-verses based on the module requested to prevent deterministic repetitiveness
+    const isMultiSensoryModule = ['deep_memorization', 'spatial_memory', 'audio_recall', 'kinesthetic_tracking'].includes(mode);
+    
+    if (isMultiSensoryModule) {
+      const sampledVerses = getRandomVerses(surah, { count: 5 });
+      setRandomizedSurah({
+        ...surah,
+        verses: sampledVerses,
+        verseCount: sampledVerses.length
+      });
+    } else {
+      setRandomizedSurah(surah);
+    }
+  }, [surah, mode]);
+
   const handleVictory = (xpAward: number, missCount: number) => {
     setXpToAward(xpAward);
     setTotalMisses(missCount);
@@ -58,7 +76,7 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
   const renderGame = () => {
     const props: GameComponentProps = {
       mode,
-      surah,
+      surah: randomizedSurah,
       audioEnabled,
       hapticEnabled,
       onVictory: handleVictory
@@ -75,13 +93,13 @@ export const GameWrapper = ({ mode, surah, onClose, onComplete, audioEnabled, ha
       case 'fill_blank':
         return <FillBlankGame {...props} />;
       case 'deep_memorization':
-        return <DeepMemorizationFlow surah={surah} onComplete={() => handleVictory(500, 0)} />;
+        return <DeepMemorizationFlow surah={randomizedSurah} onComplete={() => handleVictory(500, 0)} />;
       case 'spatial_memory':
-        return <MushafGrid surah={surah} masteryData={[]} onComplete={() => handleVictory(300, 0)} />;
+        return <MushafGrid surah={randomizedSurah} masteryData={[]} onComplete={() => handleVictory(300, 0)} />;
       case 'audio_recall':
-        return <AudioRecallEngine surah={surah} onComplete={() => handleVictory(300, 0)} />;
+        return <AudioRecallEngine surah={randomizedSurah} onComplete={() => handleVictory(300, 0)} />;
       case 'kinesthetic_tracking':
-        return <KinestheticTracer surah={surah} onComplete={() => handleVictory(300, 0)} />;
+        return <KinestheticTracer surah={randomizedSurah} onComplete={() => handleVictory(300, 0)} />;
       default:
         // Fallback for not-yet-implemented games
         return (

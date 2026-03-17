@@ -10,6 +10,11 @@ interface MushafGridProps {
 
 export const MushafGrid: React.FC<MushafGridProps> = ({ surah, onComplete }) => {
   const [selectedPage, setSelectedPage] = useState<number | null>(null);
+  const [hiddenWordIndices, setHiddenWordIndices] = useState<number[]>([]);
+
+  // Split target line into words for interaction
+  // eslint-disable-next-line local/no-hardcoded-arabic
+  const targetWords = surah?.verses[0]?.split(' ') || 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ'.split(' ');
 
   const getCellColor = (index: number) => {
     if (index % 17 === 0) return 'bg-red-500/50'; // critical
@@ -65,7 +70,10 @@ export const MushafGrid: React.FC<MushafGridProps> = ({ surah, onComplete }) => 
           >
             <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
               <button 
-                onClick={() => setSelectedPage(null)}
+                onClick={() => {
+                   setSelectedPage(null);
+                   setHiddenWordIndices([]);
+                }}
                 className="bg-white/10 px-4 py-2 rounded-lg text-sm hover:bg-white/20"
               >
                 العودة للشبكة
@@ -82,14 +90,34 @@ export const MushafGrid: React.FC<MushafGridProps> = ({ surah, onComplete }) => 
                     key={lineIdx} 
                     className={`border-b border-black/5 py-2 min-h-[3rem] flex items-center justify-center ${!isTargetLine ? 'bg-black text-transparent hover:bg-transparent hover:text-black hover:cursor-crosshair transition-all duration-300' : 'text-emerald-800 font-bold bg-emerald-500/10'}`}
                   >
-                    {/* eslint-disable-next-line local/no-hardcoded-arabic */}
-                    {isTargetLine ? (surah?.verses[0] || 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ') : 'ــــــــــــــــــــــــــــــــــــــــــــــــ'}
+                    {isTargetLine ? (
+                      <div className="flex flex-wrap justify-center gap-2 max-w-full">
+                        {targetWords.map((word, wIdx) => {
+                          const isHidden = hiddenWordIndices.includes(wIdx);
+                          return (
+                            <span 
+                              key={wIdx}
+                              onClick={() => {
+                                setHiddenWordIndices(prev => 
+                                  prev.includes(wIdx) 
+                                    ? prev.filter(i => i !== wIdx) 
+                                    : [...prev, wIdx]
+                                );
+                              }}
+                              className={`cursor-pointer select-none transition-opacity duration-300 ${isHidden ? 'opacity-0' : 'opacity-100'}`}
+                            >
+                              {word}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ) : 'ــــــــــــــــــــــــــــــــــــــــــــــــ'}
                   </div>
                 );
               })}
             </div>
             
-            <p className="mt-4 text-sm text-paper/60 pb-2">Tap blacked-out lines to reveal context</p>
+            <p className="mt-4 text-sm text-paper/60 pb-2">Tap words on the highlighted line to test your spatial memory by hiding them.</p>
           </motion.div>
         )}
       </AnimatePresence>

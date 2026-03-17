@@ -72,7 +72,7 @@ export const AudioRecallEngine: React.FC<AudioRecallEngineProps> = ({ surah, onC
         {isPlaying ? (
           <motion.span initial={{opacity:0}} animate={{opacity:1}} className="text-blue-200">"{surah.verses[verseIndex]}"</motion.span>
         ) : isRecording ? (
-          <span className="text-purple-200 animate-pulse text-4xl">... استمع ...</span>
+          <span className="text-purple-200 animate-pulse text-xl font-sans font-bold tracking-widest uppercase">... Listening ...</span>
         ) : (
           <span className="text-paper/40 text-xl">اضغط لبدء المدارسة</span>
         )}
@@ -114,12 +114,22 @@ export const AudioRecallEngine: React.FC<AudioRecallEngineProps> = ({ surah, onC
            Toggle Degradation Stage
          </button>
          
-         <div className="text-center font-arabic text-2xl md:text-3xl leading-loose text-white" dir="rtl">
-           {degradationLevel === 0 && <span className="opacity-100">{surah.verses[0]}</span>}
-           {degradationLevel === 1 && <span className="opacity-100 text-blue-200">{surah.verses[0]} <br/><span className="text-sm font-sans opacity-50">(1.1x speed)</span></span>}
-           {degradationLevel === 2 && <span className="opacity-70">{surah.verses[0]}</span>}
-           {degradationLevel === 3 && <span className="opacity-100">{surah.verses[0].split(' ').slice(0,3).join(' ')} <span className="opacity-20">...</span></span>}
-           {degradationLevel === 4 && <span className="opacity-100 text-paper/50">Recite from memory (Silence)</span>}
+         <div className="text-center font-arabic mt-4 text-3xl md:text-4xl leading-loose text-white" dir="rtl">
+            {surah.verses[0].split(' ').map((word, i) => {
+              // Word opacity logic based on degradationLevel (0-4)
+              let opacityClass = "opacity-100";
+              if (degradationLevel === 1) opacityClass = "opacity-70 text-blue-200";
+              if (degradationLevel === 2) opacityClass = "opacity-40";
+              if (degradationLevel === 3) opacityClass = i < 3 ? "opacity-30" : "opacity-0";
+              if (degradationLevel === 4) opacityClass = "opacity-0 hidden";
+              
+              if (degradationLevel === 4) return null;
+
+              return (
+                 <span key={i} className={`transition-all duration-700 px-1 ${opacityClass}`}>{word}</span>
+              );
+            })}
+            {degradationLevel === 4 && <span className="opacity-100 text-paper/50 text-xl font-sans tracking-widest uppercase">Recite from memory (Silence)</span>}
          </div>
       </div>
     </div>
@@ -152,7 +162,11 @@ export const AudioRecallEngine: React.FC<AudioRecallEngineProps> = ({ surah, onC
         >
           {isPlaying ? <Square fill="currentColor" size={28} /> : <Play fill="currentColor" size={28} className="ml-1" />}
         </button>
-        <span className="font-bold text-emerald-400 tracking-wider">Makam Hijaz Contour</span>
+        <span className="font-bold text-emerald-400 tracking-wider mb-8">Makam Hijaz Contour</span>
+        
+        <div className="text-center font-arabic text-xl md:text-2xl leading-loose text-emerald-100/50" dir="rtl">
+          {surah.verses[0]}
+        </div>
       </div>
     </div>
   );

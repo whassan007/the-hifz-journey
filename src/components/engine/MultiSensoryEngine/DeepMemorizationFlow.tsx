@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { SurahNode } from '../../../types';
-import { Volume2, Mic, Eye, MoveRight, MicOff, CheckCircle2 } from 'lucide-react';
+import { Volume2, Mic, Eye, MoveRight, CheckCircle2 } from 'lucide-react';
 import { ProgressiveMasking } from './ProgressiveMasking';
 
 interface DeepMemorizationFlowProps {
@@ -99,26 +99,13 @@ export const DeepMemorizationFlow: React.FC<DeepMemorizationFlowProps> = ({ sura
     }
   };
 
-  const renderFallbackButton = () => {
-    if (!validationFallbackAvailable || manualValidationSuccess) return null;
-    return (
-       <motion.button 
-         initial={{opacity: 0, y: 10}} 
-         animate={{opacity: 1, y: 0}}
-         onClick={() => setManualValidationSuccess(true)}
-         className="mt-6 flex items-center gap-2 bg-rose-500/20 text-rose-300 px-6 py-3 rounded-xl border border-rose-500/30 hover:bg-rose-500/30 transition-colors mx-auto text-sm"
-       >
-         <MicOff size={16} /> 
-         <span>Voice validation unavailable — tap to continue manually</span>
-       </motion.button>
-    );
-  };
+
 
   const renderManualSuccess = () => {
     if (!manualValidationSuccess) return null;
     return (
-       <motion.div initial={{scale:0}} animate={{scale:1}} className="mt-6 flex items-center justify-center gap-2 text-emerald-400">
-         <CheckCircle2 /> <span>تم التوثيق (Validated)</span>
+       <motion.div initial={{scale:0}} animate={{scale:1}} className="mt-6 flex flex-col items-center justify-center gap-2 text-emerald-400">
+         <div className="flex items-center gap-2"><CheckCircle2 /> <span className="font-bold">تم التوثيق (Validated)</span></div>
        </motion.div>
     );
   };
@@ -141,15 +128,13 @@ export const DeepMemorizationFlow: React.FC<DeepMemorizationFlowProps> = ({ sura
         </div>
         
         <div className="bg-white/5 p-8 rounded-2xl w-full min-h-[250px] flex flex-col items-center justify-center relative overflow-hidden mb-8 border border-white/5">
-           <AnimatePresence mode="wait">
-              <motion.div 
-                key={phase + '-' + verseIndex + '-' + maskStep} 
-                initial={{opacity:0, scale:0.95}} 
-                animate={{opacity:1, scale:1}} 
-                exit={{opacity:0, scale:1.05}} 
-                className="text-3xl md:text-4xl font-arabic leading-loose w-full" 
-                dir="rtl"
-              >
+           <motion.div 
+             key={`verse-${verseIndex}`} 
+             initial={{opacity:0, scale:0.95}} 
+             animate={{opacity:1, scale:1}} 
+             className="text-3xl md:text-4xl font-arabic leading-loose w-full flex flex-col items-center" 
+             dir="rtl"
+           >
                 {phase === 4 ? (
                   <div className="flex flex-col items-center">
                     <ProgressiveMasking text={surah.verses[verseIndex]} stage={1} fadeLevel={maskStep * 33.3} />
@@ -163,32 +148,59 @@ export const DeepMemorizationFlow: React.FC<DeepMemorizationFlowProps> = ({ sura
                     )}
                   </div>
                 ) : phase === 5 ? (
-                  <div className="flex flex-col items-center justify-center h-full">
-                     <span className="text-paper/20">... (Recite from memory) ...</span>
-                     {renderFallbackButton()}
-                     {renderManualSuccess()}
+                  <div className="flex flex-col items-center justify-center h-full py-12 w-full">
+                     <div className="w-24 h-24 rounded-full bg-rose-500/10 flex items-center justify-center mb-6">
+                       <Mic className="text-rose-500 animate-pulse" size={48} />
+                     </div>
+                     <span className="text-paper/60 text-2xl font-bold mb-8">اقرأ الآية من الذاكرة</span>
+                     
+                     {!manualValidationSuccess ? (
+                       <button 
+                         onClick={() => setManualValidationSuccess(true)}
+                         className="bg-accent/20 text-accent border border-accent/30 px-8 py-3 rounded-xl hover:bg-accent/30 transition-colors text-lg"
+                       >
+                         أنهيت التلاوة (Done Reciting)
+                       </button>
+                     ) : (
+                       renderManualSuccess()
+                     )}
                      
                      {/* Phase 5 fail loop mock */}
                      {validationFallbackAvailable && !manualValidationSuccess && (
-                        <button onClick={() => setPhase(3)} className="mt-4 text-paper/40 hover:text-white text-sm underline">
+                        <button onClick={() => setPhase(3)} className="mt-8 text-paper/40 hover:text-white text-sm underline">
                           أخطأت؟ العودة للنص (Failed? Return to Phase 3)
                         </button>
                      )}
                   </div>
                 ) : phase === 6 ? (
-                  <div className="flex flex-col gap-6 items-center">
+                  <div className="flex flex-col gap-6 items-center py-8 w-full">
                     {verseIndex > 0 ? (
-                      <motion.div initial={{opacity:0, y:-10}} animate={{opacity:0.5, y:0}} className="text-paper/50 text-xl border-b border-white/5 pb-4">
+                      <motion.div initial={{opacity:0, y:-10}} animate={{opacity:0.5, y:0}} className="text-paper/60 text-2xl border-b border-white/5 pb-6 text-center w-full">
                         {surah.verses[verseIndex - 1]}
                       </motion.div>
                     ) : (
-                      <div className="text-paper/50 text-sm border-b border-white/5 pb-4">(هذه أول آية - This is the first verse)</div>
+                      <div className="text-paper/50 text-lg border-b border-white/5 pb-4">(هذه أول آية - This is the first verse)</div>
                     )}
                     
-                    <motion.div initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} className="text-paper/20 w-full min-h-[60px] flex items-center justify-center border border-dashed border-white/10 rounded-lg">
-                       [ اقرأ الآية الحالية من الذاكرة ]
+                    <motion.div initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} className="text-paper/30 w-full min-h-[100px] flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-2xl relative p-4">
+                       {!manualValidationSuccess ? (
+                         <div className="flex flex-col items-center gap-4 py-2">
+                           <Mic className="text-rose-500 animate-pulse" size={32} />
+                           <span className="text-lg">اقرأ الآية الحالية لربطها (Recite current verse to link)</span>
+                           <button 
+                             onClick={() => setManualValidationSuccess(true)}
+                             className="bg-accent/20 text-accent border border-accent/30 px-6 py-2 rounded-xl text-sm font-sans hover:bg-accent/30 mt-2"
+                           >
+                             أتممت الربط (Done Linking)
+                           </button>
+                         </div>
+                       ) : (
+                         <motion.div initial={{opacity:0}} animate={{opacity:1}} className="text-accent text-3xl py-4 font-bold w-full text-center">
+                           {surah.verses[verseIndex]}
+                         </motion.div>
+                       )}
                     </motion.div>
-                    {renderFallbackButton()}
+                    
                     {renderManualSuccess()}
                   </div>
                 ) : (
@@ -221,13 +233,25 @@ export const DeepMemorizationFlow: React.FC<DeepMemorizationFlowProps> = ({ sura
                 )}
                 
                 {phase === 3 && (
-                   <div className="flex flex-col items-center mt-8">
-                     {renderFallbackButton()}
+                   <div className="flex flex-col items-center mt-8 w-full border-t border-white/10 pt-8">
+                     {!manualValidationSuccess && (
+                       <div className="flex flex-col items-center gap-3">
+                         <div className="w-16 h-16 rounded-full bg-rose-500/20 flex items-center justify-center mb-2">
+                           <Mic className="text-rose-400 animate-pulse" size={32} />
+                         </div>
+                         <div className="text-rose-400 text-sm font-sans animate-pulse">جاري الاستماع... (Listening...)</div>
+                         <button 
+                           onClick={() => setManualValidationSuccess(true)}
+                           className="bg-accent/20 text-accent border border-accent/30 px-8 py-3 rounded-xl hover:bg-accent/30 transition-colors font-sans mt-2"
+                         >
+                           أنهيت التلاوة (Done Reciting)
+                         </button>
+                       </div>
+                     )}
                      {renderManualSuccess()}
                    </div>
                 )}
               </motion.div>
-           </AnimatePresence>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
