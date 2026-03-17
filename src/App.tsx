@@ -1,7 +1,7 @@
 import UI from './data/ui-text.json';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Map, Trophy, BookOpen, Gamepad2, Brain, Star } from 'lucide-react';
+import { Home, Map, Trophy, BookOpen, Gamepad2, Brain, Star, Settings } from 'lucide-react';
 import { SURAHS } from './data/registry';
 import type { UserState, ReviewRecord, AgeGroup, SessionConfig } from './types';
 import { getBiomeGradients, getSurahBiome } from './utils';
@@ -13,6 +13,7 @@ import { HomeView } from './components/screens/HomeView';
 import { JourneyMap } from './components/screens/JourneyMap';
 import { GamesView } from './components/screens/GamesView';
 import { ProfileView } from './components/screens/ProfileView';
+import { SettingsView } from './components/screens/SettingsView';
 import { ReviewView } from './components/screens/ReviewView';
 import { DataSourcesView } from './components/screens/DataSourcesView';
 import { BookmarksView } from './components/screens/BookmarksView';
@@ -250,7 +251,8 @@ const App = () => {
           {activeTab === 'games' && <GamesView setActiveGame={setActiveGame} />}
           {activeTab === 'train' && <TrainView setActiveTab={setActiveTab} setActiveGame={setActiveGame} setCurrentSurahId={setCurrentSurahId} />}
           {activeTab === 'review' && <ReviewView />}
-          {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} /></div>}
+          {activeTab === 'profile' && <div className="p-6"><ProfileView user={user} /></div>}
+          {activeTab === 'settings' && <SettingsView user={user} onUpdate={(updates) => setUser(p => p ? {...p, ...updates} : null)} onOpenDataSources={() => setActiveTab('data_sources')} onLogout={handleLogout} />}
           {activeTab === 'islamic_knowledge' && <IslamicKnowledgeView user={user} setActiveGame={setActiveGame} />}
           {activeTab === 'data_sources' && <DataSourcesView onBack={() => setActiveTab('profile')} />}
           {activeTab === 'bookmarks' && <BookmarksView user={user} onUpdateUser={(updates: Partial<UserState>) => setUser(p => p ? {...p, ...updates} : null)} onBack={() => setActiveTab('journey')} onNavigateSurah={(id: number) => { setReaderSurahId(id); setActiveTab('reader'); }} />}
@@ -293,6 +295,8 @@ const App = () => {
             { id: 'games', icon: <Gamepad2 size={24} />, label: UI.ui_3 },
             { id: 'review', icon: <BookOpen size={24} />, label: UI.ui_2 },
             { id: 'profile', icon: <Trophy size={24} />, label: UI.ui_1 },
+            /* eslint-disable-next-line local/no-hardcoded-arabic */
+            { id: 'settings', icon: <Settings size={24} />, label: 'الإعدادات' },
           ].map(tab => (
             <button
               key={tab.id}
