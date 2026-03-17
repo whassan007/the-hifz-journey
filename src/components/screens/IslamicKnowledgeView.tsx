@@ -92,20 +92,20 @@ export const IslamicKnowledgeView = ({ user, setActiveGame }: IslamicKnowledgeVi
       {/* Action Bottom Sheet */}
       <AnimatePresence>
         {selectedNode && (
-          <div className="fixed inset-0 z-50 flex items-end justify-center p-4" dir="ltr">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" dir="ltr">
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
               onClick={() => setSelectedNode(null)}
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
             <motion.div 
-              initial={{ y: '100%', opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: '100%', opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-sm bg-slate-900 border border-amber-500/20 p-6 rounded-[2rem] rounded-b-xl shadow-2xl flex flex-col items-center"
+              className="relative w-full max-w-sm bg-slate-900 border border-amber-500/20 p-6 rounded-[2rem] shadow-2xl flex flex-col items-center"
             >
               <button 
                 onClick={() => setSelectedNode(null)}

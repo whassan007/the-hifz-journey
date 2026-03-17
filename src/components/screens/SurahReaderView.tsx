@@ -553,7 +553,7 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
       {/* Reader Settings Modal */}
       <AnimatePresence>
         {showSettings && (
-          <div className="fixed inset-0 z-50 flex items-end justify-center p-4 text-white" dir="ltr">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 text-white" dir="ltr">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -562,11 +562,11 @@ export const SurahReaderView = ({ surahId, user, onUpdateUser, onBack, onNavigat
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
             <motion.div 
-              initial={{ y: '100%', opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: '100%', opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-sm bg-jungle-dark border border-white/10 p-6 rounded-[2rem] rounded-b-xl shadow-2xl flex flex-col gap-6"
+              className="relative w-full max-w-sm bg-jungle-dark border border-white/10 p-6 rounded-[2rem] shadow-2xl flex flex-col gap-6"
             >
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-bold text-xl">Reader settings</h3>
